@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriverBaseSubsys;
 import static frc.robot.Constants.*;
 import static frc.robot.Constants.buttonID.*;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
   
 public class DriverBaseCmd extends CommandBase {
   /** Creates a new RobotBase. */
@@ -26,6 +27,8 @@ public class DriverBaseCmd extends CommandBase {
   {
     double mult = (JOYSTICK.getRawAxis(RIGHTTRIGGER)>0)? NORMSPEED : FASTSPEED;
     m_subsystem.drive(mult*JOYSTICK.getRawAxis(YAXISLEFT),mult*JOYSTICK.getRawAxis(YAXISRIGHT));
+    SmartDashboard.putNumber("Left Speed", mult*JOYSTICK.getRawAxis(YAXISLEFT));
+    SmartDashboard.putNumber("Right Speed", mult*JOYSTICK.getRawAxis(YAXISRIGHT));
   }
 
   @Override

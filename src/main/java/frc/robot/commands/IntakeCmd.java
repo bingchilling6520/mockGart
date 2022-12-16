@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 //import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.IntakeSubsys;
@@ -20,6 +21,7 @@ public class IntakeCmd extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    SmartDashboard.putBoolean("Intake Running?", true);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -32,6 +34,7 @@ public class IntakeCmd extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_intake.rotate(0.0);
+    SmartDashboard.putBoolean("Intake Running?", false);
   }
 
   // Returns true when the command should end.
