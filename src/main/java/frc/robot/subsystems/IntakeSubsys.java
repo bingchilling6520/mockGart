@@ -12,7 +12,9 @@ import static frc.robot.Constants.talonID.*;
 public class IntakeSubsys extends SubsystemBase {
   /** Creates a new Intake. */
   private final WPI_TalonSRX intakeTL = new WPI_TalonSRX(INTAKEID);
-  public IntakeSubsys() {}
+  public IntakeSubsys() {
+    intakeTL.setInverted(true);
+  }
 
   public void rotate(double speed)
   {
