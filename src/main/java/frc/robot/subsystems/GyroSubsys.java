@@ -5,9 +5,9 @@
 package frc.robot.subsystems;
 
 
-
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class GyroSubsys extends SubsystemBase {
   
@@ -34,5 +34,13 @@ public class GyroSubsys extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    float vx = ahrs.getVelocityX();
+    float vy = ahrs.getVelocityY();
+    float vz = ahrs.getVelocityZ();
+
+    SmartDashboard.putNumber("X velocity", vx);
+    SmartDashboard.putNumber("Y velocity", vy);
+    SmartDashboard.putNumber("Z velocity", vz);
+    SmartDashboard.putBoolean("Drivebase moving?", (vx == 0 && vy == 0));
   }
 }
