@@ -31,7 +31,8 @@ public final class Constants
       {
             public static final int RIGHTMASTERID = 1, RIGHTFOLLOWID = 2,
                                     LEFTMASTERID = 3, LEFTFOLLOWID = 4,
-                                    INTAKEID = 5;
+                                    INTAKEID = 5, 
+                                    RIGHTPULLEYID = 6, LEFTPULEYID = 7;
       }
       public final class PID
       {
