@@ -9,7 +9,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.AutoDriveStraight;
-import frc.robot.commands.AutoEatBalls;
+import frc.robot.commands.IntakeCmd;
+
 import static frc.robot.SubsystemInstance.*;
 
 /**
@@ -49,7 +50,7 @@ public final class Constants
                   new AutoDriveStraight(m_driverBaseSubsystem,FASTSPEED).withTimeout(0.5),
                   new ParallelCommandGroup(
                         new AutoDriveStraight(m_driverBaseSubsystem, NORMSPEED),
-                        new AutoEatBalls(m_intakeSubsystem,INTAKESPEED)
+                        new IntakeCmd(m_intakeSubsystem)
                   ).withTimeout(0.8));
       }
 }

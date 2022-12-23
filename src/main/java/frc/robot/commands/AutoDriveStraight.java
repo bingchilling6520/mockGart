@@ -9,11 +9,11 @@ import frc.robot.subsystems.DriverBaseSubsys;
   
 public class AutoDriveStraight extends CommandBase {
   /** Creates a new RobotBase. */
-  private DriverBaseSubsys m_subsystem = new DriverBaseSubsys();
+  private DriverBaseSubsys m_driverBaseSubsystem = new DriverBaseSubsys();
   private double speed;
   public AutoDriveStraight(DriverBaseSubsys subsystem, double _speed) {
-    m_subsystem = subsystem;
-    addRequirements(m_subsystem);
+    m_driverBaseSubsystem = subsystem;
+    addRequirements(m_driverBaseSubsystem);
     speed=_speed;
   }
   // Called when the command is initially scheduled.
@@ -23,12 +23,12 @@ public class AutoDriveStraight extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_subsystem.drive(speed, speed);
+    m_driverBaseSubsystem.drive(speed, speed);
   } //empty
 
   @Override
   public void end(boolean interrupted) {
-    m_subsystem.drive(0.0,0.0);
+    m_driverBaseSubsystem.drive(0.0,0.0);
   } //empty
 
   // Returns true when the command should end.
