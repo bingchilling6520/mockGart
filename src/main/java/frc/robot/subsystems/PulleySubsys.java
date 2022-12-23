@@ -18,7 +18,7 @@ public class PulleySubsys extends SubsystemBase {
     leftPulley.setInverted(true);
   }
 
-  void pull (double speed)
+  public void pull (double speed)
   {
     rightPulley.set(speed);
   }

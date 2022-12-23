@@ -15,7 +15,9 @@ import frc.robot.commands.DriverBaseCmd;
 import static frc.robot.Constants.buttonID.*;
 //import frc.robot.commands.AutoDriveStraight;
 //import frc.robot.commands.AutoEatBalls;
-import frc.robot.commands.IntakeCmd;                                            
+import frc.robot.commands.IntakeCmd;
+import frc.robot.commands.PulleyCmd;
+import frc.robot.commands.TrapDoorCmd;                                            
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -27,8 +29,11 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriverBaseCmd m_driverBaseCommand = new DriverBaseCmd(m_driverBaseSubsystem);
   private final IntakeCmd m_intakeCommand = new IntakeCmd(m_intakeSubsystem);
+  private final PulleyCmd m_pulleyCommand = new PulleyCmd(m_pulleySubsystem);
+  private final TrapDoorCmd m_TrapDoorCommand = new TrapDoorCmd(m_trapDoorSubsystem);
   
   private final JoystickButton buttonA = new JoystickButton(JOYSTICK, INTAKEBUTTON);
+  private final JoystickButton buttonB = new JoystickButton(JOYSTICK, INTAKEBUTTON);
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
@@ -45,7 +50,8 @@ public class RobotContainer {
   {
     Trigger trig = new Trigger(() -> true);
     trig.whileActiveContinuous(m_driverBaseCommand);
-    buttonA.whenHeld(m_intakeCommand);
+    buttonA.whenHeld(m_intakeCommand).whenHeld(m_pulleyCommand);
+    buttonB.whenActive(m_TrapDoorCommand.withTimeout(TRAPDOORDURATION));
   }
 
   /**
