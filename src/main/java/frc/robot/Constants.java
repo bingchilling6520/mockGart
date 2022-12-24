@@ -15,13 +15,13 @@ import edu.wpi.first.wpilibj.Joystick;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants{
-      public static final double NORMSPEED = 0.8, SLOWSPEED = 0.4, INTAKESPEED = 0.8, PULLEYSPEED = 0.6, TRAPDOORSPEED = 0.4;
+      public static final double NORMSPEED = 0.8, SLOWSPEED = 0.4, INTAKESPEED = 0.8, PULLEYSPEED = 0.9, TRAPDOORSPEED = 0.4;
       
       public static final double TRAPDOORDURATION = 0.2;
 
       public final class buttonID
       {
-            public static final int YAXISLEFT = 1, YAXISRIGHT = 5, RIGHTTRIGGER = 4, INTAKEBUTTON = 6, TRAPDOORBUTTON = 5;
+            public static final int YAXISLEFT = 1, YAXISRIGHT = 5, RIGHTTRIGGER = 4, EATBALLBUTTON = 6, TRAPDOORBUTTON = 5;
       }
       
       public final class talonID

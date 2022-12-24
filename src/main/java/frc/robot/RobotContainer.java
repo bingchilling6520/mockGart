@@ -50,8 +50,8 @@ public class RobotContainer {
   private final TrapDoorSubsys m_trapDoorSubsystem = new TrapDoorSubsys();
   private final TrapDoorCmd m_TrapDoorCommand = new TrapDoorCmd(m_trapDoorSubsystem);
   
-  private final JoystickButton buttonA = new JoystickButton(JOYSTICK, INTAKEBUTTON);
-  private final JoystickButton buttonB = new JoystickButton(JOYSTICK, INTAKEBUTTON);
+  private final JoystickButton buttonA = new JoystickButton(JOYSTICK, EATBALLBUTTON);
+  private final JoystickButton buttonB = new JoystickButton(JOYSTICK, EATBALLBUTTON);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {

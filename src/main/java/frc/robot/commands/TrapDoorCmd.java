@@ -24,7 +24,7 @@ public class TrapDoorCmd extends CommandBase {
     System.out.println("CLOSE THE TRAPDOOR BEFORE RUNNING");
     SmartDashboard.putString("WARNING", "CLOSE THE TRAPDOOR BEFORE RUNNING");
     state = !state;
-    SmartDashboard.putBoolean("Trap Door Open?", state);                                                                          
+    SmartDashboard.putBoolean("Trap Door Open?", state);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

@@ -14,7 +14,7 @@ public class PulleyCmd extends CommandBase {
   private PulleySubsys m_pulley = new PulleySubsys();
   public PulleyCmd(PulleySubsys __pulley) {
     // Use addRequirements() here to declare subsystem dependencies.
-    m_pulley = __pulley;
+    m_pulley = __pulley; 
   }
 
   // Called when the command is initially scheduled.
