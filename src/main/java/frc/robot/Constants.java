@@ -16,18 +16,22 @@ import edu.wpi.first.wpilibj.Joystick;
  */
 public final class Constants 
 {
-      public static final double NORMSPEED = 0.2, FASTSPEED = 0.8, INTAKESPEED = 1;
+      public static final double NORMSPEED = 0.2, FASTSPEED = 0.8, INTAKESPEED = 1, PULLEYSPEED = 1, TRAPDOORSPEED = 0.4;
       
+      public static final double TRAPDOORDURATION = 2;
+
       public final class buttonID
       {
-            public static final int YAXISLEFT = 1, YAXISRIGHT = 5, RIGHTTRIGGER = 3, INTAKEBUTTON = 1;
+            public static final int YAXISLEFT = 1, YAXISRIGHT = 5, RIGHTTRIGGER = 3, INTAKEBUTTON = 1, TRAPDOORBUTTON = 2;
       }
       
       public final class talonID
       {
             public static final int RIGHTMASTERID = 1, RIGHTFOLLOWID = 2,
                                     LEFTMASTERID = 3, LEFTFOLLOWID = 4,
-                                    INTAKEID = 5;
+                                    INTAKEID = 5,
+                                    RIGHTPULLEYID = 6, LEFTPULEYID = 7, // Currently 7 is reserved for future use
+                                    TRAPDOORID = 1; // Trap door use Victor
       }
       
       public final class PID

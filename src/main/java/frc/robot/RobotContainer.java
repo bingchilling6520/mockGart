@@ -1,23 +1,37 @@
 package frc.robot;
 
+// FRC libraries
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 //import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 //import frc.robot.commands.DriveStraight;
-import frc.robot.subsystems.DriverBaseSubsys;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 //import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;   
-import static frc.robot.Constants.*;          
-import frc.robot.commands.DriverBaseCmd;   
-import frc.robot.subsystems.IntakeSubsys;
+
+// Robot subsystems and commands
+import static frc.robot.Constants.*;     
 import static frc.robot.Constants.buttonID.*;
+
+// Driverbase
+import frc.robot.subsystems.DriverBaseSubsys;
+import frc.robot.commands.DriverBaseCmd;   
 import frc.robot.commands.AutoDriveStraight;
-import frc.robot.commands.AutoEatBalls;
+
+// Intake
+import frc.robot.subsystems.IntakeSubsys;
 import frc.robot.commands.IntakeCmd;                                            
+
+// Pulley
+import frc.robot.subsystems.PulleySubsys;
+import frc.robot.commands.PulleyCmd;
+
+// Trapdoor
+import frc.robot.subsystems.TrapDoorSubsys;
+import frc.robot.commands.TrapDoorCmd;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -31,8 +45,14 @@ public class RobotContainer {
   private final DriverBaseCmd m_driverBaseCommand = new DriverBaseCmd(m_driverBaseSubsystem);
   private final IntakeSubsys m_intakeSubsystem = new IntakeSubsys();
   private final IntakeCmd m_intakeCommand = new IntakeCmd(m_intakeSubsystem);
+  private final PulleySubsys m_pulleySubsystem = new PulleySubsys();
+  private final PulleyCmd m_pulleyCommand = new PulleyCmd(m_pulleySubsystem);
+  private final TrapDoorSubsys m_trapDoorSubsystem = new TrapDoorSubsys();
+  private final TrapDoorCmd m_TrapDoorCommand = new TrapDoorCmd(m_trapDoorSubsystem);
   
   private final JoystickButton buttonA = new JoystickButton(JOYSTICK, INTAKEBUTTON);
+  private final JoystickButton buttonB = new JoystickButton(JOYSTICK, INTAKEBUTTON);
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
@@ -49,7 +69,8 @@ public class RobotContainer {
   {
     Trigger trig = new Trigger(() -> true);
     trig.whileActiveContinuous(m_driverBaseCommand);
-    buttonA.whenHeld(m_intakeCommand);
+    buttonA.whenHeld(m_intakeCommand).whenHeld(m_pulleyCommand);
+    buttonB.whenActive(m_TrapDoorCommand.withTimeout(TRAPDOORDURATION));
   }
 
   /**
@@ -64,7 +85,7 @@ public class RobotContainer {
     new AutoDriveStraight(m_driverBaseSubsystem,FASTSPEED).withTimeout(0.5),
     new ParallelCommandGroup(
       new AutoDriveStraight(m_driverBaseSubsystem, NORMSPEED),
-      new AutoEatBalls(m_intakeSubsystem,INTAKESPEED)
+      new IntakeCmd(m_intakeSubsystem)
     ).withTimeout(0.8));
   }
 }
