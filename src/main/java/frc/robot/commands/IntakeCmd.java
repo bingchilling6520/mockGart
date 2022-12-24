@@ -13,6 +13,7 @@ import static frc.robot.Constants.*;
 public class IntakeCmd extends CommandBase {
   /** Creates a new IntakeCmd. */
   private IntakeSubsys m_intake = new IntakeSubsys();
+  private double speed = INTAKESPEED;
   public IntakeCmd(IntakeSubsys intake) {
     m_intake = intake;
     addRequirements(m_intake);
@@ -27,7 +28,8 @@ public class IntakeCmd extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_intake.rotate(INTAKESPEED);
+    speed = SmartDashboard.getNumber("Intake Speed", INTAKESPEED);
+    m_intake.rotate(speed);
   }
 
   // Called once the command ends or is interrupted.

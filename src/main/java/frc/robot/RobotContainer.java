@@ -84,7 +84,7 @@ public class RobotContainer {
    return new SequentialCommandGroup(
     new AutoDriveStraight(m_driverBaseSubsystem,SLOWSPEED).withTimeout(0.5),
     new ParallelCommandGroup(
-      new AutoDriveStraight(m_driverBaseSubsystem, NORMSPEED),
+      new AutoDriveStraight(m_driverBaseSubsystem, BOOSTSPEED),
       new IntakeCmd(m_intakeSubsystem)
     ).withTimeout(0.8));
   }

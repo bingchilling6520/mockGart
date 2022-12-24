@@ -12,6 +12,7 @@ import static frc.robot.Constants.*;
 public class TrapDoorCmd extends CommandBase {
   /** true = open, false = close */
   private boolean state = false; 
+  private double speed = TRAPDOORSPEED;
   private TrapDoorSubsys m_trapDoorSubsystem;
   /** Creates a new TrapDoorCmd. */
   public TrapDoorCmd(TrapDoorSubsys __trapDoorSubsystem) {
@@ -30,7 +31,8 @@ public class TrapDoorCmd extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_trapDoorSubsystem.rotate(TRAPDOORSPEED * (state ? 1 : - 1));
+    speed = SmartDashboard.getNumber("Trap Door Speed", TRAPDOORSPEED);
+    m_trapDoorSubsystem.rotate(speed * (state ? 1 : - 1));
   }
 
   // Called once the command ends or is interrupted.
