@@ -31,7 +31,7 @@ public final class Constants
                                     LEFTMASTERID = 3, LEFTFOLLOWID = 4,
                                     INTAKEID = 5,
                                     RIGHTPULLEYID = 6, LEFTPULEYID = 7, // Currently 7 is reserved for future use
-                                    TRAPDOORID = 1; // Trap door use Victor
+                                    TRAPDOORID = 8; // Trap door use Victor
       }
       
       public final class PID
