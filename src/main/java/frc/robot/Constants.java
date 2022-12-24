@@ -14,15 +14,14 @@ import edu.wpi.first.wpilibj.Joystick;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants 
-{
-      public static final double NORMSPEED = 0.2, FASTSPEED = 0.8, INTAKESPEED = 1, PULLEYSPEED = 1, TRAPDOORSPEED = 0.4;
+public final class Constants{
+      public static final double NORMSPEED = 0.8, SLOWSPEED = 0.4, INTAKESPEED = 0.8, PULLEYSPEED = 0.6, TRAPDOORSPEED = 0.4;
       
-      public static final double TRAPDOORDURATION = 2;
+      public static final double TRAPDOORDURATION = 0.2;
 
       public final class buttonID
       {
-            public static final int YAXISLEFT = 1, YAXISRIGHT = 5, RIGHTTRIGGER = 3, INTAKEBUTTON = 1, TRAPDOORBUTTON = 2;
+            public static final int YAXISLEFT = 1, YAXISRIGHT = 5, RIGHTTRIGGER = 4, INTAKEBUTTON = 6, TRAPDOORBUTTON = 5;
       }
       
       public final class talonID

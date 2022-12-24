@@ -25,7 +25,7 @@ public class DriverBaseCmd extends CommandBase {
   @Override
   public void execute() 
   {
-    double mult = (JOYSTICK.getRawAxis(RIGHTTRIGGER)>0)? NORMSPEED : FASTSPEED;
+    double mult = (JOYSTICK.getRawAxis(RIGHTTRIGGER)>0)? NORMSPEED : SLOWSPEED;
     m_subsystem.drive(mult*JOYSTICK.getRawAxis(YAXISLEFT),mult*JOYSTICK.getRawAxis(YAXISRIGHT));
     SmartDashboard.putNumber("Left Speed", mult*JOYSTICK.getRawAxis(YAXISLEFT));
     SmartDashboard.putNumber("Right Speed", mult*JOYSTICK.getRawAxis(YAXISRIGHT));

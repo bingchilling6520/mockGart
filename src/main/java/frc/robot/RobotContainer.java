@@ -82,7 +82,7 @@ public class RobotContainer {
     // An ExampleCommand will run in autonomous
    // Drive Straight quickly for 0.5s then move slowly while eating balls in 0.8s
    return new SequentialCommandGroup(
-    new AutoDriveStraight(m_driverBaseSubsystem,FASTSPEED).withTimeout(0.5),
+    new AutoDriveStraight(m_driverBaseSubsystem,SLOWSPEED).withTimeout(0.5),
     new ParallelCommandGroup(
       new AutoDriveStraight(m_driverBaseSubsystem, NORMSPEED),
       new IntakeCmd(m_intakeSubsystem)

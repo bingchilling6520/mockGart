@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.TrapDoorSubsys;
 import static frc.robot.Constants.*;
@@ -20,7 +21,10 @@ public class TrapDoorCmd extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    System.out.println("CLOSE THE TRAPDOOR BEFORE RUNNING");
+    SmartDashboard.putString("WARNING", "CLOSE THE TRAPDOOR BEFORE RUNNING");
     state = !state;
+    SmartDashboard.putBoolean("Trap Door Open?", state);                                                                          
   }
 
   // Called every time the scheduler runs while the command is scheduled.
