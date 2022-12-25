@@ -4,9 +4,9 @@ Main code repo for the mock bot
 All files from the project are uploaded.
 If you want to run this code, remember to install necessary softwares as repo does not contains those.
 
-## Talons / VEXs ID mapping
+## Talons / VEXes ID mapping
 
-**Note**: All Driverbase motor are observed by looking from **the back of the robot** (aka the battery side)
+**Note**: All Driverbase motors are observed by looking from **the back of the robot** (aka the battery side)
 
 |Motor|Vietnamese note|Talon ID|
 |-----|---------------|--------|
