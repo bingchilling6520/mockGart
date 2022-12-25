@@ -14,6 +14,8 @@ import frc.robot.commands.PulleyCmd;
 import frc.robot.subsystems.DriverBaseSubsys;
 import frc.robot.subsystems.IntakeSubsys;
 import frc.robot.subsystems.PulleySubsys;
+import frc.robot.subsystems.TrapDoorSubsys;
+import static frc.robot.Constants.SubsystemInstance.*;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -24,6 +26,14 @@ import frc.robot.subsystems.PulleySubsys;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants{
+      public final static class SubsystemInstance
+      {
+            public final static DriverBaseSubsys m_driverBaseSubsystem = new DriverBaseSubsys();
+            public final static IntakeSubsys m_intakeSubsystem = new IntakeSubsys();
+            public final static IntakeCmd m_intakeCommand = new IntakeCmd(m_intakeSubsystem);
+            public final static PulleySubsys m_pulleySubsystem = new PulleySubsys();
+            public final static TrapDoorSubsys m_trapDoorSubsystem = new TrapDoorSubsys();
+      }
       public static final double BOOSTSPEED = 0.8, SLOWSPEED = 0.4, INTAKESPEED = 1, PULLEYSPEED = 1, TRAPDOORSPEED = 0.2;
       
       public static final double TRAPDOORDURATION = 0.2;
@@ -45,7 +55,7 @@ public final class Constants{
                                     TRAPDOORID = 8; // Trap door use Victor
       }
       
-      public final class PID
+      public final static class PID
       {
             public static final double KI = 0, KP = 1.0/18, KD = 0, KTOLERANCE = 2.0, KTOLERANCEVELOCITY = 0.8 ;
       }
@@ -54,11 +64,11 @@ public final class Constants{
             // Drive Straight quickly for 0.5s then move slowly while eating balls in 0.8s
             public static final Command TESTCMD = 
             new SequentialCommandGroup(
-                  new AutoDriveStraight(new DriverBaseSubsys(),SLOWSPEED).withTimeout(0.5),
+                  new AutoDriveStraight(m_driverBaseSubsystem,SLOWSPEED).withTimeout(0.5),
                   new ParallelCommandGroup(
-                        new AutoDriveStraight(new DriverBaseSubsys(), BOOSTSPEED),
-                        new IntakeCmd(new IntakeSubsys()),
-                        new PulleyCmd(new PulleySubsys())
+                        new AutoDriveStraight(m_driverBaseSubsystem, BOOSTSPEED),
+                        new IntakeCmd(m_intakeSubsystem),
+                        new PulleyCmd(m_pulleySubsystem)
                   ).withTimeout(0.8));
       }
       public final static Joystick JOYSTICK = new Joystick(0);

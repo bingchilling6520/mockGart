@@ -16,21 +16,14 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import static frc.robot.Constants.*;     
 import static frc.robot.Constants.buttonID.*;
 import static frc.robot.Constants.autoCmd.*;
+import static frc.robot.Constants.SubsystemInstance.*;
 
-// Driverbase
-import frc.robot.subsystems.DriverBaseSubsys;
 import frc.robot.commands.DriverBaseCmd;
 
-// Intake
-import frc.robot.subsystems.IntakeSubsys;
 import frc.robot.commands.IntakeCmd;                                            
 
-// Pulley
-import frc.robot.subsystems.PulleySubsys;
 import frc.robot.commands.PulleyCmd;
 
-// Trapdoor
-import frc.robot.subsystems.TrapDoorSubsys;
 import frc.robot.commands.TrapDoorCmd;
 
 /**
@@ -41,14 +34,10 @@ import frc.robot.commands.TrapDoorCmd;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final DriverBaseSubsys m_driverBaseSubsystem = new DriverBaseSubsys();
   private final DriverBaseCmd m_driverBaseCommand = new DriverBaseCmd(m_driverBaseSubsystem);
-  private final IntakeSubsys m_intakeSubsystem = new IntakeSubsys();
   private final IntakeCmd m_intakeCommand = new IntakeCmd(m_intakeSubsystem);
-  private final PulleySubsys m_pulleySubsystem = new PulleySubsys();
   private final PulleyCmd m_pulleyCommand = new PulleyCmd(m_pulleySubsystem);
-  private final TrapDoorSubsys m_trapDoorSubsystem = new TrapDoorSubsys();
-  private final TrapDoorCmd m_TrapDoorCommand = new TrapDoorCmd(m_trapDoorSubsystem);
+  private final TrapDoorCmd m_trapDoorCommand = new TrapDoorCmd(m_trapDoorSubsystem);
   
   private final JoystickButton buttonA = new JoystickButton(JOYSTICK, EATBALLBUTTON);
   private final JoystickButton buttonB = new JoystickButton(JOYSTICK, TRAPDOORBUTTON);
@@ -70,7 +59,7 @@ public class RobotContainer {
     Trigger trig = new Trigger(() -> true);
     trig.whileActiveContinuous(m_driverBaseCommand);
     buttonA.whenHeld(m_intakeCommand).whenHeld(m_pulleyCommand);
-    buttonB.whenActive(m_TrapDoorCommand.withTimeout(TRAPDOORDURATION));
+    buttonB.whenActive(m_trapDoorCommand.withTimeout(TRAPDOORDURATION));
   }
 
   /**
