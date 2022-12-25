@@ -2,10 +2,10 @@ package frc.robot;
 
 // FRC libraries
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 //import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //import frc.robot.commands.DriveStraight;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -15,11 +15,11 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 // Robot subsystems and commands
 import static frc.robot.Constants.*;     
 import static frc.robot.Constants.buttonID.*;
+import static frc.robot.Constants.autoCmd.*;
 
 // Driverbase
 import frc.robot.subsystems.DriverBaseSubsys;
-import frc.robot.commands.DriverBaseCmd;   
-import frc.robot.commands.AutoDriveStraight;
+import frc.robot.commands.DriverBaseCmd;
 
 // Intake
 import frc.robot.subsystems.IntakeSubsys;
@@ -80,12 +80,9 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-   // Drive Straight quickly for 0.5s then move slowly while eating balls in 0.8s
-   return new SequentialCommandGroup(
-    new AutoDriveStraight(m_driverBaseSubsystem,SLOWSPEED).withTimeout(0.5),
-    new ParallelCommandGroup(
-      new AutoDriveStraight(m_driverBaseSubsystem, BOOSTSPEED),
-      new IntakeCmd(m_intakeSubsystem)
-    ).withTimeout(0.8));
+   SendableChooser<Command> m_chooser = new SendableChooser<>();
+   m_chooser.setDefaultOption("Test", TESTCMD);
+   SmartDashboard.putData("Auto Command", m_chooser);
+   return m_chooser.getSelected();
   }
 }

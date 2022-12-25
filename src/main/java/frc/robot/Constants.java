@@ -5,6 +5,15 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.AutoDriveStraight;
+import frc.robot.commands.IntakeCmd;
+import frc.robot.commands.PulleyCmd;
+import frc.robot.subsystems.DriverBaseSubsys;
+import frc.robot.subsystems.IntakeSubsys;
+import frc.robot.subsystems.PulleySubsys;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -40,6 +49,17 @@ public final class Constants{
       {
             public static final double KI = 0, KP = 1.0/18, KD = 0, KTOLERANCE = 2.0, KTOLERANCEVELOCITY = 0.8 ;
       }
-      
+      public final static class autoCmd
+      {
+            // Drive Straight quickly for 0.5s then move slowly while eating balls in 0.8s
+            public static final Command TESTCMD = 
+            new SequentialCommandGroup(
+                  new AutoDriveStraight(new DriverBaseSubsys(),SLOWSPEED).withTimeout(0.5),
+                  new ParallelCommandGroup(
+                        new AutoDriveStraight(new DriverBaseSubsys(), BOOSTSPEED),
+                        new IntakeCmd(new IntakeSubsys()),
+                        new PulleyCmd(new PulleySubsys())
+                  ).withTimeout(0.8));
+      }
       public final static Joystick JOYSTICK = new Joystick(0);
 }
