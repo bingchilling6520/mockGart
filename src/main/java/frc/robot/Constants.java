@@ -64,9 +64,9 @@ public final class Constants{
             // Drive Straight quickly for 0.5s then move slowly while eating balls in 0.8s
             public static final Command TESTCMD = 
             new SequentialCommandGroup(
-                  new AutoDriveStraight(m_driverBaseSubsystem,SLOWSPEED).withTimeout(0.5),
+                  new AutoDriveStraight(m_driverBaseSubsystem,BOOSTSPEED).withTimeout(0.5),
                   new ParallelCommandGroup(
-                        new AutoDriveStraight(m_driverBaseSubsystem, BOOSTSPEED),
+                        new AutoDriveStraight(m_driverBaseSubsystem, SLOWSPEED),
                         new IntakeCmd(m_intakeSubsystem),
                         new PulleyCmd(m_pulleySubsystem)
                   ).withTimeout(0.8));

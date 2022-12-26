@@ -10,6 +10,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 //import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.Trigger;   
 
 // Robot subsystems and commands
@@ -18,6 +21,7 @@ import static frc.robot.Constants.buttonID.*;
 import static frc.robot.Constants.autoCmd.*;
 import static frc.robot.Constants.SubsystemInstance.*;
 
+import frc.robot.commands.AutoDriveStraight;
 import frc.robot.commands.DriverBaseCmd;
 
 import frc.robot.commands.IntakeCmd;                                            
@@ -47,8 +51,12 @@ public class RobotContainer {
   public RobotContainer() {
     SmartDashboard.putNumber("Pulley Speed", PULLEYSPEED);
     SmartDashboard.putNumber("Intake Speed", INTAKESPEED); 
+    SmartDashboard.putNumber("Trap Door Speed", TRAPDOORSPEED); 
     SmartDashboard.putNumber("Driverbase Normal Speed", SLOWSPEED);
     SmartDashboard.putNumber("Driverbase Boosted Speed", BOOSTSPEED);
+    SmartDashboard.putBoolean("Intake Running?", false);
+    SmartDashboard.putBoolean("Pulley Running?", false);
+    SmartDashboard.putBoolean("Trap Door Open?", false);
 
     // Configure the button bindings
     configureButtonBindings();
@@ -64,6 +72,7 @@ public class RobotContainer {
   {
     Trigger trig = new Trigger(() -> true);
     trig.whileActiveContinuous(m_driverBaseCommand);
+    //trig.whileActiveContinuous(m_pulleyCommand).whileActiveContinuous(m_intakeCommand);
     buttonIntake.whenHeld(m_intakeCommand);
     buttonPulley.whenHeld(m_pulleyCommand);
     buttonTrapdoor.whenActive(m_trapDoorCommand.withTimeout(TRAPDOORDURATION));
@@ -79,6 +88,9 @@ public class RobotContainer {
    SendableChooser<Command> m_chooser = new SendableChooser<>();
    m_chooser.setDefaultOption("Test", TESTCMD);
    SmartDashboard.putData("Auto Command", m_chooser);
-   return m_chooser.getSelected();
+   return
+   new SequentialCommandGroup(
+         new AutoDriveStraight(m_driverBaseSubsystem,BOOSTSPEED).withTimeout(0.5),
+          new IntakeCmd(m_intakeSubsystem));
   }
 }
