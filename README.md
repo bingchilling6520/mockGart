@@ -23,18 +23,17 @@ If you want to run this code, remember to install necessary softwares as repo do
 
 PS5 or whatever handheld controller given by cỏ
 
-Axis:
-
-|Name / Button purpose|Vietnamese note|Button ID|
+|Name / Axis purpose|Vietnamese note|Axis ID|
 |---------------------|---------------|---------|
 |Driverbase Left Side|Điều khiển các bánh trái của Driverbase|1 (Left Joystick)|
 |Driverbase Right Side|Điều khiển các bánh phải của Driverbase|5 (Right Joystick)|
-|Left Side Speed Boost|Tăng tốc cho các bánh trái|3 (L1 Button)|
-|Right Side Spped Boost|Tăng tốc cho các bánh phải|4 (R1 Button)|
-|Button|
-|Left Side Brake|Phanh bên trái|5 (L2 Button)|
-|Right Side Brake|Phanh bên phải|6 (R2 Button)|
-|Intake and Pulley|Chạy cả hút và máng|1 (ko biết tên nút là gì để mô tả)|
-|Open/Close Trapdoor|Đóng / mở trapdoor (**nhớ nhìn state trên SmartDashboard**)|2 (cx ko biết là button tên j)|
+|Invert|Giữ để đảo ngược chiều Intake và Pullley (Máng)|3 (L1 Button)|
+|Speed Boost|Tăng tốc cho bánh cả hai bên Driverbase|4 (R1 Button)|
+
+|Name / Button purpose|Vietnamese note|Button ID|
+|---------------------|---------------|---------|
+|Intake|Giữ để chạy hút|1 (ko biết tên nút là gì để mô tả)|
+|Pulley|Giữ để chạy máng|2 (cũng không biết|
+|Open/Close Trapdoor|Đóng / mở trapdoor (**nhớ nhìn state trên SmartDashboard**)|3 (cx ko biết là button tên j)|
 
 ## Team blue không phải dọn lab go bruh bruh
