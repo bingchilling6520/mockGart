@@ -51,7 +51,7 @@ public final class Constants{
             public static final int RIGHTMASTERID = 1, RIGHTFOLLOWID = 2,
                                     LEFTMASTERID = 3, LEFTFOLLOWID = 4,
                                     INTAKEID = 5,
-                                    RIGHTPULLEYID = 6, LEFTPULEYID = 7, // Currently 7 is reserved for future use
+                                    PULLEYID = 6, RESERVE = 7, // Currently 7 is reserved for future use
                                     TRAPDOORID = 8; // Trap door use Victor
       }
       

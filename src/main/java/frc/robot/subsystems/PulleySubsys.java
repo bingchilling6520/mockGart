@@ -13,7 +13,7 @@ public class PulleySubsys extends SubsystemBase {
   /*private final WPI_TalonSRX rightPulley = new WPI_TalonSRX (RIGHTPULLEYID),
                           leftPulley = new WPI_TalonSRX(LEFTPULEYID);*/
   
-  private final WPI_TalonSRX pulley = new WPI_TalonSRX(RIGHTPULLEYID);
+  private final WPI_TalonSRX pulley = new WPI_TalonSRX(PULLEYID);
   
   public PulleySubsys() {
     //Rotate with equal but opposite velocity.
