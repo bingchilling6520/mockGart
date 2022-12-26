@@ -10,19 +10,21 @@ import frc.robot.subsystems.PulleySubsys;
 import static frc.robot.Constants.buttonID.*;
 
 import static frc.robot.Constants.*;
+
 public class PulleyCmd extends CommandBase {
   /** Creates a new PulleyCmd. */
   private PulleySubsys m_pulley = new PulleySubsys();
   private double speed = PULLEYSPEED;
+
   public PulleyCmd(PulleySubsys __pulley) {
     // Use addRequirements() here to declare subsystem dependencies.
-    m_pulley = __pulley; 
+    m_pulley = __pulley;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    //SmartDashboard.putNumber("Pulley Speed", PULLEYSPEED);
+    // SmartDashboard.putNumber("Pulley Speed", PULLEYSPEED);
     SmartDashboard.putBoolean("Pulley Running?", true);
   }
 
@@ -30,7 +32,7 @@ public class PulleyCmd extends CommandBase {
   @Override
   public void execute() {
     speed = SmartDashboard.getNumber("Pulley Speed", PULLEYSPEED);
-    m_pulley.pull(speed * (JOYSTICK.getRawAxis(INVERT) > 0? -1 : 1));
+    m_pulley.pull(speed * (JOYSTICK.getRawAxis(INVERT) > 0 ? -1 : 1));
   }
 
   // Called once the command ends or is interrupted.
