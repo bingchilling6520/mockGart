@@ -48,7 +48,6 @@ public class RobotContainer {
   private final JoystickButton buttonTrapdoor = new JoystickButton(JOYSTICK, TRAPDOORBUTTON);
   
   private final SendableChooser<Command> m_chooser = new SendableChooser<>();
-  m_chooser.setDefaultOption("Test", TESTCMD);
   
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -61,6 +60,8 @@ public class RobotContainer {
     SmartDashboard.putBoolean("Intake Running?", false);
     SmartDashboard.putBoolean("Pulley Running?", false);
     SmartDashboard.putBoolean("Trap Door Open?", false);
+    
+    m_chooser.setDefaultOption("Test", TESTCMD);
 
     // Configure the button bindings
     configureButtonBindings();
@@ -92,9 +93,6 @@ public class RobotContainer {
 //    SendableChooser<Command> m_chooser = new SendableChooser<>();
 //    m_chooser.setDefaultOption("Test", TESTCMD);
    SmartDashboard.putData("Auto Command", m_chooser);
-   return
-   new SequentialCommandGroup(
-         new AutoDriveStraight(m_driverBaseSubsystem,BOOSTSPEED).withTimeout(0.5),
-          new IntakeCmd(m_intakeSubsystem));
+   return m_chooser.getSelected();
   }
 }
