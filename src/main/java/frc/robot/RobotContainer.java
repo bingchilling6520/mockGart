@@ -42,6 +42,10 @@ public class RobotContainer {
   private final JoystickButton buttonIntake = new JoystickButton(JOYSTICK, INTAKEBUTTON);
   private final JoystickButton buttonPulley = new JoystickButton(JOYSTICK, PULLEYBUTTON);
   private final JoystickButton buttonTrapdoor = new JoystickButton(JOYSTICK, TRAPDOORBUTTON);
+  
+  private final SendableChooser<Command> m_chooser = new SendableChooser<>();
+  m_chooser.setDefaultOption("Test", TESTCMD);
+  
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -76,8 +80,8 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-   SendableChooser<Command> m_chooser = new SendableChooser<>();
-   m_chooser.setDefaultOption("Test", TESTCMD);
+//    SendableChooser<Command> m_chooser = new SendableChooser<>();
+//    m_chooser.setDefaultOption("Test", TESTCMD);
    SmartDashboard.putData("Auto Command", m_chooser);
    return m_chooser.getSelected();
   }
