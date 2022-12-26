@@ -41,9 +41,9 @@ public final class Constants{
       public final class buttonID
       {
             public static final int YAXISLEFT = 1, YAXISRIGHT = 5, 
-                                    LEFTBOOST = 3, RIGHTBOOST = 4, 
-                                    LEFTBRAKE = 5, RIGHTBRAKE = 6,
-                                    EATBALLBUTTON = 1, TRAPDOORBUTTON = 2;
+                                    INVERT = 3, BOOST = 4, 
+                                    //LEFTBRAKE = 5, RIGHTBRAKE = 6,
+                                    INTAKEBUTTON = 1, PULLEYBUTTON = 2, TRAPDOORBUTTON = 3;
       }
       
       public final class talonID

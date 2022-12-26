@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 //import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.IntakeSubsys;
 import static frc.robot.Constants.*;
+import static frc.robot.Constants.buttonID.*;
 
 public class IntakeCmd extends CommandBase {
   /** Creates a new IntakeCmd. */
@@ -29,7 +30,7 @@ public class IntakeCmd extends CommandBase {
   @Override
   public void execute() {
     speed = SmartDashboard.getNumber("Intake Speed", INTAKESPEED);
-    m_intake.rotate(speed);
+    m_intake.rotate(speed * (JOYSTICK.getRawAxis(INVERT)>0? -1 : 1));
   }
 
   // Called once the command ends or is interrupted.

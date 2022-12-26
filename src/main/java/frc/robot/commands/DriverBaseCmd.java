@@ -14,13 +14,15 @@ public class DriverBaseCmd extends CommandBase {
   /** Creates a new RobotBase. */
   private DriverBaseSubsys m_subsystem = new DriverBaseSubsys();
   private double slowSpeed = SLOWSPEED, boostSpeed = BOOSTSPEED;
+  
   public DriverBaseCmd(DriverBaseSubsys subsystem) {
     m_subsystem = subsystem;
     addRequirements(m_subsystem);
   }
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {} //empty
+  public void initialize() {
+  } //empty
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -28,10 +30,8 @@ public class DriverBaseCmd extends CommandBase {
   {
     slowSpeed = SmartDashboard.getNumber("Driverbase Normal Speed", SLOWSPEED);
     boostSpeed = SmartDashboard.getNumber("Driverbase Boosted Speed", BOOSTSPEED);
-     double multright = (JOYSTICK.getRawAxis(RIGHTBOOST)>0)? boostSpeed : slowSpeed * //boost
-                        (JOYSTICK.getRawButton(RIGHTBRAKE)?0:1), //brake
-            multleft = (JOYSTICK.getRawAxis(LEFTBOOST)>0)? boostSpeed : slowSpeed * //boost
-                        (JOYSTICK.getRawButton(LEFTBRAKE)?0:1); //brake
+     double multright = (JOYSTICK.getRawAxis(BOOST)>0)? boostSpeed : slowSpeed, 
+            multleft = (JOYSTICK.getRawAxis(BOOST)>0)? boostSpeed : slowSpeed;
     m_subsystem.drive(multleft*JOYSTICK.getRawAxis(YAXISLEFT),multright*JOYSTICK.getRawAxis(YAXISRIGHT));
     SmartDashboard.putNumber("Left Speed", multleft*JOYSTICK.getRawAxis(YAXISLEFT));
     SmartDashboard.putNumber("Right Speed", multright*JOYSTICK.getRawAxis(YAXISRIGHT));

@@ -39,11 +39,17 @@ public class RobotContainer {
   private final PulleyCmd m_pulleyCommand = new PulleyCmd(m_pulleySubsystem);
   private final TrapDoorCmd m_trapDoorCommand = new TrapDoorCmd(m_trapDoorSubsystem);
   
-  private final JoystickButton buttonA = new JoystickButton(JOYSTICK, EATBALLBUTTON);
-  private final JoystickButton buttonB = new JoystickButton(JOYSTICK, TRAPDOORBUTTON);
+  private final JoystickButton buttonIntake = new JoystickButton(JOYSTICK, INTAKEBUTTON);
+  private final JoystickButton buttonPulley = new JoystickButton(JOYSTICK, PULLEYBUTTON);
+  private final JoystickButton buttonTrapdoor = new JoystickButton(JOYSTICK, TRAPDOORBUTTON);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    SmartDashboard.putNumber("Pulley Speed", PULLEYSPEED);
+    SmartDashboard.putNumber("Intake Speed", INTAKESPEED); 
+    SmartDashboard.putNumber("Driverbase Normal Speed", SLOWSPEED);
+    SmartDashboard.putNumber("Driverbase Boosted Speed", BOOSTSPEED);
+
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -58,8 +64,9 @@ public class RobotContainer {
   {
     Trigger trig = new Trigger(() -> true);
     trig.whileActiveContinuous(m_driverBaseCommand);
-    buttonA.whenHeld(m_intakeCommand).whenHeld(m_pulleyCommand);
-    buttonB.whenActive(m_trapDoorCommand.withTimeout(TRAPDOORDURATION));
+    buttonIntake.whenHeld(m_intakeCommand);
+    buttonPulley.whenHeld(m_pulleyCommand);
+    buttonTrapdoor.whenActive(m_trapDoorCommand.withTimeout(TRAPDOORDURATION));
   }
 
   /**

@@ -31,6 +31,8 @@ public class TrapDoorCmd extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    //SmartDashboard.putNumber("Trap Door Speed", TRAPDOORSPEED);
+    state = SmartDashboard.getBoolean("Trap Door Open?", state);
     speed = SmartDashboard.getNumber("Trap Door Speed", TRAPDOORSPEED);
     m_trapDoorSubsystem.rotate(speed * (state ? 1 : - 1));
   }
