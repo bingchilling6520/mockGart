@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.Algorithm.RunningMode;
 import frc.robot.commands.AutoDriveStraight;
 import frc.robot.commands.IntakeCmd;
 import frc.robot.commands.PulleyCmd;
@@ -71,5 +72,6 @@ public final class Constants{
                         new PulleyCmd(m_pulleySubsystem)
                   ).withTimeout(0.8));
       }
+      public static RunningMode MODE = RunningMode.disabled;
       public final static Joystick JOYSTICK = new Joystick(0);
 }

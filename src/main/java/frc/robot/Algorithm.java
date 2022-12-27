@@ -18,4 +18,9 @@ public final class Algorithm {
             }
             return val;
       }
+      
+      public static enum RunningMode
+      {
+            teleOperated, auto, disabled;
+      }
 }
