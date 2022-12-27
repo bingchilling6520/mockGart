@@ -30,7 +30,6 @@ public final class Constants{
       {
             public final static DriverBaseSubsys m_driverBaseSubsystem = new DriverBaseSubsys();
             public final static IntakeSubsys m_intakeSubsystem = new IntakeSubsys();
-            public final static IntakeCmd m_intakeCommand = new IntakeCmd(m_intakeSubsystem);
             public final static PulleySubsys m_pulleySubsystem = new PulleySubsys();
             public final static TrapDoorSubsys m_trapDoorSubsystem = new TrapDoorSubsys();
       }

@@ -9,12 +9,10 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 //import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.IntakeSubsys;
 import static frc.robot.Constants.*;
-import static frc.robot.Constants.buttonID.*;
 
 public class IntakeCmd extends CommandBase {
   /** Creates a new IntakeCmd. */
   private IntakeSubsys m_intake = new IntakeSubsys();
-  private double speed = INTAKESPEED;
   public IntakeCmd(IntakeSubsys intake) {
     m_intake = intake;
     addRequirements(m_intake);
@@ -29,8 +27,7 @@ public class IntakeCmd extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    speed = SmartDashboard.getNumber("Intake Speed", INTAKESPEED);
-    m_intake.rotate(speed * (JOYSTICK.getRawAxis(INVERT)>0? -1 : 1));
+    m_intake.rotate(INTAKESPEED);
   }
 
   // Called once the command ends or is interrupted.
