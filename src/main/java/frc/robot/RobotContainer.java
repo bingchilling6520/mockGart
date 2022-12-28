@@ -46,7 +46,7 @@ public class RobotContainer {
     SmartDashboard.putNumber("Pulley Speed", PULLEYSPEED);
     SmartDashboard.putNumber("Intake Speed", INTAKESPEED); 
     SmartDashboard.putNumber("Trap Door Speed", TRAPDOORSPEED); 
-    SmartDashboard.putNumber("Driverbase Normal Speed", SLOWSPEED);
+    SmartDashboard.putNumber("Driverbase Normal Speed", NORMSPEED);
     SmartDashboard.putNumber("Driverbase Boosted Speed", BOOSTSPEED);
     SmartDashboard.putBoolean("Intake Running?", false);
     SmartDashboard.putBoolean("Pulley Running?", false);
