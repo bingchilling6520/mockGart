@@ -35,26 +35,29 @@ public class DriverBaseCmd extends CommandBase {
       switch (pov)
       {
         case 0: //up
-          m_subsystem.drive(NORMSPEED, NORMSPEED);
-          break;
-        case 90: //right
-          m_subsystem.drive(NORMSPEED, -NORMSPEED);
-          break;
-        case 180: //down
           m_subsystem.drive(-NORMSPEED, -NORMSPEED);
           break;
+        case 90: //right
+          //m_subsystem.drive(NORMSPEED, -NORMSPEED);
+          break;
+        case 180: //down
+          m_subsystem.drive(NORMSPEED, NORMSPEED);
+          break;
         case 270: //left
-          m_subsystem.drive(-NORMSPEED, NORMSPEED);
+          //m_subsystem.drive(-NORMSPEED, NORMSPEED);
           break;
       }
       return;
     }
+
     double rawAxisLeft = JOYSTICK.getRawAxis(YAXISLEFT);
     double rawAxisRight = JOYSTICK.getRawAxis(YAXISRIGHT);
+    
     if (Math.abs(rawAxisLeft)<=0 && Math.abs(rawAxisRight)<=0) //no joystick movement
     {
       return;
     }
+    
     slowSpeed = SmartDashboard.getNumber("Driverbase Normal Speed", NORMSPEED);
     boostSpeed = SmartDashboard.getNumber("Driverbase Boosted Speed", BOOSTSPEED);
      double multright = (JOYSTICK.getRawAxis(BOOST)>0)? boostSpeed : slowSpeed, 

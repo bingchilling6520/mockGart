@@ -33,16 +33,17 @@ public final class Constants{
             public final static PulleySubsys m_pulleySubsystem = new PulleySubsys();
             public final static TrapDoorSubsys m_trapDoorSubsystem = new TrapDoorSubsys();
       }
-      public static final double BOOSTSPEED = 0.8, NORMSPEED = 0.4, INTAKESPEED = 1, PULLEYSPEED = 1, TRAPDOORSPEED = 0.2;
-      
+      public static final double BOOSTSPEED = 0.8, SLOWSPEED = 0.4, INTAKESPEED = 1, PULLEYSPEED = 1, TRAPDOORSPEED = 0.2;
+      public static final double NORMSPEED = SLOWSPEED; // Default speed
+
       public static final double TRAPDOORDURATION = 0.2;
 
       public final class buttonID
       {
             public static final int YAXISLEFT = 1, YAXISRIGHT = 5, 
-                                    INVERT = 3, BOOST = 4, 
+                                    INVERT = 7, BOOST = 8, 
                                     //LEFTBRAKE = 5, RIGHTBRAKE = 6,
-                                    INTAKEBUTTON = 1, PULLEYBUTTON = 2, TRAPDOORBUTTON = 3;
+                                    INTAKEBUTTON = 5, PULLEYBUTTON = 6, TRAPDOORBUTTON = 3;
       }
       
       public final class talonID
@@ -65,7 +66,7 @@ public final class Constants{
             new SequentialCommandGroup(
                   new AutoDriveStraight(m_driverBaseSubsystem,BOOSTSPEED).withTimeout(0.5),
                   new ParallelCommandGroup(
-                        new AutoDriveStraight(m_driverBaseSubsystem, NORMSPEED),
+                        new AutoDriveStraight(m_driverBaseSubsystem, SLOWSPEED),
                         new IntakeCmd(m_intakeSubsystem),
                         new PulleyCmd(m_pulleySubsystem)
                   ).withTimeout(0.8));
