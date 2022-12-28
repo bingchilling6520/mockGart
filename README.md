@@ -32,8 +32,8 @@ PS5 or whatever handheld controller given by cỏ
 
 |Name / Button purpose|Vietnamese note|Button ID|
 |---------------------|---------------|---------|
-|Intake|Giữ để chạy hút|1 (ko biết tên nút là gì để mô tả)|
-|Pulley|Giữ để chạy máng|2 (cũng không biết|
+|Intake|Giữ để chạy hút|5 (L2)|
+|Pulley|Giữ để chạy máng|6 (R2)|
 |Open/Close Trapdoor|Đóng / mở trapdoor (**nhớ nhìn state trên SmartDashboard**)|3 (cx ko biết là button tên j)|
 
 ## Team blue không phải dọn lab go bruh bruh
