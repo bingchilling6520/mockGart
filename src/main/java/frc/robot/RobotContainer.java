@@ -9,20 +9,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //import frc.robot.commands.DriveStraight;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-//import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.button.Trigger;   
 
 // Robot subsystems and commands
 import static frc.robot.Constants.*;     
 import static frc.robot.Constants.buttonID.*;
 import static frc.robot.Constants.autoCmd.*;
 import static frc.robot.Constants.SubsystemInstance.*;
-
-import frc.robot.commands.AutoDriveStraight;
-import frc.robot.commands.DriverBaseCmd;
 
 import frc.robot.commands.IntakeCmd;                                            
 
@@ -38,7 +30,6 @@ import frc.robot.commands.TrapDoorCmd;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final DriverBaseCmd m_driverBaseCommand = new DriverBaseCmd(m_driverBaseSubsystem);
   private final IntakeCmd m_intakeCommand = new IntakeCmd(m_intakeSubsystem);
   private final PulleyCmd m_pulleyCommand = new PulleyCmd(m_pulleySubsystem);
   private final TrapDoorCmd m_trapDoorCommand = new TrapDoorCmd(m_trapDoorSubsystem);
@@ -55,7 +46,7 @@ public class RobotContainer {
     SmartDashboard.putNumber("Pulley Speed", PULLEYSPEED);
     SmartDashboard.putNumber("Intake Speed", INTAKESPEED); 
     SmartDashboard.putNumber("Trap Door Speed", TRAPDOORSPEED); 
-    SmartDashboard.putNumber("Driverbase Normal Speed", SLOWSPEED);
+    SmartDashboard.putNumber("Driverbase Normal Speed", NORMSPEED);
     SmartDashboard.putNumber("Driverbase Boosted Speed", BOOSTSPEED);
     SmartDashboard.putBoolean("Intake Running?", false);
     SmartDashboard.putBoolean("Pulley Running?", false);
@@ -75,8 +66,6 @@ public class RobotContainer {
    */
   private void configureButtonBindings() 
   {
-    Trigger trig = new Trigger(() -> true);
-    trig.whileActiveContinuous(m_driverBaseCommand);
     //trig.whileActiveContinuous(m_pulleyCommand).whileActiveContinuous(m_intakeCommand);
     buttonIntake.whenHeld(m_intakeCommand);
     buttonPulley.whenHeld(m_pulleyCommand);
@@ -90,9 +79,10 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-//    SendableChooser<Command> m_chooser = new SendableChooser<>();
-//    m_chooser.setDefaultOption("Test", TESTCMD);
-   SmartDashboard.putData("Auto Command", m_chooser);
-   return m_chooser.getSelected();
+    // SendableChooser<Command> m_chooser = new SendableChooser<>();
+    // m_chooser.setDefaultOption("Test", TESTCMD);
+    SmartDashboard.putData("Auto Command", m_chooser);
+    //return m_chooser.getSelected();
+    return TESTCMD;
   }
 }

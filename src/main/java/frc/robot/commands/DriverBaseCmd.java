@@ -9,11 +9,12 @@ import frc.robot.subsystems.DriverBaseSubsys;
 import static frc.robot.Constants.*;
 import static frc.robot.Constants.buttonID.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import java.lang.Math;
   
 public class DriverBaseCmd extends CommandBase {
   /** Creates a new RobotBase. */
   private DriverBaseSubsys m_subsystem = new DriverBaseSubsys();
-  private double slowSpeed = SLOWSPEED, boostSpeed = BOOSTSPEED;
+  private double slowSpeed = NORMSPEED, boostSpeed = BOOSTSPEED;
   
   public DriverBaseCmd(DriverBaseSubsys subsystem) {
     m_subsystem = subsystem;
@@ -28,13 +29,39 @@ public class DriverBaseCmd extends CommandBase {
   @Override
   public void execute() 
   {
-    slowSpeed = SmartDashboard.getNumber("Driverbase Normal Speed", SLOWSPEED);
+    int pov = JOYSTICK.getPOV();
+    if (pov!=-1) //POV pressed drive with NORMSPEED constants
+    {
+      switch (pov)
+      {
+        case 0: //up
+          m_subsystem.drive(NORMSPEED, NORMSPEED);
+          break;
+        case 90: //right
+          m_subsystem.drive(NORMSPEED, -NORMSPEED);
+          break;
+        case 180: //down
+          m_subsystem.drive(-NORMSPEED, -NORMSPEED);
+          break;
+        case 270: //left
+          m_subsystem.drive(-NORMSPEED, NORMSPEED);
+          break;
+      }
+      return;
+    }
+    double rawAxisLeft = JOYSTICK.getRawAxis(YAXISLEFT);
+    double rawAxisRight = JOYSTICK.getRawAxis(YAXISRIGHT);
+    if (Math.abs(rawAxisLeft)<=0 && Math.abs(rawAxisRight)<=0) //no joystick movement
+    {
+      return;
+    }
+    slowSpeed = SmartDashboard.getNumber("Driverbase Normal Speed", NORMSPEED);
     boostSpeed = SmartDashboard.getNumber("Driverbase Boosted Speed", BOOSTSPEED);
      double multright = (JOYSTICK.getRawAxis(BOOST)>0)? boostSpeed : slowSpeed, 
             multleft = (JOYSTICK.getRawAxis(BOOST)>0)? boostSpeed : slowSpeed;
-    m_subsystem.drive(multleft*JOYSTICK.getRawAxis(YAXISLEFT),multright*JOYSTICK.getRawAxis(YAXISRIGHT));
-    SmartDashboard.putNumber("Left Speed", multleft*JOYSTICK.getRawAxis(YAXISLEFT));
-    SmartDashboard.putNumber("Right Speed", multright*JOYSTICK.getRawAxis(YAXISRIGHT));
+    m_subsystem.drive(multleft*rawAxisLeft,multright*rawAxisRight);
+    SmartDashboard.putNumber("Left Speed", multleft*rawAxisLeft);
+    SmartDashboard.putNumber("Right Speed", multright*rawAxisRight);
   }
 
   @Override

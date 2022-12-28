@@ -30,11 +30,10 @@ public final class Constants{
       {
             public final static DriverBaseSubsys m_driverBaseSubsystem = new DriverBaseSubsys();
             public final static IntakeSubsys m_intakeSubsystem = new IntakeSubsys();
-            public final static IntakeCmd m_intakeCommand = new IntakeCmd(m_intakeSubsystem);
             public final static PulleySubsys m_pulleySubsystem = new PulleySubsys();
             public final static TrapDoorSubsys m_trapDoorSubsystem = new TrapDoorSubsys();
       }
-      public static final double BOOSTSPEED = 0.8, SLOWSPEED = 0.4, INTAKESPEED = 1, PULLEYSPEED = 1, TRAPDOORSPEED = 0.2;
+      public static final double BOOSTSPEED = 0.8, NORMSPEED = 0.4, INTAKESPEED = 1, PULLEYSPEED = 1, TRAPDOORSPEED = 0.2;
       
       public static final double TRAPDOORDURATION = 0.2;
 
@@ -66,7 +65,7 @@ public final class Constants{
             new SequentialCommandGroup(
                   new AutoDriveStraight(m_driverBaseSubsystem,BOOSTSPEED).withTimeout(0.5),
                   new ParallelCommandGroup(
-                        new AutoDriveStraight(m_driverBaseSubsystem, SLOWSPEED),
+                        new AutoDriveStraight(m_driverBaseSubsystem, NORMSPEED),
                         new IntakeCmd(m_intakeSubsystem),
                         new PulleyCmd(m_pulleySubsystem)
                   ).withTimeout(0.8));
