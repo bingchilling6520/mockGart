@@ -34,9 +34,9 @@ public class RobotContainer {
   private final PulleyCmd m_pulleyCommand = new PulleyCmd(m_pulleySubsystem);
   private final TrapDoorCmd m_trapDoorCommand = new TrapDoorCmd(m_trapDoorSubsystem);
   
-  private final JoystickButton buttonIntake = new JoystickButton(JOYSTICK, INTAKEBUTTON);
-  private final JoystickButton buttonPulley = new JoystickButton(JOYSTICK, PULLEYBUTTON);
-  private final JoystickButton buttonTrapdoor = new JoystickButton(JOYSTICK, TRAPDOORBUTTON);
+  private final JoystickButton buttonIntake = new JoystickButton(JOYSTICK2, INTAKEBUTTON);
+  private final JoystickButton buttonPulley = new JoystickButton(JOYSTICK2, PULLEYBUTTON);
+  private final JoystickButton buttonTrapdoor = new JoystickButton(JOYSTICK2, TRAPDOORBUTTON);
   
   private final SendableChooser<Command> m_chooser = new SendableChooser<>();
   

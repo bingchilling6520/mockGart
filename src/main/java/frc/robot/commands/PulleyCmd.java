@@ -32,7 +32,7 @@ public class PulleyCmd extends CommandBase {
   @Override
   public void execute() {
     speed = SmartDashboard.getNumber("Pulley Speed", PULLEYSPEED);
-    m_pulley.pull(speed * (JOYSTICK.getRawAxis(INVERT) > 0 ? -1 : 1));
+    m_pulley.pull(speed * (JOYSTICK2.getRawAxis(INVERT) > 0 ? -1 : 1));
   }
 
   // Called once the command ends or is interrupted.

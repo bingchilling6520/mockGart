@@ -73,5 +73,6 @@ public final class Constants{
                         new PulleyCmd(m_pulleySubsystem)
                   ).withTimeout(0.8));
       }
-      public final static Joystick JOYSTICK = new Joystick(0);
+      public final static Joystick JOYSTICK = new Joystick(0);  // Driverbase control joystick
+      public final static Joystick JOYSTICK2 = new Joystick(1); // Features control joystick
 }
