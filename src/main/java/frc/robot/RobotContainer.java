@@ -19,7 +19,6 @@ import static frc.robot.Constants.SubsystemInstance.*;
 import frc.robot.commands.IntakeCmd;                                            
 
 import frc.robot.commands.PulleyCmd;
-import frc.robot.commands.PulleySpeedCmd;
 import frc.robot.commands.TrapDoorCmd;
 
 /**
@@ -37,14 +36,13 @@ public class RobotContainer {
   private final JoystickButton buttonIntake = new JoystickButton(JOYSTICK2, INTAKEBUTTON);
   private final JoystickButton buttonPulley = new JoystickButton(JOYSTICK2, PULLEYBUTTON);
   private final JoystickButton buttonTrapdoor = new JoystickButton(JOYSTICK2, TRAPDOORBUTTON);
-  private final JoystickButton buttonPulleySlow = new JoystickButton(JOYSTICK2, PULLEYSLOWBUTTON);
-  private final JoystickButton buttonPulleyFast = new JoystickButton(JOYSTICK2, PULLEYFASTBUTTON);
   
   private final SendableChooser<Command> m_chooser = new SendableChooser<>();
   
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    // SmartDashboard initialize
     SmartDashboard.putNumber("Pulley Slow Speed", PULLEYSLOWSPEED);
     SmartDashboard.putNumber("Pulley Fast Speed", PULLEYFASTSPEED);
     SmartDashboard.putNumber("Intake Speed", INTAKESPEED); 
@@ -57,7 +55,6 @@ public class RobotContainer {
     m_chooser.setDefaultOption("Test", TESTCMD);
     SmartDashboard.putData("Auto Command", m_chooser);
     
-
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -74,8 +71,6 @@ public class RobotContainer {
     buttonIntake.whenHeld(m_intakeCommand);
     buttonPulley.whenHeld(m_pulleyCommand);
     buttonTrapdoor.whenActive(m_trapDoorCommand.withTimeout(TRAPDOORDURATION));
-    buttonPulleySlow.whenActive(new PulleySpeedCmd(m_pulleyCommand,SmartDashboard.getNumber("Pulley Slow Speed", PULLEYSLOWSPEED)));
-    buttonPulleyFast.whenActive(new PulleySpeedCmd(m_pulleyCommand, SmartDashboard.getNumber("Pulley Fast Speed", PULLEYFASTSPEED)));
   }
 
   /**
