@@ -14,8 +14,7 @@ import static frc.robot.Constants.*;
 public class PulleyCmd extends CommandBase {
   /** Creates a new PulleyCmd. */
   private PulleySubsys m_pulley = new PulleySubsys();
-  private double speed = PULLEYSPEED;
-  private double speedMode = 0.1;
+  private double speed = 0.1;
 
   public PulleyCmd(PulleySubsys __pulley) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -23,7 +22,7 @@ public class PulleyCmd extends CommandBase {
   }
   public PulleyCmd setSpeed(double __speed)
   {
-    speedMode = __speed;
+    speed = __speed;
     return this;
   }
   // Called when the command is initially scheduled.
@@ -36,8 +35,8 @@ public class PulleyCmd extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    speed = SmartDashboard.getNumber("Pulley Speed", PULLEYSPEED);
-    m_pulley.pull(speed * speedMode * (JOYSTICK2.getRawAxis(INVERT) > 0 ? -1 : 1));
+    
+    m_pulley.pull(speed * speed * (JOYSTICK2.getRawAxis(INVERT) > 0 ? -1 : 1));
   }
 
   // Called once the command ends or is interrupted.

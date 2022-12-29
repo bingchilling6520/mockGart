@@ -33,9 +33,7 @@ public final class Constants{
             public final static PulleySubsys m_pulleySubsystem = new PulleySubsys();
             public final static TrapDoorSubsys m_trapDoorSubsystem = new TrapDoorSubsys();
       }
-      //Pulley speed are modifier for SmartDashBoard control while Pulley slow/fast speed are for input
-      //from controller
-      public static final double BOOSTSPEED = 0.8, SLOWSPEED = 0.4, INTAKESPEED = 1, PULLEYSPEED = 1, 
+      public static final double BOOSTSPEED = 0.8, SLOWSPEED = 0.4, INTAKESPEED = 1, 
                               TRAPDOORSPEED = 0.2, PULLEYSLOWSPEED = 0.1, PULLEYFASTSPEED = 0.3;
       public static final double NORMSPEED = SLOWSPEED; // Default speed
 

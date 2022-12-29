@@ -45,7 +45,8 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    SmartDashboard.putNumber("Pulley Speed", PULLEYSPEED);
+    SmartDashboard.putNumber("Pulley Slow Speed", PULLEYSLOWSPEED);
+    SmartDashboard.putNumber("Pulley Fast Speed", PULLEYFASTSPEED);
     SmartDashboard.putNumber("Intake Speed", INTAKESPEED); 
     SmartDashboard.putNumber("Trap Door Speed", TRAPDOORSPEED); 
     SmartDashboard.putNumber("Driverbase Normal Speed", NORMSPEED);
@@ -73,8 +74,8 @@ public class RobotContainer {
     buttonIntake.whenHeld(m_intakeCommand);
     buttonPulley.whenHeld(m_pulleyCommand);
     buttonTrapdoor.whenActive(m_trapDoorCommand.withTimeout(TRAPDOORDURATION));
-    buttonPulleySlow.whenActive(new PulleySpeedCmd(m_pulleyCommand,PULLEYSLOWSPEED));
-    buttonPulleyFast.whenActive(new PulleySpeedCmd(m_pulleyCommand, PULLEYFASTSPEED));
+    buttonPulleySlow.whenActive(new PulleySpeedCmd(m_pulleyCommand,SmartDashboard.getNumber("Pulley Slow Speed", PULLEYSLOWSPEED)));
+    buttonPulleyFast.whenActive(new PulleySpeedCmd(m_pulleyCommand, SmartDashboard.getNumber("Pulley Fast Speed", PULLEYFASTSPEED)));
   }
 
   /**
