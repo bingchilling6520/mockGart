@@ -15,12 +15,17 @@ public class PulleyCmd extends CommandBase {
   /** Creates a new PulleyCmd. */
   private PulleySubsys m_pulley = new PulleySubsys();
   private double speed = PULLEYSPEED;
+  private double speedMode = 0.1;
 
   public PulleyCmd(PulleySubsys __pulley) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_pulley = __pulley;
   }
-
+  public PulleyCmd setSpeed(double __speed)
+  {
+    speedMode = __speed;
+    return this;
+  }
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
@@ -32,7 +37,7 @@ public class PulleyCmd extends CommandBase {
   @Override
   public void execute() {
     speed = SmartDashboard.getNumber("Pulley Speed", PULLEYSPEED);
-    m_pulley.pull(speed * (JOYSTICK2.getRawAxis(INVERT) > 0 ? -1 : 1));
+    m_pulley.pull(speed * speedMode * (JOYSTICK2.getRawAxis(INVERT) > 0 ? -1 : 1));
   }
 
   // Called once the command ends or is interrupted.

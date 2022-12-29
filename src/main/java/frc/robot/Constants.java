@@ -33,7 +33,10 @@ public final class Constants{
             public final static PulleySubsys m_pulleySubsystem = new PulleySubsys();
             public final static TrapDoorSubsys m_trapDoorSubsystem = new TrapDoorSubsys();
       }
-      public static final double BOOSTSPEED = 0.8, SLOWSPEED = 0.4, INTAKESPEED = 1, PULLEYSPEED = 0.3, TRAPDOORSPEED = 0.2;
+      //Pulley speed are modifier for SmartDashBoard control while Pulley slow/fast speed are for input
+      //from controller
+      public static final double BOOSTSPEED = 0.8, SLOWSPEED = 0.4, INTAKESPEED = 1, PULLEYSPEED = 1, 
+                              TRAPDOORSPEED = 0.2, PULLEYSLOWSPEED = 0.1, PULLEYFASTSPEED = 0.3;
       public static final double NORMSPEED = SLOWSPEED; // Default speed
 
       public static final double TRAPDOORDURATION = 0.2;
@@ -45,7 +48,8 @@ public final class Constants{
                                     INVERT = 3, BOOST = 4, 
                                     //LEFTBRAKE = 5, RIGHTBRAKE = 6,
                                     // Button
-                                    INTAKEBUTTON = 5, PULLEYBUTTON = 6, TRAPDOORBUTTON = 3;
+                                    INTAKEBUTTON = 5, PULLEYBUTTON = 6, TRAPDOORBUTTON = 3,
+                                    PULLEYSLOWBUTTON = 1, PULLEYFASTBUTTON = 2;
       }
       
       public final class talonID
@@ -73,6 +77,8 @@ public final class Constants{
                         new PulleyCmd(m_pulleySubsystem)
                   ).withTimeout(0.8));
       }
-      public final static Joystick JOYSTICK = new Joystick(0);  // Driverbase control joystick
-      public final static Joystick JOYSTICK2 = new Joystick(1); // Features control joystick
+      /**Driverbase control joystick */
+      public final static Joystick JOYSTICK = new Joystick(0);  
+      /** Features/mechanism control joystick */
+      public final static Joystick JOYSTICK2 = new Joystick(1); 
 }
