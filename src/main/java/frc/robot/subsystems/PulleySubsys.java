@@ -6,24 +6,25 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import static frc.robot.Constants.talonID.*;
 
 public class PulleySubsys extends SubsystemBase {
   /** Creates a new PulleySubsys. */
-  /*private final WPI_TalonSRX rightPulley = new WPI_TalonSRX (RIGHTPULLEYID),
-                          leftPulley = new WPI_TalonSRX(LEFTPULEYID);*/
+  private final WPI_TalonSRX rightPulley = new WPI_TalonSRX (RIGHTPULLEYID),
+                          leftPulley = new WPI_TalonSRX(LEFTPULLEYID);
   
-  private final WPI_TalonSRX pulley = new WPI_TalonSRX(PULLEYID);
+  //private final WPI_TalonSRX pulley = new WPI_TalonSRX(PULLEYID);
   
   public PulleySubsys() {
     //Rotate with equal but opposite velocity.
-    //leftPulley.follow(rightPulley);
-    pulley.setInverted(true);
+    rightPulley.setInverted(true);
   }
 
   public void pull(double speed)
   {
-    pulley.set(speed);
+    leftPulley.set(speed);
+    rightPulley.set(speed);
   }
 
   @Override

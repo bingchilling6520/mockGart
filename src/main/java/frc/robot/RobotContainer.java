@@ -51,8 +51,9 @@ public class RobotContainer {
     SmartDashboard.putBoolean("Intake Running?", false);
     SmartDashboard.putBoolean("Pulley Running?", false);
     SmartDashboard.putBoolean("Trap Door Open?", false);
-    
     m_chooser.setDefaultOption("Test", TESTCMD);
+    SmartDashboard.putData("Auto Command", m_chooser);
+    
 
     // Configure the button bindings
     configureButtonBindings();
@@ -81,8 +82,7 @@ public class RobotContainer {
     // An ExampleCommand will run in autonomous
     // SendableChooser<Command> m_chooser = new SendableChooser<>();
     // m_chooser.setDefaultOption("Test", TESTCMD);
-    SmartDashboard.putData("Auto Command", m_chooser);
-    //return m_chooser.getSelected();
-    return TESTCMD;
+    return m_chooser.getSelected();
+    //return TESTCMD;
   }
 }

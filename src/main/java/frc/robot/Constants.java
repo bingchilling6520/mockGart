@@ -40,9 +40,11 @@ public final class Constants{
 
       public final class buttonID
       {
-            public static final int YAXISLEFT = 1, YAXISRIGHT = 5, 
-                                    INVERT = 7, BOOST = 8, 
+            public static final int // Axis
+                                    YAXISLEFT = 1, YAXISRIGHT = 5, 
+                                    INVERT = 3, BOOST = 4, 
                                     //LEFTBRAKE = 5, RIGHTBRAKE = 6,
+                                    // Button
                                     INTAKEBUTTON = 5, PULLEYBUTTON = 6, TRAPDOORBUTTON = 3;
       }
       
@@ -51,7 +53,7 @@ public final class Constants{
             public static final int RIGHTMASTERID = 1, RIGHTFOLLOWID = 2,
                                     LEFTMASTERID = 3, LEFTFOLLOWID = 4,
                                     INTAKEID = 5,
-                                    PULLEYID = 6, RESERVE = 7, // Currently 7 is reserved for future use
+                                    LEFTPULLEYID = 6, RIGHTPULLEYID = 7, // Currently 7 is reserved for future use
                                     TRAPDOORID = 8; // Trap door use Victor
       }
       

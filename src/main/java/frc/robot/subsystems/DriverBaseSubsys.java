@@ -20,8 +20,8 @@ public class DriverBaseSubsys extends SubsystemBase {
   {
     rightFollow.follow(rightMaster);
     leftFollow.follow(leftMaster);
-    leftFollow.setInverted(true);
-    leftMaster.setInverted(true);
+    rightFollow.setInverted(true);
+    rightMaster.setInverted(true);
  
     rightFollow.setNeutralMode(NeutralMode.Brake);
     rightMaster.setNeutralMode(NeutralMode.Brake);
