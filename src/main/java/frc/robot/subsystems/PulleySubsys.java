@@ -5,20 +5,27 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.ctre.phoenix.music.Orchestra;
 
 import static frc.robot.Constants.talonID.*;
 
 public class PulleySubsys extends SubsystemBase {
   /** Creates a new PulleySubsys. */
-  private final WPI_TalonSRX rightPulley = new WPI_TalonSRX (RIGHTPULLEYID),
-                          leftPulley = new WPI_TalonSRX(LEFTPULLEYID);
+  private final WPI_TalonFX rightPulley = new WPI_TalonFX (RIGHTPULLEYID),
+                          leftPulley = new WPI_TalonFX(LEFTPULLEYID);
+  private Orchestra music = new Orchestra();
   
   //private final WPI_TalonSRX pulley = new WPI_TalonSRX(PULLEYID);
   
   public PulleySubsys() {
     //Rotate with equal but opposite velocity.
     rightPulley.setInverted(true);
+    music.addInstrument(leftPulley);
+    music.addInstrument(rightPulley);
+    music.loadMusic("rickroll.chrp");
+    music.play();
   }
 
   public void pull(double speed)
