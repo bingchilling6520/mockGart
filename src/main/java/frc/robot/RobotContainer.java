@@ -19,6 +19,7 @@ import static frc.robot.Constants.SubsystemInstance.*;
 import frc.robot.commands.IntakeCmd;                                            
 
 import frc.robot.commands.PulleyCmd;
+import frc.robot.commands.PulleySpeedCmd;
 import frc.robot.commands.TrapDoorCmd;
 
 /**
@@ -72,8 +73,8 @@ public class RobotContainer {
     buttonIntake.whenHeld(m_intakeCommand);
     buttonPulley.whenHeld(m_pulleyCommand);
     buttonTrapdoor.whenActive(m_trapDoorCommand.withTimeout(TRAPDOORDURATION));
-    buttonPulleySlow.whenActive(m_pulleyCommand.setSpeed(PULLEYSLOWSPEED));
-    buttonPulleyFast.whenActive(m_pulleyCommand.setSpeed(PULLEYFASTSPEED));
+    buttonPulleySlow.whenActive(new PulleySpeedCmd(m_pulleyCommand,PULLEYSLOWSPEED));
+    buttonPulleyFast.whenActive(new PulleySpeedCmd(m_pulleyCommand, PULLEYFASTSPEED));
   }
 
   /**
