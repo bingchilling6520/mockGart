@@ -33,7 +33,7 @@ public final class Constants{
             public final static PulleySubsys m_pulleySubsystem = new PulleySubsys();
             public final static TrapDoorSubsys m_trapDoorSubsystem = new TrapDoorSubsys();
       }
-      public static final double BOOSTSPEED = 0.8, SLOWSPEED = 0.4, INTAKESPEED = 1, PULLEYSPEED = 1, TRAPDOORSPEED = 0.2;
+      public static final double BOOSTSPEED = 0.8, SLOWSPEED = 0.4, INTAKESPEED = 1, PULLEYSPEED = 0.3, TRAPDOORSPEED = 0.2;
       public static final double NORMSPEED = SLOWSPEED; // Default speed
 
       public static final double TRAPDOORDURATION = 0.2;

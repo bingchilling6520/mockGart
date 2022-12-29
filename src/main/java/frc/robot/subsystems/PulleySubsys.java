@@ -21,7 +21,7 @@ public class PulleySubsys extends SubsystemBase {
   
   public PulleySubsys() {
     //Rotate with equal but opposite velocity.
-    rightPulley.setInverted(true);
+    leftPulley.setInverted(true);
     music.addInstrument(leftPulley);
     music.addInstrument(rightPulley);
     music.loadMusic("rickroll.chrp");
