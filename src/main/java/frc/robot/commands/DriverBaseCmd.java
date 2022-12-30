@@ -13,7 +13,7 @@ import java.lang.Math;
   
 public class DriverBaseCmd extends CommandBase {
   /** Creates a new RobotBase. */
-  private DriverBaseSubsys m_subsystem = new DriverBaseSubsys();
+  private DriverBaseSubsys m_subsystem;
   private double slowSpeed = NORMSPEED, boostSpeed = BOOSTSPEED;
   
   public DriverBaseCmd(DriverBaseSubsys subsystem) {

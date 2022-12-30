@@ -9,7 +9,7 @@ import frc.robot.subsystems.DriverBaseSubsys;
   
 public class AutoDriveStraight extends CommandBase {
   /** Creates a new RobotBase. */
-  private DriverBaseSubsys m_subsystem = new DriverBaseSubsys();
+  private DriverBaseSubsys m_subsystem;
   private double speed;
   public AutoDriveStraight(DriverBaseSubsys subsystem, double _speed) {
     m_subsystem = subsystem;

@@ -26,10 +26,15 @@ public class PulleySubsys extends SubsystemBase {
     //Music
     music.addInstrument(leftPulley);
     music.addInstrument(rightPulley);
+    updateMusic();
+  }
+  public void updateMusic()
+  {
+    System.out.println(SmartDashboard.getString("Music File", "song1.chrp") + " " + music.isPlaying());
     music.loadMusic(SmartDashboard.getString("Music File", "song1.chrp"));
     music.play();
+    
   }
-
   public void pull(double speed)
   {
     leftPulley.set(speed);

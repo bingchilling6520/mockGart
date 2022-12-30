@@ -13,7 +13,7 @@ import static frc.robot.Constants.*;
 
 public class PulleyCmd extends CommandBase {
   /** Creates a new PulleyCmd. */
-  private PulleySubsys m_pulley = new PulleySubsys();
+  private PulleySubsys m_pulley;
 
   public PulleyCmd(PulleySubsys __pulley) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -33,7 +33,6 @@ public class PulleyCmd extends CommandBase {
     double speed = JOYSTICK2.getRawAxis(BOOSTPULLEY) > 0 ?
                       SmartDashboard.getNumber("Pulley Fast Speed", PULLEYFASTSPEED) :
                       SmartDashboard.getNumber("Pulley Slow Speed", PULLEYSLOWSPEED);
-    
     m_pulley.pull(speed * (JOYSTICK2.getRawAxis(INVERT) > 0 ? -1 : 1));
   }
 

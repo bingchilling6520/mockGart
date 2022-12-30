@@ -12,7 +12,7 @@ import static frc.robot.Constants.*;
 
 public class IntakeCmd extends CommandBase {
   /** Creates a new IntakeCmd. */
-  private IntakeSubsys m_intake = new IntakeSubsys();
+  private IntakeSubsys m_intake;
   public IntakeCmd(IntakeSubsys intake) {
     m_intake = intake;
     addRequirements(m_intake);
