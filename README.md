@@ -39,9 +39,9 @@ PS5 or whatever handheld controller given by cỏ
 
 |Name / purpose|Type|ID|Vietnamese note|
 |--------------|----|--|---------------|
-|Intake|Button axis|5 (L2)|Giữ để chạy intake hút bóng|
-|Pulley|Button axis|6 (R2)|Giữ để chạy máng|
-|Open/Close Trapdoor|Button|3 (không biết gọi là gì)|Đóng / mở trapdoor (**nhớ nhìn state trên SmartDashboard**)|
+|Intake|Button axis|5 (L1)|Giữ để chạy intake hút bóng|
+|Pulley|Button axis|6 (R11)|Giữ để chạy máng|
+|Open/Close Trapdoor|Button|3|Đóng / mở trapdoor (**nhớ nhìn state trên SmartDashboard**)|
 |Invert|Button axis|3 (L2)|Đảo ngược chiều quay của intake và pulley (cho bóng xuống)|
 |Boost pulley|Button axis|4 (R2)|Tăng tốc độ quay máng -> bắn bóng cao hơn|
 
