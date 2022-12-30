@@ -6,7 +6,7 @@ package frc.robot;
 
 /** Add your docs here. */
 public final class Algorithm {
-      public static double clamp (double val, double min, double max)
+      public static double clamp(double val, double min, double max)
       {
             if (val < min)
             {
@@ -17,17 +17,5 @@ public final class Algorithm {
                   val = max;
             }
             return val;
-      }
-      public static double unitary (double val)
-      {
-           if (val > 0)
-            {
-                  return 1;
-            }
-            else if (val < 0)
-            {
-                  return -1;
-            }
-            return 0;
       }
 }

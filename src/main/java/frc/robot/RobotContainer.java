@@ -17,7 +17,6 @@ import static frc.robot.Constants.autoCmd.*;
 import static frc.robot.Constants.SubsystemInstance.*;
 
 import frc.robot.commands.IntakeCmd;
-import frc.robot.commands.MusicCmd;
 import frc.robot.commands.PulleyCmd;
 import frc.robot.commands.TrapDoorCmd;
 
@@ -33,7 +32,6 @@ public class RobotContainer {
   private final PulleyCmd m_pulleyCommand = new PulleyCmd(m_pulleySubsystem);
   private final TrapDoorCmd m_frontTrapDoorCommand = new TrapDoorCmd(m_frontTrapDoorSubsystem);
   private final TrapDoorCmd m_backTrapDoorCommand = new TrapDoorCmd(m_backTrapDoorSubsystem);
-  private final MusicCmd m_musicCommand = new MusicCmd(m_pulleySubsystem);
   
   private final JoystickButton buttonIntake = new JoystickButton(JOYSTICK2, INTAKEBUTTON);
   private final JoystickButton buttonPulley = new JoystickButton(JOYSTICK2, PULLEYBUTTON);
@@ -60,7 +58,6 @@ public class RobotContainer {
     SmartDashboard.putString("Music File", "badapple2.chrp");
     m_commandChooser.setDefaultOption("Test", TESTCMD);
     SmartDashboard.putData("Auto Command", m_commandChooser);
-    SmartDashboard.putData("Play Music", m_musicCommand);
     
     // Configure the button bindings
     configureButtonBindings();

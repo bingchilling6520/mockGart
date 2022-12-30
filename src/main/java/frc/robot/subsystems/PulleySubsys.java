@@ -14,18 +14,18 @@ import static frc.robot.Constants.talonID.*;
 
 public class PulleySubsys extends SubsystemBase {
   /** Creates a new PulleySubsys. */
-  private final WPI_TalonFX rightPulley = new WPI_TalonFX (RIGHTPULLEYID),
+  private final WPI_TalonFX rightPulley = new WPI_TalonFX(RIGHTPULLEYID),
                           leftPulley = new WPI_TalonFX(LEFTPULLEYID);
   private Orchestra music = new Orchestra();
-  public boolean isPulleyRunningSereparetly = false;
   public boolean isPulleyRunning = false;
   
   //private final WPI_TalonSRX pulley = new WPI_TalonSRX(PULLEYID);
   
   public PulleySubsys() {
-    //Rotate with equal but opposite velocity.
+    // Rotate with equal but opposite velocity.
     leftPulley.setInverted(true);
-    //Music
+
+    // Music
     music.addInstrument(leftPulley);
     music.addInstrument(rightPulley);
     updateMusic();
@@ -41,10 +41,9 @@ public class PulleySubsys extends SubsystemBase {
   {
     leftPulley.set(leftSpeed);
     rightPulley.set(rightSpeed);
+    SmartDashboard.putBoolean("Pulley Running?", (leftSpeed > 0) || (rightSpeed > 0));
   }
 
   @Override
-  public void periodic() {
-    SmartDashboard.putBoolean("Pulley Running?", isPulleyRunning || isPulleyRunningSereparetly);
-  }
+  public void periodic() {}
 }

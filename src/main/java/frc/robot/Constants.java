@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.AutoDriveStraight;
 import frc.robot.commands.IntakeCmd;
 import frc.robot.commands.PulleyCmd;
-import frc.robot.subsystems.DriverBaseSubsys;
+import frc.robot.subsystems.DriveBaseSubsys;
 import frc.robot.subsystems.IntakeSubsys;
 import frc.robot.subsystems.PulleySubsys;
 import frc.robot.subsystems.TrapDoorSubsys;
@@ -29,7 +29,7 @@ import static frc.robot.Constants.talonID.*;
 public final class Constants {
       public final static class SubsystemInstance
       {
-            public final static DriverBaseSubsys m_driverBaseSubsystem = new DriverBaseSubsys();
+            public final static DriveBaseSubsys m_driverBaseSubsystem = new DriveBaseSubsys();
             public final static IntakeSubsys m_intakeSubsystem = new IntakeSubsys();
             public final static PulleySubsys m_pulleySubsystem = new PulleySubsys();
             public final static TrapDoorSubsys m_frontTrapDoorSubsystem = new TrapDoorSubsys(FRONTTRAPDOORID);

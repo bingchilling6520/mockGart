@@ -9,14 +9,14 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import static frc.robot.Constants.talonID.*;
 //import static frc.robot.Constants.buttonID.*;
 
-public class DriverBaseSubsys extends SubsystemBase {
+public class DriveBaseSubsys extends SubsystemBase {
   private WPI_TalonSRX rightMaster = new WPI_TalonSRX(RIGHTMASTERID);
   private WPI_TalonSRX rightFollow = new WPI_TalonSRX(RIGHTFOLLOWID);
   private WPI_TalonSRX leftMaster = new WPI_TalonSRX(LEFTMASTERID);
   private WPI_TalonSRX leftFollow = new WPI_TalonSRX(LEFTFOLLOWID);
   //private Gyro gyro = new Gyro();
 
-  public DriverBaseSubsys() 
+  public DriveBaseSubsys() 
   {
     rightFollow.follow(rightMaster);
     leftFollow.follow(leftMaster);

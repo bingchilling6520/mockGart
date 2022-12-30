@@ -9,7 +9,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
-import frc.robot.commands.ManualCmd;
+import frc.robot.commands.DriveBaseCmd;
+import frc.robot.commands.PulleyManCmd;
 import static frc.robot.Constants.SubsystemInstance.*;
 
 /**
@@ -24,7 +25,8 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
 
   // manualCommand
-  ManualCmd m_manualCommand = new ManualCmd(m_driverBaseSubsystem,m_pulleySubsystem);
+  DriveBaseCmd m_driverBaseCmd = new DriveBaseCmd(m_driverBaseSubsystem);
+  PulleyManCmd m_pulleyManCmd = new PulleyManCmd(m_pulleySubsystem);
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -95,7 +97,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     // Run this command repeatedly until teleop mode disabled
-    m_manualCommand.schedule();
+    m_driverBaseCmd.schedule();
+    m_pulleyManCmd.schedule();
     
     SmartDashboard.putData("Commands Running", CommandScheduler.getInstance());
   }
