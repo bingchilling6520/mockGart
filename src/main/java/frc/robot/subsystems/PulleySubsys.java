@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
@@ -22,9 +23,10 @@ public class PulleySubsys extends SubsystemBase {
   public PulleySubsys() {
     //Rotate with equal but opposite velocity.
     leftPulley.setInverted(true);
+    //Music
     music.addInstrument(leftPulley);
     music.addInstrument(rightPulley);
-    music.loadMusic("song1.chrp");
+    music.loadMusic(SmartDashboard.getString("Music File", "song1.chrp"));
     music.play();
   }
 

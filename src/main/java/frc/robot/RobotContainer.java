@@ -37,7 +37,7 @@ public class RobotContainer {
   private final JoystickButton buttonPulley = new JoystickButton(JOYSTICK2, PULLEYBUTTON);
   private final JoystickButton buttonTrapdoor = new JoystickButton(JOYSTICK2, TRAPDOORBUTTON);
   
-  private final SendableChooser<Command> m_chooser = new SendableChooser<>();
+  private final SendableChooser<Command> m_commandChooser = new SendableChooser<>();
   
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -52,8 +52,9 @@ public class RobotContainer {
     SmartDashboard.putBoolean("Intake Running?", false);
     SmartDashboard.putBoolean("Pulley Running?", false);
     SmartDashboard.putBoolean("Trap Door Open?", false);
-    m_chooser.setDefaultOption("Test", TESTCMD);
-    SmartDashboard.putData("Auto Command", m_chooser);
+    SmartDashboard.putString("Music File", "song1.chrp");
+    m_commandChooser.setDefaultOption("Test", TESTCMD);
+    SmartDashboard.putData("Auto Command", m_commandChooser);
     
     // Configure the button bindings
     configureButtonBindings();
@@ -82,7 +83,7 @@ public class RobotContainer {
     // An ExampleCommand will run in autonomous
     // SendableChooser<Command> m_chooser = new SendableChooser<>();
     // m_chooser.setDefaultOption("Test", TESTCMD);
-    return m_chooser.getSelected();
+    return m_commandChooser.getSelected();
     //return TESTCMD;
   }
 }
