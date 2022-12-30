@@ -24,7 +24,7 @@ public class PulleySubsys extends SubsystemBase {
     leftPulley.setInverted(true);
     music.addInstrument(leftPulley);
     music.addInstrument(rightPulley);
-    music.loadMusic("rickroll.chrp");
+    music.loadMusic("song1.chrp");
     music.play();
   }
 
