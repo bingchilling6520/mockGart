@@ -9,15 +9,19 @@ import frc.robot.subsystems.PulleySubsys;
 
 public class MusicCmd extends CommandBase {
   /** Creates a new MusicCmd. */
+  private PulleySubsys m_music;
   public MusicCmd(PulleySubsys __music) {
     // Use addRequirements() here to declare subsystem dependencies.
-    System.out.println("Music CMD");
-    __music.updateMusic();
+    m_music=__music;
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    
+    System.out.println("Music CMD");
+    m_music.updateMusic();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
