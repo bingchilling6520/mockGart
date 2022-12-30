@@ -24,7 +24,7 @@ public class PulleyCmd extends CommandBase {
   @Override
   public void initialize() {
     // SmartDashboard.putNumber("Pulley Speed", PULLEYSPEED);
-    SmartDashboard.putBoolean("Pulley Running?", true);
+    m_pulley.isPulleyRunning = true;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -32,18 +32,19 @@ public class PulleyCmd extends CommandBase {
   public void execute() {
     double speed = JOYSTICK2.getRawAxis(BOOSTPULLEY) > 0 ?
                       SmartDashboard.getNumber("Pulley Fast Speed", PULLEYFASTSPEED) :
-                      SmartDashboard.getNumber("Pulley Slow Speed", PULLEYSLOWSPEED);
-    m_pulley.pull(speed * (JOYSTICK2.getRawAxis(INVERT) > 0 ? -1 : 1));
+                      SmartDashboard.getNumber("Pulley Slow Speed", PULLEYSLOWSPEED)
+                      * (JOYSTICK2.getRawAxis(INVERT) > 0 ? -1 : 1);
+    m_pulley.pull(speed, speed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_pulley.pull(0.0);
-    SmartDashboard.putBoolean("Pulley Running?", false);
+    m_pulley.pull(0.0,0.0);
+    m_pulley.isPulleyRunning = false;
   }
 
-  // Returns true when the command should end.
+  // Returns true when the command should end.k
   @Override
   public boolean isFinished() {
     return false;

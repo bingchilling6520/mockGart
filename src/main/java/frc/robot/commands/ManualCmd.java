@@ -6,19 +6,24 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriverBaseSubsys;
+import frc.robot.subsystems.PulleySubsys;
+
 import static frc.robot.Constants.*;
 import static frc.robot.Constants.buttonID.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.lang.Math;
+import static frc.robot.Algorithm.*;
   
-public class DriverBaseCmd extends CommandBase {
+public class ManualCmd extends CommandBase {
   /** Creates a new RobotBase. */
-  private DriverBaseSubsys m_subsystem;
+  private DriverBaseSubsys m_driverBaseSubsystem;
+  private PulleySubsys m_pulleySubsystem;
   private double slowSpeed = NORMSPEED, boostSpeed = BOOSTSPEED;
   
-  public DriverBaseCmd(DriverBaseSubsys subsystem) {
-    m_subsystem = subsystem;
-    addRequirements(m_subsystem);
+  public ManualCmd(DriverBaseSubsys driverBaseSubsystem, PulleySubsys pulleySubsystem) {
+    m_driverBaseSubsystem = driverBaseSubsystem;
+    m_pulleySubsystem = pulleySubsystem;
+    addRequirements(m_driverBaseSubsystem);
   }
   // Called when the command is initially scheduled.
   @Override
@@ -29,6 +34,19 @@ public class DriverBaseCmd extends CommandBase {
   @Override
   public void execute() 
   {
+    //Y axis on joystick are reversed
+    double pulleyLeft = -JOYSTICK2.getRawAxis(YAXISLEFT2);
+    double pulleyRight = -JOYSTICK2.getRawAxis(YAXISRIGHT2);
+    //No joystick movement
+    if (Math.abs(pulleyLeft)<=SENSIVITY && Math.abs(pulleyRight)<=SENSIVITY) 
+    {
+      m_pulleySubsystem.isPulleyRunningSereparetly = false;
+    }
+    else
+    {
+      m_pulleySubsystem.pull(unitary(pulleyLeft), unitary(pulleyRight));
+      m_pulleySubsystem.isPulleyRunningSereparetly = true;
+    }
     slowSpeed = SmartDashboard.getNumber("Driverbase Normal Speed", NORMSPEED);
     boostSpeed = SmartDashboard.getNumber("Driverbase Boosted Speed", BOOSTSPEED);
     int pov = JOYSTICK.getPOV();
@@ -37,13 +55,13 @@ public class DriverBaseCmd extends CommandBase {
       switch (pov)
       {
         case 0: //up
-          m_subsystem.drive(slowSpeed, slowSpeed);
+          m_driverBaseSubsystem.drive(slowSpeed, slowSpeed);
           break;
         case 90: //right
           //m_subsystem.drive(NORMSPEED, -NORMSPEED);
           break;
         case 180: //down
-          m_subsystem.drive(-slowSpeed, -slowSpeed);
+          m_driverBaseSubsystem.drive(-slowSpeed, -slowSpeed);
           break;
         case 270: //left
           //m_subsystem.drive(-NORMSPEED, NORMSPEED);
@@ -52,24 +70,24 @@ public class DriverBaseCmd extends CommandBase {
       return;
     }
     // Y axises are inverted for Playstation controller (quick and dirty fix)
-    double rawAxisLeft = -JOYSTICK.getRawAxis(YAXISLEFT);
-    double rawAxisRight = -JOYSTICK.getRawAxis(YAXISRIGHT);
+    double rawAxisLeft = -JOYSTICK.getRawAxis(YAXISLEFT1);
+    double rawAxisRight = -JOYSTICK.getRawAxis(YAXISRIGHT1);
     
-    if (Math.abs(rawAxisLeft)<=0 && Math.abs(rawAxisRight)<=0) //no joystick movement
+    if (Math.abs(rawAxisLeft)<=SENSIVITY && Math.abs(rawAxisRight)<=SENSIVITY) //no joystick movement
     {
       return;
     }
     
      double multright = (JOYSTICK.getRawAxis(BOOST)>0)? boostSpeed : slowSpeed, 
             multleft = (JOYSTICK.getRawAxis(BOOST)>0)? boostSpeed : slowSpeed;
-    m_subsystem.drive(multleft*rawAxisLeft,multright*rawAxisRight);
+    m_driverBaseSubsystem.drive(multleft*rawAxisLeft,multright*rawAxisRight);
     SmartDashboard.putNumber("Left Speed", multleft*rawAxisLeft);
     SmartDashboard.putNumber("Right Speed", multright*rawAxisRight);
   }
 
   @Override
   public void end(boolean interrupted) {
-    m_subsystem.drive(0.0,0.0);
+    m_driverBaseSubsystem.drive(0.0,0.0);
   }
 
   // Returns true when the command should end.

@@ -17,6 +17,8 @@ public class PulleySubsys extends SubsystemBase {
   private final WPI_TalonFX rightPulley = new WPI_TalonFX (RIGHTPULLEYID),
                           leftPulley = new WPI_TalonFX(LEFTPULLEYID);
   private Orchestra music = new Orchestra();
+  public boolean isPulleyRunningSereparetly = false;
+  public boolean isPulleyRunning = false;
   
   //private final WPI_TalonSRX pulley = new WPI_TalonSRX(PULLEYID);
   
@@ -35,14 +37,14 @@ public class PulleySubsys extends SubsystemBase {
     music.play();
     
   }
-  public void pull(double speed)
+  public void pull(double leftSpeed, double rightSpeed)
   {
-    leftPulley.set(speed);
-    rightPulley.set(speed);
+    leftPulley.set(leftSpeed);
+    rightPulley.set(rightSpeed);
   }
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
+    SmartDashboard.putBoolean("Pulley Running?", isPulleyRunning || isPulleyRunningSereparetly);
   }
 }

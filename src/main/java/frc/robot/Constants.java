@@ -44,12 +44,15 @@ public final class Constants {
       public static final double NORMSPEED = SLOWSPEED; // Default speed
 
       public static final double TRAPDOORDURATION = 0.2;
+      public static final double SENSIVITY = 0.05;
 
       public final class buttonID
       {
             public static final int // Axis
-                                    YAXISLEFT = 1,      // Left joystick
-                                    YAXISRIGHT = 5,     // Right joystick
+                                    YAXISLEFT1 = 1,      // Left joystick on the first controller
+                                    YAXISRIGHT1 = 5,     // Right joystick on the first controller
+                                    YAXISLEFT2 = 1,     // Left joystick on the second controller
+                                    YAXISRIGHT2 = 5,    // Right joystick on the second controller
                                     BOOST = 4,          // Driverbase boost button, on the first controller
                                     
                                     INVERT = 3,         // Intake & pulley invert button, on the second controller
