@@ -5,13 +5,13 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.DriverBaseSubsys;
+import frc.robot.subsystems.DriveBaseSubsys;
   
 public class AutoDriveStraight extends CommandBase {
   /** Creates a new RobotBase. */
-  private DriverBaseSubsys m_subsystem = new DriverBaseSubsys();
+  private DriveBaseSubsys m_subsystem;
   private double speed;
-  public AutoDriveStraight(DriverBaseSubsys subsystem, double _speed) {
+  public AutoDriveStraight(DriveBaseSubsys subsystem, double _speed) {
     m_subsystem = subsystem;
     addRequirements(m_subsystem);
     speed=_speed;

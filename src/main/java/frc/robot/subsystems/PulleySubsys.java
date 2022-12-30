@@ -14,30 +14,36 @@ import static frc.robot.Constants.talonID.*;
 
 public class PulleySubsys extends SubsystemBase {
   /** Creates a new PulleySubsys. */
-  private final WPI_TalonFX rightPulley = new WPI_TalonFX (RIGHTPULLEYID),
+  private final WPI_TalonFX rightPulley = new WPI_TalonFX(RIGHTPULLEYID),
                           leftPulley = new WPI_TalonFX(LEFTPULLEYID);
   private Orchestra music = new Orchestra();
+  public boolean isPulleyRunning = false;
   
   //private final WPI_TalonSRX pulley = new WPI_TalonSRX(PULLEYID);
   
   public PulleySubsys() {
-    //Rotate with equal but opposite velocity.
+    // Rotate with equal but opposite velocity.
     leftPulley.setInverted(true);
-    //Music
+
+    // Music
     music.addInstrument(leftPulley);
     music.addInstrument(rightPulley);
+    updateMusic();
+  }
+  public void updateMusic()
+  {
+    System.out.println(SmartDashboard.getString("Music File", "song1.chrp") + " " + music.isPlaying());
     music.loadMusic(SmartDashboard.getString("Music File", "song1.chrp"));
     music.play();
+    
   }
-
-  public void pull(double speed)
+  public void pull(double leftSpeed, double rightSpeed)
   {
-    leftPulley.set(speed);
-    rightPulley.set(speed);
+    leftPulley.set(leftSpeed);
+    rightPulley.set(rightSpeed);
+    SmartDashboard.putBoolean("Pulley Running?", (leftSpeed > 0) || (rightSpeed > 0));
   }
 
   @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-  }
+  public void periodic() {}
 }
