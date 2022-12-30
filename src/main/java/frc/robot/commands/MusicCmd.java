@@ -11,6 +11,7 @@ public class MusicCmd extends CommandBase {
   /** Creates a new MusicCmd. */
   public MusicCmd(PulleySubsys __music) {
     // Use addRequirements() here to declare subsystem dependencies.
+    System.out.println("Music CMD");
     __music.updateMusic();
   }
 
