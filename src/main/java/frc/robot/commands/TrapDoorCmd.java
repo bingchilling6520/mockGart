@@ -7,12 +7,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.TrapDoorSubsys;
-import static frc.robot.Constants.*;
+//import static frc.robot.Constants.*;
 
 public class TrapDoorCmd extends CommandBase {
   /** true = open, false = close */
   private boolean state = false; 
-  private double speed = TRAPDOORSPEED;
   private TrapDoorSubsys m_trapDoorSubsystem;
   /** Creates a new TrapDoorCmd. */
   public TrapDoorCmd(TrapDoorSubsys __trapDoorSubsystem) {
@@ -23,18 +22,16 @@ public class TrapDoorCmd extends CommandBase {
   @Override
   public void initialize() {
     System.out.println("CLOSE THE TRAPDOOR BEFORE RUNNING");
-    SmartDashboard.putString("WARNING", "CLOSE THE TRAPDOOR BEFORE RUNNING");
     state = !state;
-    SmartDashboard.putBoolean("Trap Door Open?", state);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     //SmartDashboard.putNumber("Trap Door Speed", TRAPDOORSPEED);
-    state = SmartDashboard.getBoolean("Trap Door Open?", state);
-    speed = SmartDashboard.getNumber("Trap Door Speed", TRAPDOORSPEED);
-    m_trapDoorSubsystem.rotate(speed * (state ? 1 : - 1));
+    state = SmartDashboard.getBoolean(m_trapDoorSubsystem.channel==0?"Front":"Back" + " Trap Door Open?", state);
+    //speed = SmartDashboard.getNumber("Trap Door Speed", TRAPDOORSPEED);
+    m_trapDoorSubsystem.rotate(state ? 0 : 180);
   }
 
   // Called once the command ends or is interrupted.
@@ -45,6 +42,6 @@ public class TrapDoorCmd extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true; //instant command
   }
 }

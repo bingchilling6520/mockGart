@@ -9,7 +9,7 @@ All music files should be deployed at src/main/deploy and can refer to its path 
 
 **Note**: All reference point are observed by looking from **the back of the robot** (aka the battery side)
 
-|Motor|Type|Vietnamese note|Talon ID|
+|Motor|Type|Vietnamese note|ID|
 |-----|----|---------------|--------|
 |Driverbase Right Master|TalonSRX|Motor bánh bên phải phía trước|1|
 |Driverbase Right Follow|TalonSRX|Motor bánh bên phải phía sau|2|
@@ -18,7 +18,7 @@ All music files should be deployed at src/main/deploy and can refer to its path 
 |Intake|TalonSRX|Intake (cái để hút kéo bóng vào)|5|
 |Left Pulley|Falcon/TalonFX|Motor máng bên trái|6|
 |Right Pulley|Falcon/TalonFX|Motot máng bên phải|7|
-|Trapdoor|Victor SRX|Trapdoor (cái để giữ bóng)|8|
+|Trapdoor|Servo|Trapdoor (cái để giữ bóng)|0|
 
 ## Controller mapping
 

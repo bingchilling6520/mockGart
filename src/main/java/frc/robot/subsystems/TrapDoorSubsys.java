@@ -3,19 +3,22 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.subsystems;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-import static frc.robot.Constants.talonID.*;
+import edu.wpi.first.wpilibj.Servo;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+  /** Channel 0 is Front, Channel 1 is Back. */
 public class TrapDoorSubsys extends SubsystemBase {
-  /** Creates a new TrapDoorSubsys. */
-  private WPI_VictorSPX trapDoor = new WPI_VictorSPX(TRAPDOORID);
-  public TrapDoorSubsys() {}
+  private Servo trapDoor;
+  public int channel;
+  public TrapDoorSubsys(int _channel) {
+      trapDoor = new Servo(_channel);
+      channel = _channel;
+  }
 
-  public void rotate (double speed)
+  public void rotate (double angle)
   {
-      trapDoor.set(speed);
+      trapDoor.setAngle(angle);
   }
   @Override
   public void periodic() {

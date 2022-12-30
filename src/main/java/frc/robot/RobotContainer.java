@@ -31,12 +31,14 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final IntakeCmd m_intakeCommand = new IntakeCmd(m_intakeSubsystem);
   private final PulleyCmd m_pulleyCommand = new PulleyCmd(m_pulleySubsystem);
-  private final TrapDoorCmd m_trapDoorCommand = new TrapDoorCmd(m_trapDoorSubsystem);
+  private final TrapDoorCmd m_frontTrapDoorCommand = new TrapDoorCmd(m_frontTrapDoorSubsystem);
+  private final TrapDoorCmd m_backTrapDoorCommand = new TrapDoorCmd(m_backTrapDoorSubsystem);
   private final MusicCmd m_musicCommand = new MusicCmd(m_pulleySubsystem);
   
   private final JoystickButton buttonIntake = new JoystickButton(JOYSTICK2, INTAKEBUTTON);
   private final JoystickButton buttonPulley = new JoystickButton(JOYSTICK2, PULLEYBUTTON);
-  private final JoystickButton buttonTrapdoor = new JoystickButton(JOYSTICK2, TRAPDOORBUTTON);
+  private final JoystickButton frontButtonTrapdoor = new JoystickButton(JOYSTICK2, FRONTTRAPDOORBUTTON);
+  private final JoystickButton backButtonTrapdoor = new JoystickButton(JOYSTICK2, BACKTRAPDOORBUTTON);
   
   private final SendableChooser<Command> m_commandChooser = new SendableChooser<>();
   
@@ -47,12 +49,14 @@ public class RobotContainer {
     SmartDashboard.putNumber("Pulley Slow Speed", PULLEYSLOWSPEED);
     SmartDashboard.putNumber("Pulley Fast Speed", PULLEYFASTSPEED);
     SmartDashboard.putNumber("Intake Speed", INTAKESPEED); 
-    SmartDashboard.putNumber("Trap Door Speed", TRAPDOORSPEED); 
+    //SmartDashboard.putNumber("Trap Door Speed", TRAPDOORSPEED); 
     SmartDashboard.putNumber("Driverbase Normal Speed", NORMSPEED);
     SmartDashboard.putNumber("Driverbase Boosted Speed", BOOSTSPEED);
     SmartDashboard.putBoolean("Intake Running?", false);
     SmartDashboard.putBoolean("Pulley Running?", false);
-    SmartDashboard.putBoolean("Trap Door Open?", false);
+    SmartDashboard.putBoolean("Front Trap Door Open?", false);
+    SmartDashboard.putBoolean("Back Trap Door Open?", false);
+    SmartDashboard.putBoolean("Trap Door Set State", false);
     SmartDashboard.putString("Music File", "badapple2.chrp");
     m_commandChooser.setDefaultOption("Test", TESTCMD);
     SmartDashboard.putData("Auto Command", m_commandChooser);
@@ -73,7 +77,8 @@ public class RobotContainer {
     //trig.whileActiveContinuous(m_pulleyCommand).whileActiveContinuous(m_intakeCommand);
     buttonIntake.whenHeld(m_intakeCommand);
     buttonPulley.whenHeld(m_pulleyCommand);
-    buttonTrapdoor.whenActive(m_trapDoorCommand.withTimeout(TRAPDOORDURATION));
+    frontButtonTrapdoor.whenActive(m_frontTrapDoorCommand);
+    backButtonTrapdoor.whenActive(m_backTrapDoorCommand);
   }
 
   /**
