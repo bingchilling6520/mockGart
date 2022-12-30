@@ -23,6 +23,7 @@ public class TrapDoorCmd extends CommandBase {
   public void initialize() {
     System.out.println("CLOSE THE TRAPDOOR BEFORE RUNNING");
     state = !state;
+    state = SmartDashboard.putBoolean(m_trapDoorSubsystem.channel==0?"Front":"Back" + " Trap Door Open?", state);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
