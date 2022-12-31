@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.PulleySubsys;
+import static frc.robot.Algorithm.*;
 import static frc.robot.Constants.*;
 import static frc.robot.Constants.buttonID.*;
 
@@ -38,10 +39,6 @@ public class PulleyManCmd extends CommandBase {
     {
       m_pulleySubsystem.pull(0.0,0.0);
     }
-  }
-
-  private double signOf(double pulleyLeft) {
-    return 0;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
