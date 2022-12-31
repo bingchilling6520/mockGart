@@ -57,9 +57,6 @@ public class DriveBaseCmd extends CommandBase {
     // Y axises are inverted for Playstation controller (quick and dirty fix)
     double rawAxisLeft = -JOYSTICK.getRawAxis(YAXISLEFT1);
     double rawAxisRight = -JOYSTICK.getRawAxis(YAXISRIGHT1);
-    
-    SmartDashboard.putNumber("rawAxisLeft", rawAxisLeft);
-    SmartDashboard.putNumber("rawAxisRight", rawAxisRight);
 
     if (Math.abs(rawAxisLeft) <= SENSIVITY && Math.abs(rawAxisRight) <= SENSIVITY) // no joystick movement
     {

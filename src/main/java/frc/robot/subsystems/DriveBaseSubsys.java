@@ -36,7 +36,7 @@ public class DriveBaseSubsys extends SubsystemBase {
   }
   public boolean isStop()
   {
-    return rightMaster.get()==leftMaster.get();
+    return rightMaster.get() == leftMaster.get();
   }
   @Override
   

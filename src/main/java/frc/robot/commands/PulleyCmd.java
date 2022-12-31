@@ -40,7 +40,7 @@ public class PulleyCmd extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_pulley.pull(0.0,0.0);
+    m_pulley.pull(0.0, 0.0);
     m_pulley.isPulleyRunning = false;
   }
 
