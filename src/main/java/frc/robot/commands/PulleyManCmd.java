@@ -28,7 +28,7 @@ public class PulleyManCmd extends CommandBase {
     double pulleyRight = -JOYSTICK2.getRawAxis(YAXISRIGHT2);
     double mult = JOYSTICK2.getRawAxis(BOOSTPULLEY) > 0 ?
                       SmartDashboard.getNumber("Pulley Fast Speed", PULLEYFASTSPEED) :
-                      SmartDashboard.getNumber("Pulley Slow Speed", PULLEYSLOWSPEED)
+                      SmartDashboard.getNumber("Pulley Slow Speed", PULLEYSLOWSPEED);
     // No joystick movement
     if (Math.abs(pulleyLeft) > SENSIVITY && Math.abs(pulleyRight) > SENSIVITY)
     {
