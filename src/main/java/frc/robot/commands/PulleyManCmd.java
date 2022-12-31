@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.PulleySubsys;
+import static frc.robot.Algorithm.*;
 import static frc.robot.Constants.*;
 import static frc.robot.Constants.buttonID.*;
 
@@ -36,7 +37,6 @@ public class PulleyManCmd extends CommandBase {
                       SmartDashboard.getNumber("Pulley Fast Speed", PULLEYFASTSPEED) :
                       SmartDashboard.getNumber("Pulley Slow Speed", PULLEYSLOWSPEED);
     
-    // No joystick movement
     if (Math.abs(pulleyLeft) > SENSIVITY || Math.abs(pulleyRight) > SENSIVITY)
     {
       m_pulleySubsystem.pull(mult * signOf(pulleyLeft), mult * signOf(pulleyRight));
@@ -48,20 +48,7 @@ public class PulleyManCmd extends CommandBase {
     }
   }
 
-  private double signOf(double val)
-  {
-    if (val < 0)
-    {
-          return -1;
-    }
 
-    if (val > 0 && val > SENSIVITY)
-    {
-          return 1;
-    }
-    
-    return 0;
-  }
 
   // Called once the command ends or is interrupted.
   @Override

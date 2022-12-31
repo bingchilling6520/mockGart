@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
+import static frc.robot.Constants.*;
 
 /** Add your docs here. */
 public final class Algorithm {
@@ -19,5 +20,20 @@ public final class Algorithm {
             }
 
             return val;
+      }
+
+      public static double signOf(double val)
+      {
+        if (val < -SENSIVITY)
+        {
+              return -1;
+        }
+    
+        if (val > SENSIVITY)
+        {
+              return 1;
+        }
+        
+        return 0;
       }
 }

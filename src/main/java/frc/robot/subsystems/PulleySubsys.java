@@ -45,5 +45,8 @@ public class PulleySubsys extends SubsystemBase {
   }
 
   @Override
-  public void periodic() {}
+  public void periodic() {
+    SmartDashboard.putNumber("Left Pulley Temperature", leftPulley.getTemperature());
+    SmartDashboard.putNumber("Right Pulley Temperature", rightPulley.getTemperature());
+  }
 }
