@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import static frc.robot.Constants.*;     
 import static frc.robot.Constants.buttonID.*;
 import static frc.robot.Constants.autoCmd.*;
-import static frc.robot.Constants.SubsystemInstance.*;
+import static frc.robot.Constants.SingleInstance.*;
 
 import frc.robot.commands.IntakeCmd;
 import frc.robot.commands.PulleyCmd;

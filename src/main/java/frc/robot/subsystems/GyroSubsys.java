@@ -12,12 +12,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class GyroSubsys extends SubsystemBase {
   
   private AHRS ahrs = new AHRS();
-  private static GyroSubsys gyro = new GyroSubsys ();
-
-  public GyroSubsys getInstance()
-  {
-    return gyro;
-  }
 
   public void reset()
   {
@@ -41,6 +35,6 @@ public class GyroSubsys extends SubsystemBase {
     SmartDashboard.putNumber("X velocity", vx);
     SmartDashboard.putNumber("Y velocity", vy);
     SmartDashboard.putNumber("Z velocity", vz);
-    SmartDashboard.putBoolean("Drivebase moving?", (vx == 0 && vy == 0));
+    SmartDashboard.putNumber("Angle", ahrs.getYaw());
   }
 }

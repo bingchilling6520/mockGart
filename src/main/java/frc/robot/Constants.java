@@ -12,10 +12,12 @@ import frc.robot.commands.AutoDriveStraight;
 import frc.robot.commands.IntakeCmd;
 import frc.robot.commands.PulleyCmd;
 import frc.robot.subsystems.DriveBaseSubsys;
+import frc.robot.subsystems.GyroSubsys;
 import frc.robot.subsystems.IntakeSubsys;
+import frc.robot.subsystems.PIDControllerSubsys;
 import frc.robot.subsystems.PulleySubsys;
 import frc.robot.subsystems.TrapDoorSubsys;
-import static frc.robot.Constants.SubsystemInstance.*;
+import static frc.robot.Constants.SingleInstance.*;
 import static frc.robot.Constants.talonID.*;
 
 /**
@@ -27,13 +29,16 @@ import static frc.robot.Constants.talonID.*;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-      public final static class SubsystemInstance
+      public final static class SingleInstance
       {
             public final static DriveBaseSubsys m_driverBaseSubsystem = new DriveBaseSubsys();
             public final static IntakeSubsys m_intakeSubsystem = new IntakeSubsys();
             public final static PulleySubsys m_pulleySubsystem = new PulleySubsys();
             public final static TrapDoorSubsys m_frontTrapDoorSubsystem = new TrapDoorSubsys(FRONTTRAPDOORID);
             public final static TrapDoorSubsys m_backTrapDoorSubsystem = new TrapDoorSubsys(BACKTRAPDOORID);
+            
+            public final static GyroSubsys GYRO = new GyroSubsys();
+            public final static PIDControllerSubsys PIDCONTROLLER = new PIDControllerSubsys();
       }
 
       public static final double BOOSTSPEED = 0.8,                // Driverbase boost speed
@@ -100,5 +105,5 @@ public final class Constants {
       public final static Joystick JOYSTICK = new Joystick(0);  
       
       /** Features/mechanism control joystick */
-      public final static Joystick JOYSTICK2 = new Joystick(1); 
+      public final static Joystick JOYSTICK2 = new Joystick(1);
 }

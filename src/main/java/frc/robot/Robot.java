@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 import frc.robot.commands.DriveBaseCmd;
 import frc.robot.commands.PulleyManCmd;
-import static frc.robot.Constants.SubsystemInstance.*;
+import static frc.robot.Constants.SingleInstance.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to

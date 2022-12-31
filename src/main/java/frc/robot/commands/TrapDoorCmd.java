@@ -18,6 +18,7 @@ public class TrapDoorCmd extends CommandBase {
   /** Creates a new TrapDoorCmd. */
   public TrapDoorCmd(TrapDoorSubsys __trapDoorSubsystem) {
       m_trapDoorSubsystem = __trapDoorSubsystem;
+      addRequirements(m_trapDoorSubsystem);
   }
 
   // Called when the command is initially scheduled.
