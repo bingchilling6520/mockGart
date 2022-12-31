@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.PulleySubsys;
@@ -17,25 +18,53 @@ public class PulleyManCmd extends CommandBase {
 
   public PulleyManCmd(PulleySubsys pulleySubsystem) {
     m_pulleySubsystem = pulleySubsystem;
+    addRequirements(m_pulleySubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
+  public void initialize() {}
+
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() {
     // Y axis on joystick are reversed
     double pulleyLeft = -JOYSTICK2.getRawAxis(YAXISLEFT2);
     double pulleyRight = -JOYSTICK2.getRawAxis(YAXISRIGHT2);
 
+    double mult = JOYSTICK2.getRawAxis(BOOSTPULLEY) > 0 ?
+                      SmartDashboard.getNumber("Pulley Fast Speed", PULLEYFASTSPEED) :
+                      SmartDashboard.getNumber("Pulley Slow Speed", PULLEYSLOWSPEED);
+
+    SmartDashboard.putNumber("pulleyLeft", pulleyLeft);
+    SmartDashboard.putNumber("pulleyRight", pulleyRight);
+    
     // No joystick movement
-    if (Math.abs(pulleyLeft) > SENSIVITY && Math.abs(pulleyRight) > SENSIVITY)
+    if (Math.abs(pulleyLeft) > SENSIVITY || Math.abs(pulleyRight) > SENSIVITY)
     {
-      m_pulleySubsystem.pull(pulleyLeft, pulleyRight);
+      m_pulleySubsystem.pull(mult * signOf(pulleyLeft), mult * signOf(pulleyRight));
+    }
+
+    else
+    {
+      m_pulleySubsystem.pull(0.0, 0.0);
     }
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {}
+  private double signOf(double val)
+  {
+    if (val < 0)
+    {
+          return -1;
+    }
+
+    if (val > 0 && val > SENSIVITY)
+    {
+          return 1;
+    }
+    
+    return 0;
+  }
 
   // Called once the command ends or is interrupted.
   @Override

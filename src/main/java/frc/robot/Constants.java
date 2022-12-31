@@ -43,7 +43,7 @@ public final class Constants {
                                  PULLEYFASTSPEED = 0.3;           // Pulley fast speed
       
       public static final double NORMSPEED = SLOWSPEED;           // Default speed
-      public static final double SENSIVITY = 0.05;
+      public static final double SENSIVITY = 0.1;
 
       public final class buttonID
       {

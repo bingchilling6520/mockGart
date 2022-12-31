@@ -58,13 +58,17 @@ public class DriveBaseCmd extends CommandBase {
     double rawAxisLeft = -JOYSTICK.getRawAxis(YAXISLEFT1);
     double rawAxisRight = -JOYSTICK.getRawAxis(YAXISRIGHT1);
     
+    SmartDashboard.putNumber("rawAxisLeft", rawAxisLeft);
+    SmartDashboard.putNumber("rawAxisRight", rawAxisRight);
+
     if (Math.abs(rawAxisLeft) <= SENSIVITY && Math.abs(rawAxisRight) <= SENSIVITY) // no joystick movement
     {
+      m_driverBaseSubsystem.drive(0.0, 0.0);
       return;
     }
     
-    double leftSpeed = rawAxisLeft *  ((JOYSTICK.getRawAxis(BOOST)>0)? boostSpeed : slowSpeed), 
-          rightSpeed = rawAxisRight * ((JOYSTICK.getRawAxis(BOOST)>0)? boostSpeed : slowSpeed);
+    double leftSpeed = rawAxisLeft *  ((JOYSTICK.getRawAxis(BOOST) > 0) ? boostSpeed : slowSpeed), 
+          rightSpeed = rawAxisRight * ((JOYSTICK.getRawAxis(BOOST) > 0) ? boostSpeed : slowSpeed);
     
     m_driverBaseSubsystem.drive(leftSpeed, rightSpeed);
     

@@ -97,8 +97,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     // Run this command repeatedly until teleop mode disabled
-    m_driverBaseCmd.schedule();
-    m_pulleyManCmd.schedule();
+    m_driverBaseCmd.execute();
+    m_pulleyManCmd.execute();
     
     SmartDashboard.putData("Commands Running", CommandScheduler.getInstance());
   }

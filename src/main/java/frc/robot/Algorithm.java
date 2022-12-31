@@ -12,10 +12,12 @@ public final class Algorithm {
             {
                   val = min;
             }
+
             else if(val > max)
             {
                   val = max;
             }
+
             return val;
       }
 }
