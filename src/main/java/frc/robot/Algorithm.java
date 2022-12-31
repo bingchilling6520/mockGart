@@ -18,4 +18,17 @@ public final class Algorithm {
             }
             return val;
       }
+      public static double signOf (double val)
+      {
+            if (val < 0)
+            {
+                  return -1;
+            }
+            else if (val > 0)
+            {
+                  return 1;
+            }
+            return 0;
+            
+      }
 }

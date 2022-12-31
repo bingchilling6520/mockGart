@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.PulleySubsys;
@@ -25,12 +26,22 @@ public class PulleyManCmd extends CommandBase {
     // Y axis on joystick are reversed
     double pulleyLeft = -JOYSTICK2.getRawAxis(YAXISLEFT2);
     double pulleyRight = -JOYSTICK2.getRawAxis(YAXISRIGHT2);
-
+    double mult = JOYSTICK2.getRawAxis(BOOSTPULLEY) > 0 ?
+                      SmartDashboard.getNumber("Pulley Fast Speed", PULLEYFASTSPEED) :
+                      SmartDashboard.getNumber("Pulley Slow Speed", PULLEYSLOWSPEED)
     // No joystick movement
     if (Math.abs(pulleyLeft) > SENSIVITY && Math.abs(pulleyRight) > SENSIVITY)
     {
-      m_pulleySubsystem.pull(pulleyLeft, pulleyRight);
+      m_pulleySubsystem.pull(mult*signOf(pulleyLeft) ,mult* signOf(pulleyRight));
     }
+    else
+    {
+      m_pulleySubsystem.pull(0.0,0.0);
+    }
+  }
+
+  private double signOf(double pulleyLeft) {
+    return 0;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
