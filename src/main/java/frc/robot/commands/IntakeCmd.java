@@ -28,7 +28,7 @@ public class IntakeCmd extends CommandBase {
   @Override
   public void execute()
   {
-    m_intake.rotate(INTAKESPEED * (JOYSTICK2.getRawAxis(INVERT) > 0 ? -1 : 1));
+    m_intake.rotate(INTAKESPEED * (JOYSTICK2.getRawAxis(INVERT) > SENSIVITY ? -1 : 1));
   }
 
   // Called once the command ends or is interrupted.

@@ -16,9 +16,17 @@ public class TrapDoorSubsys extends SubsystemBase {
       channel = _channel;
   }
 
-  public void setAngle(double angle)
+  /**False = close, True = open*/
+  public void rotate(boolean dir)
   {
-      trapDoor.setAngle(angle);
+    if(dir)
+    {
+      trapDoor.setAngle(180);
+    }
+    else
+    {
+      trapDoor.setAngle(0);
+    }
   }
   @Override
   public void periodic() {
