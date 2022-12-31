@@ -22,11 +22,7 @@ public class IntakeCmd extends CommandBase {
   @Override
   public void initialize() {
     SmartDashboard.putBoolean("Intake Running?", true);
-  }
 
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
     m_intake.rotate(INTAKESPEED);
   }
 

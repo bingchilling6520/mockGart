@@ -30,9 +30,9 @@ public class PulleyCmd extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double speed = JOYSTICK2.getRawAxis(BOOSTPULLEY) > 0 ?
+    double speed = (JOYSTICK2.getRawAxis(BOOSTPULLEY) > 0 ?
                       SmartDashboard.getNumber("Pulley Fast Speed", PULLEYFASTSPEED) :
-                      SmartDashboard.getNumber("Pulley Slow Speed", PULLEYSLOWSPEED)
+                      SmartDashboard.getNumber("Pulley Slow Speed", PULLEYSLOWSPEED))
                       * (JOYSTICK2.getRawAxis(INVERT) > 0 ? -1 : 1);
     m_pulley.pull(speed, speed);
   }
