@@ -24,6 +24,10 @@ public class DriveBaseCmd extends CommandBase {
   @Override
   public void execute() 
   {
+    if (JOYSTICK.getRawButton(PRECISETURNBUTTON))
+    {
+      return;
+    }
     double slowSpeed = SmartDashboard.getNumber("Driverbase Normal Speed", NORMSPEED),
            boostSpeed = SmartDashboard.getNumber("Driverbase Boosted Speed", BOOSTSPEED);
 

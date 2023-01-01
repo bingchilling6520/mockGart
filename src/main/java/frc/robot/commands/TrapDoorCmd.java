@@ -28,7 +28,7 @@ public class TrapDoorCmd extends CommandBase {
   @Override
   public void execute() {
     m_trapDoor.rotate(SmartDashboard.getNumber("Trap Door Speed", TRAPDOORSPEED) *
-                      (JOYSTICK2.getRawAxis(INVERT)>SENSITIVITY?-1:1));
+                     (JOYSTICK2.getRawAxis(INVERT)>SENSITIVITY?-1:1));
   }
 
   // Called once the command ends or is interrupted.

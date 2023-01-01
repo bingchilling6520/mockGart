@@ -53,6 +53,7 @@ public final class Constants {
             public static final int // Axis
                                     YAXISLEFT1 = 1,               // Left joystick on the first controller
                                     YAXISRIGHT1 = 5,              // Right joystick on the first controller
+                                    XAXISRIGHT1 = 4,              // Right joystick on the first controller
                                     YAXISLEFT2 = 1,               // Left joystick on the second controller
                                     YAXISRIGHT2 = 5,              // Right joystick on the second controller
                                     BOOST = 4,                    // Driverbase and pulley boost button, on the first controller
@@ -60,6 +61,7 @@ public final class Constants {
                                     BOOSTPULLEY = 4,              // Pulley boost button, on the second controller
 
                                     // Button
+                                    PRECISETURNBUTTON = 5,            // Held to turn precisely, on the first controller
                                     INTAKEBUTTON = 5,             // Intake button, on the second controller
                                     PULLEYBUTTON = 6,             // Pulley button, on the second controller
                                     FRONTTRAPDOORBUTTON = 1,      // Front Trap door button, on the second controller

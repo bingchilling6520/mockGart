@@ -15,6 +15,7 @@ import static frc.robot.Constants.autoCmd.*;
 import static frc.robot.Constants.SingleInstance.*;
 
 import frc.robot.commands.IntakeCmd;
+import frc.robot.commands.PreciseTurnCmd;
 import frc.robot.commands.PulleyCmd;
 import frc.robot.commands.TrapDoorCmd;
 
@@ -30,11 +31,13 @@ public class RobotContainer {
   private final PulleyCmd m_pulleyCommand = new PulleyCmd(m_pulleySubsystem);
   private final TrapDoorCmd m_frontTrapDoorCommand = new TrapDoorCmd(m_frontTrapDoorSubsystem);
   private final TrapDoorCmd m_backTrapDoorCommand = new TrapDoorCmd(m_backTrapDoorSubsystem);
+  private final PreciseTurnCmd m_preciseTurnCommand = new PreciseTurnCmd(m_driveBaseSubsystem);
   
   private final JoystickButton buttonIntake = new JoystickButton(JOYSTICK2, INTAKEBUTTON);
   private final JoystickButton buttonPulley = new JoystickButton(JOYSTICK2, PULLEYBUTTON);
   private final JoystickButton frontButtonTrapdoor = new JoystickButton(JOYSTICK2, FRONTTRAPDOORBUTTON);
   private final JoystickButton backButtonTrapdoor = new JoystickButton(JOYSTICK2, BACKTRAPDOORBUTTON);
+  private final JoystickButton preciseTurnButton = new JoystickButton(JOYSTICK2, PRECISETURNBUTTON);
   
   private final SendableChooser<Command> m_commandChooser = new SendableChooser<>();
   
@@ -71,6 +74,8 @@ public class RobotContainer {
     buttonPulley.whenHeld(m_pulleyCommand);
     frontButtonTrapdoor.whenHeld(m_frontTrapDoorCommand);
     backButtonTrapdoor.whenHeld(m_backTrapDoorCommand);
+    preciseTurnButton.whenHeld(m_preciseTurnCommand);
+
   }
 
   /**
