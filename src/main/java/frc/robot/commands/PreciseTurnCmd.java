@@ -9,6 +9,7 @@ import frc.robot.subsystems.DriveBaseSubsys;
 import static frc.robot.Constants.SingleInstance.*;
 import static frc.robot.Algorithm.*;
 import static frc.robot.Constants.*;
+import static frc.robot.Constants.buttonID.*;
 
 public class PreciseTurnCmd extends CommandBase {
   private DriveBaseSubsys m_driveBase;
@@ -41,7 +42,7 @@ public class PreciseTurnCmd extends CommandBase {
       m_driveBase.drive(0.0, 0.0);
       return;
     }
-    double joystickAngle = 90 - JOYSTICK.getDirectionDegrees();
+    double joystickAngle = 90.0 - Math.toDegrees(Math.atan2(JOYSTICK.getRawAxis(XAXISRIGHT1), -JOYSTICK.getRawAxis(YAXISRIGHT1)));
     PIDCONTROLLER.setSetpoint(initAngle + joystickAngle);
     double speed = PIDCONTROLLER.calculate(GYRO.getYaw()); // get speed
     speed += Math.signum(speed) * 0.1; // lower bound
