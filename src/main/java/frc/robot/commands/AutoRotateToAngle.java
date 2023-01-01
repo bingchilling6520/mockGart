@@ -9,11 +9,12 @@ import frc.robot.subsystems.DriveBaseSubsys;
 import static frc.robot.Constants.SingleInstance.*;
 import static frc.robot.Algorithm.*;
 
-public class AutoTurnToAngle extends CommandBase {
+/**Rotate the driverbase to an exact angle */
+public class AutoRotateToAngle extends CommandBase {
   DriveBaseSubsys m_driveBase;
   double targetAngle;
   /** Creates a new AutoTurnToAngle. */
-  public AutoTurnToAngle(DriveBaseSubsys __driveBase, double __angle) {
+  public AutoRotateToAngle(DriveBaseSubsys __driveBase, double __angle) {
     m_driveBase = __driveBase;
     addRequirements(m_driveBase);
     addRequirements(GYRO);
@@ -25,6 +26,10 @@ public class AutoTurnToAngle extends CommandBase {
     PIDCONTROLLER.enableContinuousInput(-180, 180);
     PIDCONTROLLER.setIntegratorRange(-10, 1);
     PIDCONTROLLER.setTolerance();
+  }
+  /**Turn the driverbase by an exact angle from current orientation*/
+  public static AutoRotateToAngle AutoTurnByAngle (DriveBaseSubsys __driveBase, double __angle) {
+    return new AutoRotateToAngle(__driveBase, GYRO.getYaw() + __angle);
   }
 
   // Called when the command is initially scheduled.

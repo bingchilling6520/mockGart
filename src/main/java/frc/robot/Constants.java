@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.AutoDriveStraight;
+import frc.robot.commands.AutoRotateToAngle;
 import frc.robot.commands.IntakeCmd;
 import frc.robot.commands.PulleyCmd;
 import frc.robot.subsystems.DriveBaseSubsys;
@@ -99,6 +100,12 @@ public final class Constants {
                         new IntakeCmd(m_intakeSubsystem),
                         new PulleyCmd(m_pulleySubsystem)
             ).withTimeout(0.8));
+            public static final Command AUTOTURNTESTCMD =
+            new SequentialCommandGroup(
+                  new AutoDriveStraight(m_driverBaseSubsystem,BOOSTSPEED).withTimeout(0.5),
+                  AutoRotateToAngle.AutoTurnByAngle(m_driverBaseSubsystem, 90),
+                  new AutoDriveStraight(m_driverBaseSubsystem,BOOSTSPEED).withTimeout(0.5)
+            );
       }
 
       /** Driverbase control joystick */

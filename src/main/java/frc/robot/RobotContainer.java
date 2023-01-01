@@ -54,7 +54,6 @@ public class RobotContainer {
     SmartDashboard.putBoolean("Pulley Running?", false);
     SmartDashboard.putBoolean("Front Trap Door Open?", false);
     SmartDashboard.putBoolean("Back Trap Door Open?", false);
-    SmartDashboard.putBoolean("Trap Door Set State", false);
     SmartDashboard.putString("Music File", "badapple2.chrp");
     m_commandChooser.setDefaultOption("Test", TESTCMD);
     SmartDashboard.putData("Auto Command", m_commandChooser);
@@ -74,8 +73,8 @@ public class RobotContainer {
     //trig.whileActiveContinuous(m_pulleyCommand).whileActiveContinuous(m_intakeCommand);
     buttonIntake.whenHeld(m_intakeCommand);
     buttonPulley.whenHeld(m_pulleyCommand);
-    frontButtonTrapdoor.whenActive(m_frontTrapDoorCommand);
-    backButtonTrapdoor.whenActive(m_backTrapDoorCommand);
+    frontButtonTrapdoor.whenHeld(m_frontTrapDoorCommand);
+    backButtonTrapdoor.whenHeld(m_backTrapDoorCommand);
   }
 
   /**
