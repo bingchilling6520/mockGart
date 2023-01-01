@@ -15,9 +15,9 @@ public class PulleyCmd extends CommandBase {
   /** Creates a new PulleyCmd. */
   private PulleySubsys m_pulley;
 
-  public PulleyCmd(PulleySubsys __pulley) {
+  public PulleyCmd(PulleySubsys __subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
-    m_pulley = __pulley;
+    m_pulley = __subsystem;
     addRequirements(m_pulley);
   }
 
@@ -31,10 +31,10 @@ public class PulleyCmd extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double speed = (JOYSTICK2.getRawAxis(BOOSTPULLEY) > SENSIVITY ?
+    double speed = (JOYSTICK2.getRawAxis(BOOSTPULLEY) > SENSITIVITY ?
                       SmartDashboard.getNumber("Pulley Fast Speed", PULLEYFASTSPEED) :
                       SmartDashboard.getNumber("Pulley Slow Speed", PULLEYSLOWSPEED))
-                      * (JOYSTICK2.getRawAxis(INVERT) > SENSIVITY ? -1 : 1);
+                      * (JOYSTICK2.getRawAxis(INVERT) > SENSITIVITY ? -1 : 1);
     m_pulley.pull(speed, speed);
   }
 

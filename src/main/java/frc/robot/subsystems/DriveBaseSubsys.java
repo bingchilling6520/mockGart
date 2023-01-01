@@ -34,18 +34,6 @@ public class DriveBaseSubsys extends SubsystemBase {
     leftMaster.set(left);
     rightMaster.set(right);
   }
-  public boolean isStop()
-  {
-    return rightMaster.get() == leftMaster.get();
-  }
   @Override
-  
-    // This method will be called once per scheduler run
-  public void periodic() 
-  {
-    
-    //double mult = (joystick.getRawAxis(rightTrigger)>0)? normSpeed : fastSpeed;
-    //System.out.println(mult);
-    //drive(mult*joystick.getRawAxis(yAxisLeft),mult*joystick.getRawAxis(yAxisRight));
-  } //empty
+  public void periodic() {} //empty
 }

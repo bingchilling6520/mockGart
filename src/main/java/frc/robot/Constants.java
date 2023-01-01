@@ -32,7 +32,7 @@ import static frc.robot.Constants.talonID.*;
 public final class Constants {
       public final static class SingleInstance
       {
-            public final static DriveBaseSubsys m_driverBaseSubsystem = new DriveBaseSubsys();
+            public final static DriveBaseSubsys m_driveBaseSubsystem = new DriveBaseSubsys();
             public final static IntakeSubsys m_intakeSubsystem = new IntakeSubsys();
             public final static PulleySubsys m_pulleySubsystem = new PulleySubsys();
             public final static TrapDoorSubsys m_frontTrapDoorSubsystem = new TrapDoorSubsys(FRONTTRAPDOORID);
@@ -43,13 +43,14 @@ public final class Constants {
       }
 
       public static final double BOOSTSPEED = 0.8,                // Driverbase boost speed
-                                 SLOWSPEED = 0.4,                 // Driverbase slow speed
+                                 NORMSPEED = 0.4,                 // Driverbase slow speed
                                  INTAKESPEED = 1,                 // Intake speed (max, 1:48 SIM motor)
                                  PULLEYSLOWSPEED = 0.1,           // Pulley slow speed
-                                 PULLEYFASTSPEED = 0.3;           // Pulley fast speed
-      
-      public static final double NORMSPEED = SLOWSPEED;           // Default speed
-      public static final double SENSIVITY = 0.1;
+                                 PULLEYFASTSPEED = 0.3,           // Pulley fast speed
+                                 TRAPDOORSPEED = 1;               // Trap Door speed
+
+      /**Sensitivity to account for joystick don't return 0 when not moving */
+      public static final double SENSITIVITY = 0.1;
 
       public final class buttonID
       {
@@ -58,8 +59,7 @@ public final class Constants {
                                     YAXISRIGHT1 = 5,              // Right joystick on the first controller
                                     YAXISLEFT2 = 1,               // Left joystick on the second controller
                                     YAXISRIGHT2 = 5,              // Right joystick on the second controller
-                                    BOOST = 4,                    // Driverbase boost button, on the first controller
-                                    
+                                    BOOST = 4,                    // Driverbase and pulley boost button, on the first controller
                                     INVERT = 3,                   // Intake & pulley invert button, on the second controller
                                     BOOSTPULLEY = 4,              // Pulley boost button, on the second controller
 
@@ -86,25 +86,28 @@ public final class Constants {
       
       public final static class PID
       {
-            public static final double KI = 0, KP = 1.0/18, KD = 0, KTOLERANCE = 2.0, KTOLERANCEVELOCITY = 0.8 ;
+            public static final double KI = 0, KP = 1.0/18, KD = 0, 
+                                       KTOLERANCE = 2.0, KTOLERANCEVELOCITY = 0.8 ;
       }
 
       public final static class autoCmd
       {
-            // Drive Straight quickly for 0.5s then move slowly while eating balls in 0.8s
+            /** Drive Straight quickly for 0.5s then move slowly while eating balls in 0.8s */
             public static final Command TESTCMD = 
             new SequentialCommandGroup(
-                  new AutoDriveStraight(m_driverBaseSubsystem,BOOSTSPEED).withTimeout(0.5),
+                  new AutoDriveStraight(m_driveBaseSubsystem,BOOSTSPEED).withTimeout(0.5),
                   new ParallelCommandGroup(
-                        new AutoDriveStraight(m_driverBaseSubsystem, SLOWSPEED),
+                        new AutoDriveStraight(m_driveBaseSubsystem, NORMSPEED),
                         new IntakeCmd(m_intakeSubsystem),
                         new PulleyCmd(m_pulleySubsystem)
             ).withTimeout(0.8));
+
+            /**Drive Straight for 0.5s turn by 90 degree then Drive Straight in that direction */
             public static final Command AUTOTURNTESTCMD =
             new SequentialCommandGroup(
-                  new AutoDriveStraight(m_driverBaseSubsystem,BOOSTSPEED).withTimeout(0.5),
-                  AutoRotateToAngle.AutoTurnByAngle(m_driverBaseSubsystem, 90),
-                  new AutoDriveStraight(m_driverBaseSubsystem,BOOSTSPEED).withTimeout(0.5)
+                  new AutoDriveStraight(m_driveBaseSubsystem, BOOSTSPEED).withTimeout(0.5),
+                  AutoRotateToAngle.turnByAngle(m_driveBaseSubsystem, 90),
+                  new AutoDriveStraight(m_driveBaseSubsystem, BOOSTSPEED).withTimeout(0.5)
             );
       }
 

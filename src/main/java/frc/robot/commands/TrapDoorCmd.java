@@ -14,11 +14,11 @@ import static frc.robot.Constants.buttonID.*;
 public class TrapDoorCmd extends CommandBase {
   /** true = open, false = close */
   private boolean state = false; 
-  private TrapDoorSubsys m_trapDoorSubsystem;
+  private TrapDoorSubsys m_trapDoor;
   /** Creates a new TrapDoorCmd. */
-  public TrapDoorCmd(TrapDoorSubsys __trapDoorSubsystem) {
-      m_trapDoorSubsystem = __trapDoorSubsystem;
-      addRequirements(m_trapDoorSubsystem);
+  public TrapDoorCmd(TrapDoorSubsys __subsystem) {
+      m_trapDoor = __subsystem;
+      addRequirements(m_trapDoor);
   }
 
   // Called when the command is initially scheduled.
@@ -26,21 +26,21 @@ public class TrapDoorCmd extends CommandBase {
   public void initialize() {
     System.out.println("CLOSE THE TRAPDOOR BEFORE RUNNING");
     state = !state;
-    state = SmartDashboard.putBoolean((m_trapDoorSubsystem.channel == 0 ? "Front" : "Back") + " Trap Door Open?", state);
+    state = SmartDashboard.putBoolean((m_trapDoor.channel == 0 ? "Front" : "Back") + " Trap Door Open?", state);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //SmartDashboard.putNumber("Trap Door Speed", TRAPDOORSPEED);
-    state = SmartDashboard.getBoolean((m_trapDoorSubsystem.channel == 0 ? "Front" : "Back") + " Trap Door Open?", state);
-    //speed = SmartDashboard.getNumber("Trap Door Speed", TRAPDOORSPEED);
-    m_trapDoorSubsystem.rotate(JOYSTICK2.getRawAxis(INVERT)>SENSIVITY);
+    state = SmartDashboard.getBoolean((m_trapDoor.channel == 0 ? "Front" : "Back") + " Trap Door Open?", state);
+    m_trapDoor.rotate(SmartDashboard.getNumber("Trap Door Speed", TRAPDOORSPEED) *
+                              (JOYSTICK2.getRawAxis(INVERT)>SENSITIVITY?-1:1));
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    m_trapDoor.rotate(0.0);
   }
 
   // Returns true when the command should end.

@@ -21,19 +21,22 @@ public final class Algorithm {
 
             return val;
       }
-
+      /**Return the sign of the number accounting for sensitivity 
+       * @param val the value to get its sign of
+       * @return -1 if val is less than -SENSIVITY, 1 if val is greater than SENSIVITY, 0 otherwise
+      */
       public static double signOf(double val)
       {
-        if (val < -SENSIVITY)
-        {
-              return -1;
-        }
-    
-        if (val > SENSIVITY)
-        {
-              return 1;
-        }
-        
-        return 0;
+            if (val < -SENSITIVITY)
+            {
+                  return -1;
+            }
+
+            if (val > SENSITIVITY)
+            {
+                  return 1;
+            }
+
+            return 0;
       }
 }

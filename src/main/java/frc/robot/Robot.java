@@ -25,7 +25,7 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
 
   // manualCommand
-  DriveBaseCmd m_driverBaseCmd = new DriveBaseCmd(m_driverBaseSubsystem);
+  DriveBaseCmd m_driverBaseCmd = new DriveBaseCmd(m_driveBaseSubsystem);
   PulleyManCmd m_pulleyManCmd = new PulleyManCmd(m_pulleySubsystem);
 
   /**

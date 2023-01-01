@@ -11,25 +11,16 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class TrapDoorSubsys extends SubsystemBase {
   private Servo trapDoor;
   public int channel;
-  public TrapDoorSubsys(int _channel) {
-      trapDoor = new Servo(_channel);
-      channel = _channel;
+  public TrapDoorSubsys(int __channel) {
+      trapDoor = new Servo(__channel);
+      channel = __channel;
   }
 
   /**False = close, True = open*/
-  public void rotate(boolean dir)
+  public void rotate(double speed)
   {
-    if(dir)
-    {
-      trapDoor.setAngle(180);
-    }
-    else
-    {
-      trapDoor.setAngle(0);
-    }
+    trapDoor.setAngle(90 + speed * 90);
   }
   @Override
-  public void periodic() {
-
-  }
+  public void periodic() {} //empty
 }

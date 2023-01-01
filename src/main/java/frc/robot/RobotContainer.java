@@ -46,8 +46,8 @@ public class RobotContainer {
     // SmartDashboard initialize
     SmartDashboard.putNumber("Pulley Slow Speed", PULLEYSLOWSPEED);
     SmartDashboard.putNumber("Pulley Fast Speed", PULLEYFASTSPEED);
-    SmartDashboard.putNumber("Intake Speed", INTAKESPEED); 
-    //SmartDashboard.putNumber("Trap Door Speed", TRAPDOORSPEED); 
+    SmartDashboard.putNumber("Intake Speed", INTAKESPEED);
+    SmartDashboard.putNumber("Trap Door Speed", TRAPDOORSPEED);
     SmartDashboard.putNumber("Driverbase Normal Speed", NORMSPEED);
     SmartDashboard.putNumber("Driverbase Boosted Speed", BOOSTSPEED);
     SmartDashboard.putBoolean("Intake Running?", false);
@@ -58,7 +58,6 @@ public class RobotContainer {
     m_commandChooser.setDefaultOption("Test", TESTCMD);
     SmartDashboard.putData("Auto Command", m_commandChooser);
     
-    // Configure the button bindings
     configureButtonBindings();
   }
 
@@ -70,7 +69,6 @@ public class RobotContainer {
    */
   private void configureButtonBindings() 
   {
-    //trig.whileActiveContinuous(m_pulleyCommand).whileActiveContinuous(m_intakeCommand);
     buttonIntake.whenHeld(m_intakeCommand);
     buttonPulley.whenHeld(m_pulleyCommand);
     frontButtonTrapdoor.whenHeld(m_frontTrapDoorCommand);
@@ -83,10 +81,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    // SendableChooser<Command> m_chooser = new SendableChooser<>();
-    // m_chooser.setDefaultOption("Test", TESTCMD);
     return m_commandChooser.getSelected();
-    //return TESTCMD;
   }
 }

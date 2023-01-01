@@ -14,8 +14,8 @@ public class AutoRotateToAngle extends CommandBase {
   DriveBaseSubsys m_driveBase;
   double targetAngle;
   /** Creates a new AutoTurnToAngle. */
-  public AutoRotateToAngle(DriveBaseSubsys __driveBase, double __angle) {
-    m_driveBase = __driveBase;
+  public AutoRotateToAngle(DriveBaseSubsys __subsystem, double __angle) {
+    m_driveBase = __subsystem;
     addRequirements(m_driveBase);
     addRequirements(GYRO);
     addRequirements(PIDCONTROLLER);
@@ -27,8 +27,8 @@ public class AutoRotateToAngle extends CommandBase {
     PIDCONTROLLER.setIntegratorRange(-10, 1);
     PIDCONTROLLER.setTolerance();
   }
-  /**Turn the driverbase by an exact angle from current orientation*/
-  public static AutoRotateToAngle AutoTurnByAngle (DriveBaseSubsys __driveBase, double __angle) {
+  /**Decorator to turn the driverbase by an exact angle from current orientation*/
+  public static AutoRotateToAngle turnByAngle (DriveBaseSubsys __driveBase, double __angle) {
     return new AutoRotateToAngle(__driveBase, GYRO.getYaw() + __angle);
   }
 

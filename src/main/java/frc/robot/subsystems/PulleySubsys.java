@@ -15,11 +15,9 @@ import static frc.robot.Constants.talonID.*;
 public class PulleySubsys extends SubsystemBase {
   /** Creates a new PulleySubsys. */
   private final WPI_TalonFX rightPulley = new WPI_TalonFX(RIGHTPULLEYID),
-                          leftPulley = new WPI_TalonFX(LEFTPULLEYID);
+                            leftPulley = new WPI_TalonFX(LEFTPULLEYID);
   private Orchestra music = new Orchestra();
   public boolean isPulleyRunning = false;
-  
-  //private final WPI_TalonSRX pulley = new WPI_TalonSRX(PULLEYID);
   
   public PulleySubsys() {
     // Rotate with equal but opposite velocity.
