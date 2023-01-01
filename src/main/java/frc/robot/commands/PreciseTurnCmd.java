@@ -41,7 +41,7 @@ public class PreciseTurnCmd extends CommandBase {
       m_driveBase.drive(0.0, 0.0);
       return;
     }
-    double joystickAngle = JOYSTICK.getDirectionDegrees();
+    double joystickAngle = 90 - JOYSTICK.getDirectionDegrees();
     PIDCONTROLLER.setSetpoint(initAngle + joystickAngle);
     double speed = PIDCONTROLLER.calculate(GYRO.getYaw()); // get speed
     speed += Math.signum(speed) * 0.1; // lower bound
