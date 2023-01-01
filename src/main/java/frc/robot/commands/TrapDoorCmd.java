@@ -27,9 +27,8 @@ public class TrapDoorCmd extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    state = SmartDashboard.getBoolean((m_trapDoor.channel == 0 ? "Front" : "Back") + " Trap Door Open?", state);
     m_trapDoor.rotate(SmartDashboard.getNumber("Trap Door Speed", TRAPDOORSPEED) *
-                              (JOYSTICK2.getRawAxis(INVERT)>SENSITIVITY?-1:1));
+                      (JOYSTICK2.getRawAxis(INVERT)>SENSITIVITY?-1:1));
   }
 
   // Called once the command ends or is interrupted.

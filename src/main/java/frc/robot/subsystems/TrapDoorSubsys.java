@@ -12,7 +12,9 @@ public class TrapDoorSubsys extends SubsystemBase {
       channel = __channel;
   }
 
-  /**False = close, True = open*/
+  /**Rotate servo with speed
+   * @param speed -1.0 to 1.0
+  */
   public void rotate(double speed)
   {
     trapDoor.setAngle(90 + speed * 90);
