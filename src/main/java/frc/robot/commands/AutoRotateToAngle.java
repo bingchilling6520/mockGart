@@ -39,7 +39,7 @@ public class AutoRotateToAngle extends CommandBase {
   @Override
   public void execute() {
     double speed = PIDCONTROLLER.calculate(GYRO.getYaw()); // get speed
-    speed += Math.signum(speed) * 0.1; // lower bound
+    //speed += Math.signum(speed) * 0.1; // lower bound
     speed = clamp(speed, -0.6, 0.6); // upper bound
     m_driveBase.drive(-speed, speed); // actual driving mechanism
   }

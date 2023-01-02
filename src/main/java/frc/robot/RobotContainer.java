@@ -37,7 +37,7 @@ public class RobotContainer {
   private final JoystickButton buttonPulley = new JoystickButton(JOYSTICK2, PULLEYBUTTON);
   private final JoystickButton frontButtonTrapdoor = new JoystickButton(JOYSTICK2, FRONTTRAPDOORBUTTON);
   private final JoystickButton backButtonTrapdoor = new JoystickButton(JOYSTICK2, BACKTRAPDOORBUTTON);
-  private final JoystickButton preciseTurnButton = new JoystickButton(JOYSTICK2, PRECISETURNBUTTON);
+  private final JoystickButton preciseTurnButton = new JoystickButton(JOYSTICK, PRECISETURNBUTTON);
   
   private final SendableChooser<Command> m_commandChooser = new SendableChooser<>();
   
