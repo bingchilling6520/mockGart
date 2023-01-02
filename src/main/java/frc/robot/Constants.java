@@ -61,7 +61,7 @@ public final class Constants {
                                     BOOSTPULLEY = 4,              // Pulley boost button, on the second controller
 
                                     // Button
-                                    PRECISETURNBUTTON = 5,            // Held to turn precisely, on the first controller
+                                    PRECISETURNBUTTON = 7,        // Held to turn precisely, on the first controller
                                     INTAKEBUTTON = 5,             // Intake button, on the second controller
                                     PULLEYBUTTON = 6,             // Pulley button, on the second controller
                                     FRONTTRAPDOORBUTTON = 1,      // Front Trap door button, on the second controller

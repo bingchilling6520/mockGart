@@ -18,7 +18,7 @@ public class AutoRotateToAngle extends CommandBase {
     targetAngle = __angle;
 
     
-    PIDCONTROLLER.setSetpoint(targetAngle);
+    PIDCONTROLLER.setSetpoint(simplifyAngle(targetAngle));
     PIDCONTROLLER.enableContinuousInput(-180, 180);
     PIDCONTROLLER.setIntegratorRange(-10, 1);
     PIDCONTROLLER.setTolerance();

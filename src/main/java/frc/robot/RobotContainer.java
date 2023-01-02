@@ -57,6 +57,7 @@ public class RobotContainer {
     SmartDashboard.putBoolean("Back Trap Door Open?", false);
     SmartDashboard.putString("Music File", "badapple2.chrp");
     m_commandChooser.setDefaultOption("Test", TESTCMD);
+    m_commandChooser.addOption("Turn to angle Test", AUTOTURNTESTCMD);
     SmartDashboard.putData("Auto Command", m_commandChooser);
     
     configureButtonBindings();
