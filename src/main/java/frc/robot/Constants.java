@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.AutoDriveStraight;
-import frc.robot.commands.AutoRotateToAngle;
+import frc.robot.commands.AutoRotateByAngle;
 import frc.robot.commands.IntakeCmd;
 import frc.robot.commands.PulleyCmd;
 import frc.robot.subsystems.DriveBaseSubsys;
@@ -47,14 +47,14 @@ public final class Constants {
 
       /** Sensitivity to account for joystick don't return 0 when not moving */
       public static final double SENSITIVITY = 0.1;
-      public static final double PULLEY_SENSITIVITY = 0.2;
+      public static final double JOYSTICKSENSITIVITY = 0.2;
 
       public final class buttonID
       {
             public static final int // Axis
                                     YAXISLEFT1 = 1,               // Left joystick on the first controller
                                     YAXISRIGHT1 = 5,              // Right joystick on the first controller
-                                    XAXISRIGHT1 = 4,              // Right joystick on the first controller
+                                    XAXISRIGHT1 = 2,              // Right joystick on the first controller
                                     YAXISLEFT2 = 1,               // Left joystick on the second controller
                                     YAXISRIGHT2 = 5,              // Right joystick on the second controller
                                     BOOST = 4,                    // Driverbase and pulley boost button, on the first controller
@@ -85,8 +85,8 @@ public final class Constants {
       
       public final static class PID
       {
-            public static final double KI = 0, KP = 1.0/18, KD = 0, 
-                                       KTOLERANCE = 2.0, KTOLERANCEVELOCITY = 0.8 ;
+            public static final double KI = 0.4, KP = 0.3, KD = 0.05, 
+                                       KTOLERANCE = 1.5, KTOLERANCEVELOCITY = 0.8 ;
       }
 
       public final static class autoCmd
@@ -104,9 +104,7 @@ public final class Constants {
             /**Drive Straight for 0.5s turn by 90 degree then Drive Straight in that direction */
             public static final Command AUTOTURNTESTCMD =
             new SequentialCommandGroup(
-                  new AutoDriveStraight(m_driveBaseSubsystem, BOOSTSPEED).withTimeout(0.5),
-                  AutoRotateToAngle.turnByAngle(m_driveBaseSubsystem, 90),
-                  new AutoDriveStraight(m_driveBaseSubsystem, BOOSTSPEED).withTimeout(0.5)
+                  new AutoRotateByAngle(m_driveBaseSubsystem, 90)
             );
       }
 

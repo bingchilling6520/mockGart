@@ -33,7 +33,7 @@ public class PulleyManCmd extends CommandBase {
                       SmartDashboard.getNumber("Pulley Fast Speed", PULLEYFASTSPEED) :
                       SmartDashboard.getNumber("Pulley Slow Speed", PULLEYSLOWSPEED);
     
-    if (Math.abs(pulleyLeft) > PULLEY_SENSITIVITY || Math.abs(pulleyRight) > PULLEY_SENSITIVITY)
+    if (Math.abs(pulleyLeft) > JOYSTICKSENSITIVITY || Math.abs(pulleyRight) > JOYSTICKSENSITIVITY)
     {
       m_pulley.pull(mult * signOf(pulleyLeft), mult * signOf(pulleyRight));
     }

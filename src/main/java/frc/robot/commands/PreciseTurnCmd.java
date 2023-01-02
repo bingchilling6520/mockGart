@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveBaseSubsys;
 import static frc.robot.Constants.SingleInstance.*;
@@ -13,7 +14,6 @@ import static frc.robot.Constants.buttonID.*;
 
 public class PreciseTurnCmd extends CommandBase {
   private DriveBaseSubsys m_driveBase;
-  private double initAngle = 0;
   /** Creates a new PreciseTurnCmd. */
   public PreciseTurnCmd(DriveBaseSubsys __subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -21,7 +21,7 @@ public class PreciseTurnCmd extends CommandBase {
     addRequirements(m_driveBase);
     addRequirements(GYRO);
     addRequirements(PIDCONTROLLER);
-    PIDCONTROLLER.setSetpoint(initAngle);
+    PIDCONTROLLER.setSetpoint(0);
     PIDCONTROLLER.enableContinuousInput(-180, 180);
     PIDCONTROLLER.setIntegratorRange(-10, 1);
     PIDCONTROLLER.setTolerance();
@@ -30,7 +30,6 @@ public class PreciseTurnCmd extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    initAngle = GYRO.getYaw();
     GYRO.reset();
     PIDCONTROLLER.reset();
   }
@@ -42,9 +41,15 @@ public class PreciseTurnCmd extends CommandBase {
       m_driveBase.drive(0.0, 0.0);
       return;
     }
-    double joystickAngle = 90.0 - Math.toDegrees(Math.atan2(JOYSTICK.getRawAxis(XAXISRIGHT1), -JOYSTICK.getRawAxis(YAXISRIGHT1)));
-    PIDCONTROLLER.setSetpoint(simplifyAngle(initAngle + joystickAngle));
-    double speed = PIDCONTROLLER.calculate(GYRO.getYaw()); // get speed
+    //No movement
+    if (Math.abs(JOYSTICK.getRawAxis(XAXISRIGHT1)) <= JOYSTICKSENSITIVITY && Math.abs(JOYSTICK.getRawAxis(YAXISRIGHT1)) <= JOYSTICKSENSITIVITY)
+    {
+      return;
+    }
+    double joystickAngle = Math.toDegrees(Math.atan2(JOYSTICK.getRawAxis(XAXISRIGHT1), -JOYSTICK.getRawAxis(YAXISRIGHT1)));
+    SmartDashboard.putNumber("Joystick Angle", simplifyAngle(joystickAngle));
+    PIDCONTROLLER.setSetpoint(simplifyAngle(joystickAngle));
+    double speed = -PIDCONTROLLER.calculate(GYRO.getYaw()) * 0.1; // get speed
     //speed += Math.signum(speed) * 0.1; // lower bound
     speed = clamp(speed, -0.6, 0.6); // upper bound
     System.out.println("speed: " + speed);
