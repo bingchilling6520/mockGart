@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -18,5 +19,7 @@ public class IntakeSubsys extends SubsystemBase {
   }
 
   @Override
-  public void periodic() {} //empty
+  public void periodic() {
+    SmartDashboard.putNumber("Intake temp", intakeTL.getTemperature());
+  }
 }

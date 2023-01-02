@@ -43,10 +43,11 @@ public final class Constants {
                                  INTAKESPEED = 1,                 // Intake speed (max, 1:48 SIM motor)
                                  PULLEYSLOWSPEED = 0.1,           // Pulley slow speed
                                  PULLEYFASTSPEED = 0.3,           // Pulley fast speed
-                                 TRAPDOORSPEED = 1;               // Trap Door speed
+                                 TRAPDOORSPEED = 0.2;             // Trap Door speed
 
-      /**Sensitivity to account for joystick don't return 0 when not moving */
+      /** Sensitivity to account for joystick don't return 0 when not moving */
       public static final double SENSITIVITY = 0.1;
+      public static final double PULLEY_SENSITIVITY = 0.2;
 
       public final class buttonID
       {
@@ -78,8 +79,8 @@ public final class Constants {
                                     INTAKEID = 5,                 // Intake motor
                                     LEFTPULLEYID = 6,             // Left pulley use Falcon (TalonFX based)
                                     RIGHTPULLEYID = 7,            // Right pulley use Falcon (TalonFX based)
-                                    FRONTTRAPDOORID = 0,          // Front Trap door use Servo
-                                    BACKTRAPDOORID = 1;           // Back Trap door use Servo
+                                    FRONTTRAPDOORID = 8,          // Front Trap door use Victor SPX
+                                    BACKTRAPDOORID = 9;           // Back Trap door use Victor SPX
       }
       
       public final static class PID

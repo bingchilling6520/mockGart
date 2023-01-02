@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -32,5 +33,10 @@ public class DriveBaseSubsys extends SubsystemBase {
     rightMaster.set(right);
   }
   @Override
-  public void periodic() {} //empty
+  public void periodic() {
+    SmartDashboard.putNumber("rightMaster temp", rightMaster.getTemperature());
+    SmartDashboard.putNumber("rightFollow temp", rightFollow.getTemperature());
+    SmartDashboard.putNumber("leftMaster temp", leftMaster.getTemperature());
+    SmartDashboard.putNumber("leftFollow temp", leftFollow.getTemperature());
+  }
 }

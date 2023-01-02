@@ -32,5 +32,6 @@ public class GyroSubsys extends SubsystemBase {
     SmartDashboard.putNumber("Y velocity", vy);
     SmartDashboard.putNumber("Z velocity", vz);
     SmartDashboard.putNumber("Angle", ahrs.getYaw());
+    SmartDashboard.putNumber("NavX temperature", ahrs.getTempC());
   }
 }
