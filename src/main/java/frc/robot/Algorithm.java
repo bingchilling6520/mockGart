@@ -1,11 +1,8 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot;
+
 import static frc.robot.Constants.*;
 
-/** Add your docs here. */
+/** Common Maths and other helper function*/
 public final class Algorithm {
       public static double clamp(double val, double min, double max)
       {
@@ -21,19 +18,41 @@ public final class Algorithm {
 
             return val;
       }
-
+      /**Return the sign of the number accounting for sensitivity 
+       * @param val the value to get its sign of
+       * @return -1 if val is less than -SENSIVITY, 1 if val is greater than SENSIVITY, 0 otherwise
+      */
       public static double signOf(double val)
       {
-        if (val < -SENSIVITY)
-        {
-              return -1;
-        }
-    
-        if (val > SENSIVITY)
-        {
-              return 1;
-        }
-        
-        return 0;
+            if (val < -SENSITIVITY)
+            {
+                  return -1;
+            }
+
+            if (val > SENSITIVITY)
+            {
+                  return 1;
+            }
+
+            return 0;
+      }
+
+      /**Convert all angle to range -180 to 180 degree
+       * @param angle the angle to be converted
+       * @return the converted angle between -180 to 180 degree
+       */
+      public static double simplifyAngle (double angle)
+      {
+            while (angle > 180)
+            {
+                  angle -= 360;
+            }
+
+            while (angle < -180)
+            {
+                  angle += 360;
+            }
+
+            return angle;
       }
 }

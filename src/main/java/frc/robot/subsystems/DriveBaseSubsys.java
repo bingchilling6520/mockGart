@@ -1,13 +1,11 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-//import edu.wpi.first.wpilibj.interfaces.Gyro;
-//import static frc.robot.Constants.*;
 import static frc.robot.Constants.talonID.*;
-//import static frc.robot.Constants.buttonID.*;
 
 public class DriveBaseSubsys extends SubsystemBase {
   private WPI_TalonSRX rightMaster = new WPI_TalonSRX(RIGHTMASTERID);
@@ -34,18 +32,11 @@ public class DriveBaseSubsys extends SubsystemBase {
     leftMaster.set(left);
     rightMaster.set(right);
   }
-  public boolean isStop()
-  {
-    return rightMaster.get() == leftMaster.get();
-  }
   @Override
-  
-    // This method will be called once per scheduler run
-  public void periodic() 
-  {
-    
-    //double mult = (joystick.getRawAxis(rightTrigger)>0)? normSpeed : fastSpeed;
-    //System.out.println(mult);
-    //drive(mult*joystick.getRawAxis(yAxisLeft),mult*joystick.getRawAxis(yAxisRight));
-  } //empty
+  public void periodic() {
+    SmartDashboard.putNumber("rightMaster temp", rightMaster.getTemperature());
+    SmartDashboard.putNumber("rightFollow temp", rightFollow.getTemperature());
+    SmartDashboard.putNumber("leftMaster temp", leftMaster.getTemperature());
+    SmartDashboard.putNumber("leftFollow temp", leftFollow.getTemperature());
+  }
 }

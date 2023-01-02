@@ -1,7 +1,3 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -14,24 +10,26 @@ import java.lang.Math;
   
 public class DriveBaseCmd extends CommandBase {
   /** Creates a new RobotBase. */
-  private DriveBaseSubsys m_driverBaseSubsystem;
-  private double slowSpeed = NORMSPEED, boostSpeed = BOOSTSPEED;
+  private DriveBaseSubsys m_driverBase;
   
-  public DriveBaseCmd(DriveBaseSubsys driverBaseSubsystem) {
-    m_driverBaseSubsystem = driverBaseSubsystem;
-    addRequirements(m_driverBaseSubsystem);
+  public DriveBaseCmd(DriveBaseSubsys __subsystem) {
+    m_driverBase = __subsystem;
+    addRequirements(m_driverBase);
   }
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-  } //empty
+  public void initialize() {} //empty
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() 
   {
-    slowSpeed = SmartDashboard.getNumber("Driverbase Normal Speed", NORMSPEED);
-    boostSpeed = SmartDashboard.getNumber("Driverbase Boosted Speed", BOOSTSPEED);
+    if (JOYSTICK.getRawButton(PRECISETURNBUTTON))
+    {
+      return;
+    }
+    double slowSpeed = SmartDashboard.getNumber("Driverbase Normal Speed", NORMSPEED),
+           boostSpeed = SmartDashboard.getNumber("Driverbase Boosted Speed", BOOSTSPEED);
 
     int pov = JOYSTICK.getPOV();
     if (pov != -1) //POV pressed drive with NORMSPEED constants
@@ -39,16 +37,10 @@ public class DriveBaseCmd extends CommandBase {
       switch (pov)
       {
         case 0: //up
-          m_driverBaseSubsystem.drive(slowSpeed, slowSpeed);
-          break;
-        case 90: //right
-          //m_subsystem.drive(NORMSPEED, -NORMSPEED);
+          m_driverBase.drive(slowSpeed, slowSpeed);
           break;
         case 180: //down
-          m_driverBaseSubsystem.drive(-slowSpeed, -slowSpeed);
-          break;
-        case 270: //left
-          //m_subsystem.drive(-NORMSPEED, NORMSPEED);
+          m_driverBase.drive(-slowSpeed, -slowSpeed);
           break;
       }
       return;
@@ -58,16 +50,16 @@ public class DriveBaseCmd extends CommandBase {
     double rawAxisLeft = -JOYSTICK.getRawAxis(YAXISLEFT1);
     double rawAxisRight = -JOYSTICK.getRawAxis(YAXISRIGHT1);
 
-    if (Math.abs(rawAxisLeft) <= SENSIVITY && Math.abs(rawAxisRight) <= SENSIVITY) // no joystick movement
+    if (Math.abs(rawAxisLeft) <= SENSITIVITY && Math.abs(rawAxisRight) <= SENSITIVITY) // no joystick movement
     {
-      m_driverBaseSubsystem.drive(0.0, 0.0);
+      m_driverBase.drive(0.0, 0.0);
       return;
     }
     
     double leftSpeed = rawAxisLeft *  ((JOYSTICK.getRawAxis(BOOST) > 0) ? boostSpeed : slowSpeed), 
-          rightSpeed = rawAxisRight * ((JOYSTICK.getRawAxis(BOOST) > 0) ? boostSpeed : slowSpeed);
+           rightSpeed = rawAxisRight * ((JOYSTICK.getRawAxis(BOOST) > 0) ? boostSpeed : slowSpeed);
     
-    m_driverBaseSubsystem.drive(leftSpeed, rightSpeed);
+    m_driverBase.drive(leftSpeed, rightSpeed);
     
     SmartDashboard.putNumber("Left Speed", leftSpeed);
     SmartDashboard.putNumber("Right Speed", rightSpeed);
@@ -75,7 +67,7 @@ public class DriveBaseCmd extends CommandBase {
 
   @Override
   public void end(boolean interrupted) {
-    m_driverBaseSubsystem.drive(0.0,0.0);
+    m_driverBase.drive(0.0,0.0);
   }
 
   // Returns true when the command should end.

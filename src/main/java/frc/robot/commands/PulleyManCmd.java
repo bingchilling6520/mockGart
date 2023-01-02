@@ -1,7 +1,3 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -15,11 +11,11 @@ import static frc.robot.Constants.buttonID.*;
 public class PulleyManCmd extends CommandBase {
   /** Creates a new PulleyManCmd. */
 
-  private PulleySubsys m_pulleySubsystem;
+  private PulleySubsys m_pulley;
 
-  public PulleyManCmd(PulleySubsys pulleySubsystem) {
-    m_pulleySubsystem = pulleySubsystem;
-    addRequirements(m_pulleySubsystem);
+  public PulleyManCmd(PulleySubsys __subsystem) {
+    m_pulley = __subsystem;
+    addRequirements(m_pulley);
   }
 
   // Called when the command is initially scheduled.
@@ -37,14 +33,14 @@ public class PulleyManCmd extends CommandBase {
                       SmartDashboard.getNumber("Pulley Fast Speed", PULLEYFASTSPEED) :
                       SmartDashboard.getNumber("Pulley Slow Speed", PULLEYSLOWSPEED);
     
-    if (Math.abs(pulleyLeft) > SENSIVITY || Math.abs(pulleyRight) > SENSIVITY)
+    if (Math.abs(pulleyLeft) > JOYSTICKSENSITIVITY || Math.abs(pulleyRight) > JOYSTICKSENSITIVITY)
     {
-      m_pulleySubsystem.pull(mult * signOf(pulleyLeft), mult * signOf(pulleyRight));
+      m_pulley.pull(mult * signOf(pulleyLeft), mult * signOf(pulleyRight));
     }
 
     else
     {
-      m_pulleySubsystem.pull(0.0, 0.0);
+      m_pulley.pull(0.0, 0.0);
     }
   }
 
@@ -53,7 +49,7 @@ public class PulleyManCmd extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_pulleySubsystem.pull(0.0, 0.0);
+    m_pulley.pull(0.0, 0.0);
   }
 
   // Returns true when the command should end.

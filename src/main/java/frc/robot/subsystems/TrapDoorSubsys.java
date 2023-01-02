@@ -1,35 +1,32 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot.subsystems;
-import edu.wpi.first.wpilibj.Servo;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-  /** Channel 0 is Front, Channel 1 is Back. */
+import static frc.robot.Constants.talonID.*;
+
 public class TrapDoorSubsys extends SubsystemBase {
-  private Servo trapDoor;
-  public int channel;
-  public TrapDoorSubsys(int _channel) {
-      trapDoor = new Servo(_channel);
-      channel = _channel;
+  private VictorSPX trapDoor;
+  public int id;
+
+  public TrapDoorSubsys(int __id) {
+      trapDoor = new VictorSPX(__id);
+      id = __id;
   }
 
-  /**False = close, True = open*/
-  public void rotate(boolean dir)
+  /** Rotate trapdoor with speed
+   * @param speed -1.0 to 1.0
+  */
+  public void rotate(double speed)
   {
-    if(dir)
-    {
-      trapDoor.setAngle(180);
-    }
-    else
-    {
-      trapDoor.setAngle(0);
-    }
+    trapDoor.set(ControlMode.PercentOutput, speed);
   }
+
   @Override
   public void periodic() {
-
+    SmartDashboard.putNumber((id == FRONTTRAPDOORID ? "Front" : "Back") + " trapdoor temp", trapDoor.getTemperature());
   }
 }

@@ -1,20 +1,15 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveBaseSubsys;
   
 public class AutoDriveStraight extends CommandBase {
-  /** Creates a new RobotBase. */
-  private DriveBaseSubsys m_subsystem;
+  private DriveBaseSubsys m_driveBase;
   private double speed;
-  public AutoDriveStraight(DriveBaseSubsys subsystem, double _speed) {
-    m_subsystem = subsystem;
-    addRequirements(m_subsystem);
-    speed=_speed;
+  public AutoDriveStraight(DriveBaseSubsys __subsystem, double __speed) {
+    m_driveBase = __subsystem;
+    addRequirements(m_driveBase);
+    speed=__speed;
   }
   // Called when the command is initially scheduled.
   @Override
@@ -23,12 +18,12 @@ public class AutoDriveStraight extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_subsystem.drive(speed, speed);
+    m_driveBase.drive(speed, speed);
   } //empty
 
   @Override
   public void end(boolean interrupted) {
-    m_subsystem.drive(0.0,0.0);
+    m_driveBase.drive(0.0,0.0);
   } //empty
 
   // Returns true when the command should end.
