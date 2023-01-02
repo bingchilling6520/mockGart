@@ -24,14 +24,14 @@ public class DriveBaseCmd extends CommandBase {
   @Override
   public void execute() 
   {
-    if (JOYSTICK.getRawButton(PRECISETURNBUTTON))
+    if (JOYSTICK1.getRawButton(PRECISETURNBUTTON1))
     {
       return;
     }
     double slowSpeed = SmartDashboard.getNumber("Driverbase Normal Speed", NORMSPEED),
            boostSpeed = SmartDashboard.getNumber("Driverbase Boosted Speed", BOOSTSPEED);
 
-    int pov = JOYSTICK.getPOV();
+    int pov = JOYSTICK1.getPOV();
     if (pov != -1) //POV pressed drive with NORMSPEED constants
     {
       switch (pov)
@@ -47,8 +47,8 @@ public class DriveBaseCmd extends CommandBase {
     }
 
     // Y axises are inverted for Playstation controller (quick and dirty fix)
-    double rawAxisLeft = -JOYSTICK.getRawAxis(YAXISLEFT1);
-    double rawAxisRight = -JOYSTICK.getRawAxis(YAXISRIGHT1);
+    double rawAxisLeft = -JOYSTICK1.getRawAxis(YAXISLEFT1);
+    double rawAxisRight = -JOYSTICK1.getRawAxis(YAXISRIGHT1);
 
     if (Math.abs(rawAxisLeft) <= SENSITIVITY && Math.abs(rawAxisRight) <= SENSITIVITY) // no joystick movement
     {
@@ -56,8 +56,8 @@ public class DriveBaseCmd extends CommandBase {
       return;
     }
     
-    double leftSpeed = rawAxisLeft *  ((JOYSTICK.getRawAxis(BOOST) > 0) ? boostSpeed : slowSpeed), 
-           rightSpeed = rawAxisRight * ((JOYSTICK.getRawAxis(BOOST) > 0) ? boostSpeed : slowSpeed);
+    double leftSpeed = rawAxisLeft *  ((JOYSTICK1.getRawAxis(BOOST) > 0) ? boostSpeed : slowSpeed), 
+           rightSpeed = rawAxisRight * ((JOYSTICK1.getRawAxis(BOOST) > 0) ? boostSpeed : slowSpeed);
     
     m_driverBase.drive(leftSpeed, rightSpeed);
     

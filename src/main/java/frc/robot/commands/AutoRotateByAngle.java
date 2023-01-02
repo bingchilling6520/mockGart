@@ -19,8 +19,8 @@ public class AutoRotateByAngle extends CommandBase {
     targetAngle = __angle;
 
     
-    PIDCONTROLLER.setSetpoint(simplifyAngle(targetAngle));
-    SmartDashboard.putNumber("Target Angle", simplifyAngle(targetAngle));
+    PIDCONTROLLER.setSetpoint(simplifyAngle(GYRO.getYaw() + targetAngle));
+    SmartDashboard.putNumber("Target Angle", simplifyAngle(GYRO.getYaw() + targetAngle));
     PIDCONTROLLER.enableContinuousInput(-180, 180);
     PIDCONTROLLER.setIntegratorRange(-10, 1);
     PIDCONTROLLER.setTolerance();
@@ -29,7 +29,6 @@ public class AutoRotateByAngle extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    GYRO.reset();
     PIDCONTROLLER.reset();
   }
 

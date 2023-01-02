@@ -62,7 +62,8 @@ public final class Constants {
                                     BOOSTPULLEY = 4,              // Pulley boost button, on the second controller
 
                                     // Button
-                                    PRECISETURNBUTTON = 7,        // Held to turn precisely, on the first controller
+                                    PRECISETURNBUTTON1 = 7,       // Held both button to enable precsise 
+                                    PRECISETURNBUTTON2 = 8,       // turn, on the first controller
                                     INTAKEBUTTON = 5,             // Intake button, on the second controller
                                     PULLEYBUTTON = 6,             // Pulley button, on the second controller
                                     FRONTTRAPDOORBUTTON = 1,      // Front Trap door button, on the second controller
@@ -109,7 +110,7 @@ public final class Constants {
       }
 
       /** Driverbase control joystick */
-      public final static Joystick JOYSTICK = new Joystick(0);  
+      public final static Joystick JOYSTICK1 = new Joystick(0);  
       
       /** Features/mechanism control joystick */
       public final static Joystick JOYSTICK2 = new Joystick(1);

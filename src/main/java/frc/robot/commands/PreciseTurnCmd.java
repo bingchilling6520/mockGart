@@ -14,6 +14,7 @@ import static frc.robot.Constants.buttonID.*;
 
 public class PreciseTurnCmd extends CommandBase {
   private DriveBaseSubsys m_driveBase;
+  private double initAngle = 0;
   /** Creates a new PreciseTurnCmd. */
   public PreciseTurnCmd(DriveBaseSubsys __subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -30,7 +31,7 @@ public class PreciseTurnCmd extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    GYRO.reset();
+    initAngle = GYRO.getYaw();
     PIDCONTROLLER.reset();
   }
 
@@ -42,13 +43,14 @@ public class PreciseTurnCmd extends CommandBase {
       return;
     }
     //No movement
-    if (Math.abs(JOYSTICK.getRawAxis(XAXISRIGHT1)) <= JOYSTICKSENSITIVITY && Math.abs(JOYSTICK.getRawAxis(YAXISRIGHT1)) <= JOYSTICKSENSITIVITY)
+    if (Math.abs(JOYSTICK1.getRawAxis(XAXISRIGHT1)) <= JOYSTICKSENSITIVITY && Math.abs(JOYSTICK1.getRawAxis(YAXISRIGHT1)) <= JOYSTICKSENSITIVITY)
     {
       return;
     }
-    double joystickAngle = Math.toDegrees(Math.atan2(JOYSTICK.getRawAxis(XAXISRIGHT1), -JOYSTICK.getRawAxis(YAXISRIGHT1)));
+    double joystickAngle = Math.toDegrees(Math.atan2(JOYSTICK1.getRawAxis(XAXISRIGHT1), -JOYSTICK1.getRawAxis(YAXISRIGHT1)));
     SmartDashboard.putNumber("Joystick Angle", simplifyAngle(joystickAngle));
-    PIDCONTROLLER.setSetpoint(simplifyAngle(joystickAngle));
+    SmartDashboard.putNumber("Target Angle", simplifyAngle(initAngle + joystickAngle));
+    PIDCONTROLLER.setSetpoint(simplifyAngle(initAngle + joystickAngle));
     double speed = -PIDCONTROLLER.calculate(GYRO.getYaw()) * 0.1; // get speed
     //speed += Math.signum(speed) * 0.1; // lower bound
     speed = clamp(speed, -0.6, 0.6); // upper bound
