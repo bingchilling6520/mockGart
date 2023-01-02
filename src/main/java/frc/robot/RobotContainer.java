@@ -56,8 +56,8 @@ public class RobotContainer {
     SmartDashboard.putNumber("Driverbase Boosted Speed", BOOSTSPEED);
     SmartDashboard.putBoolean("Intake Running?", false);
     SmartDashboard.putBoolean("Pulley Running?", false);
-    SmartDashboard.putBoolean("Front Trap Door Open?", false);
-    SmartDashboard.putBoolean("Back Trap Door Open?", false);
+    SmartDashboard.putBoolean("Front Trap Door Running?", false);
+    SmartDashboard.putBoolean("Back Trap Door Running?", false);
     SmartDashboard.putString("Music File", "badapple2.chrp");
     m_commandChooser.setDefaultOption("Test", TESTCMD);
     m_commandChooser.addOption("Turn to angle Test", AUTOTURNTESTCMD);

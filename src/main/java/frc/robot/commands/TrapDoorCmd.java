@@ -8,8 +8,6 @@ import static frc.robot.Constants.buttonID.*;
 import static frc.robot.Constants.talonID.*;
 
 public class TrapDoorCmd extends CommandBase {
-  /** true = open, false = close */
-  private boolean state = false; 
   private TrapDoorSubsys m_trapDoor;
   /** Creates a new TrapDoorCmd. */
   public TrapDoorCmd(TrapDoorSubsys __subsystem) {
@@ -21,8 +19,7 @@ public class TrapDoorCmd extends CommandBase {
   @Override
   public void initialize() {
     System.out.println("CLOSE THE TRAPDOOR BEFORE RUNNING");
-    state = !state;
-    state = SmartDashboard.putBoolean((m_trapDoor.id == FRONTTRAPDOORID ? "Front" : "Back") + " Trap Door Open?", state);
+    SmartDashboard.putBoolean(getName(), true);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -36,6 +33,11 @@ public class TrapDoorCmd extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_trapDoor.rotate(0.0);
+    SmartDashboard.putBoolean(getName(), false);
+  }
+
+  public String getName() {
+    return (m_trapDoor.id == FRONTTRAPDOORID ? "Front" : "Back") + " Trap Door Running?";
   }
 
   // Returns true when the command should end.
