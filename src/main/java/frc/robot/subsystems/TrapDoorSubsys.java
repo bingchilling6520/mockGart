@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -14,6 +15,7 @@ public class TrapDoorSubsys extends SubsystemBase {
 
   public TrapDoorSubsys(int __id) {
       trapDoor = new VictorSPX(__id);
+      trapDoor.setNeutralMode(NeutralMode.Brake);
       id = __id;
   }
 

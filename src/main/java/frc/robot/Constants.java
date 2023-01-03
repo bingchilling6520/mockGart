@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.AutoDriveStraight;
-import frc.robot.commands.AutoRotateByAngle;
+import frc.robot.commands.AutoRotateToAngle;
 import frc.robot.commands.IntakeCmd;
 import frc.robot.commands.PulleyCmd;
 import frc.robot.subsystems.DriveBaseSubsys;
@@ -42,8 +42,8 @@ public final class Constants {
                                  NORMSPEED = 0.4,                 // Driverbase slow speed
                                  INTAKESPEED = 1,                 // Intake speed (max, 1:48 SIM motor)
                                  PULLEYSLOWSPEED = 0.1,           // Pulley slow speed
-                                 PULLEYFASTSPEED = 0.3,           // Pulley fast speed
-                                 TRAPDOORSPEED = 0.2;             // Trap Door speed
+                                 PULLEYFASTSPEED = 0.4,           // Pulley fast speed
+                                 TRAPDOORSPEED = 0.3;             // Trap Door speed
 
       /** Sensitivity to account for joystick don't return 0 when not moving */
       public static final double SENSITIVITY = 0.1;
@@ -62,7 +62,8 @@ public final class Constants {
                                     BOOSTPULLEY = 4,              // Pulley boost button, on the second controller
 
                                     // Button
-                                    PRECISETURNBUTTON = 7,        // Held to turn precisely, on the first controller
+                                    PRECISETURNBUTTON1 = 7,       // Held both button to enable precsise 
+                                    PRECISETURNBUTTON2 = 8,       // turn, on the first controller
                                     INTAKEBUTTON = 5,             // Intake button, on the second controller
                                     PULLEYBUTTON = 6,             // Pulley button, on the second controller
                                     FRONTTRAPDOORBUTTON = 1,      // Front Trap door button, on the second controller
@@ -104,12 +105,12 @@ public final class Constants {
             /**Drive Straight for 0.5s turn by 90 degree then Drive Straight in that direction */
             public static final Command AUTOTURNTESTCMD =
             new SequentialCommandGroup(
-                  new AutoRotateByAngle(m_driveBaseSubsystem, 90)
+                  new AutoRotateToAngle(m_driveBaseSubsystem, 90)
             );
       }
 
       /** Driverbase control joystick */
-      public final static Joystick JOYSTICK = new Joystick(0);  
+      public final static Joystick JOYSTICK1 = new Joystick(0);  
       
       /** Features/mechanism control joystick */
       public final static Joystick JOYSTICK2 = new Joystick(1);

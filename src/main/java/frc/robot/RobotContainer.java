@@ -17,6 +17,7 @@ import static frc.robot.Constants.SingleInstance.*;
 import frc.robot.commands.IntakeCmd;
 import frc.robot.commands.PreciseTurnCmd;
 import frc.robot.commands.PulleyCmd;
+import frc.robot.commands.ResetGyro;
 import frc.robot.commands.TrapDoorCmd;
 
 /**
@@ -32,12 +33,14 @@ public class RobotContainer {
   private final TrapDoorCmd m_frontTrapDoorCommand = new TrapDoorCmd(m_frontTrapDoorSubsystem);
   private final TrapDoorCmd m_backTrapDoorCommand = new TrapDoorCmd(m_backTrapDoorSubsystem);
   private final PreciseTurnCmd m_preciseTurnCommand = new PreciseTurnCmd(m_driveBaseSubsystem);
+  private final ResetGyro m_resetGyroCommand = new ResetGyro();
   
   private final JoystickButton buttonIntake = new JoystickButton(JOYSTICK2, INTAKEBUTTON);
   private final JoystickButton buttonPulley = new JoystickButton(JOYSTICK2, PULLEYBUTTON);
   private final JoystickButton frontButtonTrapdoor = new JoystickButton(JOYSTICK2, FRONTTRAPDOORBUTTON);
   private final JoystickButton backButtonTrapdoor = new JoystickButton(JOYSTICK2, BACKTRAPDOORBUTTON);
-  private final JoystickButton preciseTurnButton = new JoystickButton(JOYSTICK, PRECISETURNBUTTON);
+  private final JoystickButton preciseTurnButton1 = new JoystickButton(JOYSTICK1, PRECISETURNBUTTON1);
+  private final JoystickButton preciseTurnButton2 = new JoystickButton(JOYSTICK1, PRECISETURNBUTTON2);
   
   private final SendableChooser<Command> m_commandChooser = new SendableChooser<>();
   
@@ -53,8 +56,8 @@ public class RobotContainer {
     SmartDashboard.putNumber("Driverbase Boosted Speed", BOOSTSPEED);
     SmartDashboard.putBoolean("Intake Running?", false);
     SmartDashboard.putBoolean("Pulley Running?", false);
-    SmartDashboard.putBoolean("Front Trap Door Open?", false);
-    SmartDashboard.putBoolean("Back Trap Door Open?", false);
+    SmartDashboard.putBoolean("Front Trap Door Running?", false);
+    SmartDashboard.putBoolean("Back Trap Door Running?", false);
     SmartDashboard.putString("Music File", "badapple2.chrp");
     m_commandChooser.setDefaultOption("Test", TESTCMD);
     m_commandChooser.addOption("Turn to angle Test", AUTOTURNTESTCMD);
@@ -75,8 +78,8 @@ public class RobotContainer {
     buttonPulley.whenHeld(m_pulleyCommand);
     frontButtonTrapdoor.whenHeld(m_frontTrapDoorCommand);
     backButtonTrapdoor.whenHeld(m_backTrapDoorCommand);
-    preciseTurnButton.whenHeld(m_preciseTurnCommand);
-
+    preciseTurnButton1.whenHeld(m_preciseTurnCommand);
+    preciseTurnButton1.and(preciseTurnButton2).whenActive(m_resetGyroCommand);
   }
 
   /**
