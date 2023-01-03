@@ -18,7 +18,8 @@ All music files should be deployed at src/main/deploy and can refer to its path 
 |Intake|TalonSRX|Intake (cái để hút kéo bóng vào)|5|
 |Left Pulley|Falcon/TalonFX|Motor máng bên trái|6|
 |Right Pulley|Falcon/TalonFX|Motot máng bên phải|7|
-|Trapdoor|Servo|Trapdoor (cái để giữ bóng)|0|
+|Front Trapdoor|VictorSPX|Trapdoor ở dưới (gần intake hơn)|8|
+|Back Trapdoor|VictorSPX|Trapdoor ở trên (xa intake hơn)|9|
 
 ## Controller mapping
 
@@ -35,6 +36,7 @@ PS5 or whatever handheld controller given by cỏ
 |Speed Boost|Button axis|4 (R2 Button)|Tăng tốc cho bánh cả hai bên Driverbase|
 |Go straight (auto balance)|POV|0 (POV Up)|Tiến thẳng cả 2 bên (dùng cho việc qua cầu khỉ)|
 |Go back (auto balance)|POV|180 (POV Down)|Lùi thẳng cả 2 bên (dùng cho việc qua cầu khỉ)|
+|Percise turning enable|Button axis|7|Bật chế độ quay góc chính xác dùng **joystick bên phải**|
 
 **2nd controller**
 
@@ -43,7 +45,11 @@ PS5 or whatever handheld controller given by cỏ
 |Intake|Button axis|5 (L1)|Giữ để chạy intake hút bóng|
 |Pulley|Button axis|6 (R1)|Giữ để chạy máng|
 |Open/Close Trapdoor|Button|3|Đóng / mở trapdoor (**nhớ nhìn state trên SmartDashboard**)|
-|Invert|Button axis|3 (L2)|Đảo ngược chiều quay của intake và pulley (cho bóng xuống)|
+|Invert|Button axis|3 (L2)|Đảo ngược chiều quay của intake và pulley (cho bóng xuống) và trapdoor|
 |Boost pulley|Button axis|4 (R2)|Tăng tốc độ quay máng -> bắn bóng cao hơn|
+|Manual left pulley|Joystick axis|1 (Left Joystick)|Điều khiển thủ công pulley bên trái (khi tuột dây)|
+|Manual right pulley|Joystick axis|5 (Right Joystick)|Điều khiển thủ công pulley bên phải (khi tuột dây)|
+|Front trapdoor|Button|1 (square symbol)|Mở trapdoor phía trước (gần intake hơn)|
+|Back trapdoor|Button|2 (`X` symbol)|Mở trapdoor phía trên (xa intake hơn)|
 
 ## Team blue không phải dọn lab go bruh bruh
