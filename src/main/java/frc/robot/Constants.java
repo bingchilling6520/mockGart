@@ -42,7 +42,7 @@ public final class Constants {
                                  NORMSPEED = 0.4,                 // Driverbase slow speed
                                  INTAKESPEED = 1,                 // Intake speed (max, 1:48 SIM motor)
                                  PULLEYSLOWSPEED = 0.1,           // Pulley slow speed
-                                 PULLEYFASTSPEED = 0.3,           // Pulley fast speed
+                                 PULLEYFASTSPEED = 0.4,           // Pulley fast speed
                                  TRAPDOORSPEED = 0.3;             // Trap Door speed
 
       /** Sensitivity to account for joystick don't return 0 when not moving */
