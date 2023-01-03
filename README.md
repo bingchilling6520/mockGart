@@ -23,9 +23,9 @@ All music files should be deployed at src/main/deploy and can refer to its path 
 
 ## Controller mapping
 
-PS5 or whatever handheld controller given by cỏ
+Two PS4 given by Thắng thiếu gia 🐧
 
-**NOTE**: All button are controlled by **holding**, **EXCEPT** for trapdoor.
+**NOTE**: All button are controlled by **holding**, **EXCEPT** for percise turning button.
 
 **1st controller**
 
