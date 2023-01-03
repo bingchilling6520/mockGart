@@ -7,11 +7,11 @@ import static frc.robot.Constants.SingleInstance.*;
 import static frc.robot.Algorithm.*;
 
 /**Rotate the driverbase by an exact angle */
-public class AutoRotateByAngle extends CommandBase {
+public class AutoRotateToAngle extends CommandBase {
   DriveBaseSubsys m_driveBase;
   double targetAngle;
   /** Creates a new AutoTurnByAngle. */
-  public AutoRotateByAngle(DriveBaseSubsys __subsystem, double __angle) {
+  public AutoRotateToAngle(DriveBaseSubsys __subsystem, double __angle) {
     m_driveBase = __subsystem;
     addRequirements(m_driveBase);
     addRequirements(GYRO);
@@ -19,8 +19,8 @@ public class AutoRotateByAngle extends CommandBase {
     targetAngle = __angle;
 
     
-    PIDCONTROLLER.setSetpoint(simplifyAngle(GYRO.getYaw() + targetAngle));
-    SmartDashboard.putNumber("Target Angle", simplifyAngle(GYRO.getYaw() + targetAngle));
+    PIDCONTROLLER.setSetpoint(simplifyAngle(targetAngle));
+    SmartDashboard.putNumber("Target Angle", simplifyAngle(targetAngle));
     PIDCONTROLLER.enableContinuousInput(-180, 180);
     PIDCONTROLLER.setIntegratorRange(-10, 1);
     PIDCONTROLLER.setTolerance();
@@ -35,11 +35,11 @@ public class AutoRotateByAngle extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double speed = -PIDCONTROLLER.calculate(GYRO.getYaw()) * 0.1; // get speed
+    double speed = (-PIDCONTROLLER.calculate(GYRO.getYaw())) * 0.1; // get speed
     //speed += Math.signum(speed) * 0.1; // lower bound
     speed = clamp(speed, -0.6, 0.6); // upper bound
     m_driveBase.drive(-speed, speed); // actual driving mechanism
-    SmartDashboard.putNumber("speed", speed);
+    SmartDashboard.putNumber("Speed", speed);
   }
 
   // Called once the command ends or is interrupted.

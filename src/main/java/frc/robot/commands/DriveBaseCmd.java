@@ -18,7 +18,9 @@ public class DriveBaseCmd extends CommandBase {
   }
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {} //empty
+  public void initialize() {
+    m_driverBase.drive(0.0, 0.0);
+  } //empty
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override

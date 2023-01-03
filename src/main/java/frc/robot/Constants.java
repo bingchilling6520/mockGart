@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.AutoDriveStraight;
-import frc.robot.commands.AutoRotateByAngle;
+import frc.robot.commands.AutoRotateToAngle;
 import frc.robot.commands.IntakeCmd;
 import frc.robot.commands.PulleyCmd;
 import frc.robot.subsystems.DriveBaseSubsys;
@@ -43,7 +43,7 @@ public final class Constants {
                                  INTAKESPEED = 1,                 // Intake speed (max, 1:48 SIM motor)
                                  PULLEYSLOWSPEED = 0.1,           // Pulley slow speed
                                  PULLEYFASTSPEED = 0.3,           // Pulley fast speed
-                                 TRAPDOORSPEED = 0.2;             // Trap Door speed
+                                 TRAPDOORSPEED = 0.3;             // Trap Door speed
 
       /** Sensitivity to account for joystick don't return 0 when not moving */
       public static final double SENSITIVITY = 0.1;
@@ -105,7 +105,7 @@ public final class Constants {
             /**Drive Straight for 0.5s turn by 90 degree then Drive Straight in that direction */
             public static final Command AUTOTURNTESTCMD =
             new SequentialCommandGroup(
-                  new AutoRotateByAngle(m_driveBaseSubsystem, 90)
+                  new AutoRotateToAngle(m_driveBaseSubsystem, 90)
             );
       }
 
