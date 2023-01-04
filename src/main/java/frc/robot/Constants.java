@@ -41,7 +41,7 @@ public final class Constants {
       public static final double BOOSTSPEED = 0.8,                // Driverbase boost speed
                                  NORMSPEED = 0.4,                 // Driverbase slow speed
                                  INTAKESPEED = 1,                 // Intake speed (max, 1:48 SIM motor)
-                                 PULLEYSLOWSPEED = 0.1,           // Pulley slow speed
+                                 PULLEYSLOWSPEED = 0.15,           // Pulley slow speed
                                  PULLEYFASTSPEED = 0.4,           // Pulley fast speed
                                  TRAPDOORSPEED = 0.3;             // Trap Door speed
 
@@ -94,14 +94,9 @@ public final class Constants {
       public final static class autoCmd
       {
             /** Drive Straight quickly for 0.5s then move slowly while eating balls in 0.8s */
-            public static final Command TESTCMD = 
+            public static final Command AUTOCMD = 
             new SequentialCommandGroup(
-                  new AutoDriveStraight(m_driveBaseSubsystem,BOOSTSPEED).withTimeout(0.5),
-                  new ParallelCommandGroup(
-                        new AutoDriveStraight(m_driveBaseSubsystem, NORMSPEED),
-                        new IntakeCmd(m_intakeSubsystem),
-                        new PulleyCmd(m_pulleySubsystem)
-            ).withTimeout(0.8));
+                  new AutoDriveStraight(m_driveBaseSubsystem, 0.8).withTimeout(5.0));
 
             /**Drive Straight for 0.5s turn by 90 degree then Drive Straight in that direction */
             public static final Command AUTOTURNTESTCMD =

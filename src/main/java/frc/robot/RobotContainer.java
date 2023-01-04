@@ -14,6 +14,7 @@ import static frc.robot.Constants.buttonID.*;
 import static frc.robot.Constants.autoCmd.*;
 import static frc.robot.Constants.SingleInstance.*;
 
+import frc.robot.commands.AutoRotateToAngle;
 import frc.robot.commands.IntakeCmd;
 import frc.robot.commands.PreciseTurnCmd;
 import frc.robot.commands.PulleyCmd;
@@ -60,8 +61,9 @@ public class RobotContainer {
     SmartDashboard.putBoolean("Front Trap Door Running?", false);
     SmartDashboard.putBoolean("Back Trap Door Running?", false);
     SmartDashboard.putString("Music File", "badapple2.chrp");
-    m_commandChooser.setDefaultOption("Test", TESTCMD);
+    m_commandChooser.setDefaultOption("Test", AUTOCMD);
     m_commandChooser.addOption("Turn to angle Test", AUTOTURNTESTCMD);
+    SmartDashboard.putData("Reset Gyro", m_resetGyroCommand);
     SmartDashboard.putData("Auto Command", m_commandChooser);
     
     configureButtonBindings();
