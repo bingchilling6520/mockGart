@@ -14,7 +14,7 @@ import static frc.robot.Constants.buttonID.*;
 import static frc.robot.Constants.autoCmd.*;
 import static frc.robot.Constants.SingleInstance.*;
 
-import frc.robot.commands.AutoRotateToAngle;
+import frc.robot.commands.CancelAll;
 import frc.robot.commands.IntakeCmd;
 import frc.robot.commands.PreciseTurnCmd;
 import frc.robot.commands.PulleyCmd;
@@ -35,6 +35,7 @@ public class RobotContainer {
   private final TrapDoorCmd m_backTrapDoorCommand = new TrapDoorCmd(m_backTrapDoorSubsystem);
   private final PreciseTurnCmd m_preciseTurnCommand = new PreciseTurnCmd(m_driveBaseSubsystem);
   private final ResetGyro m_resetGyroCommand = new ResetGyro();
+  private final CancelAll m_cancelAll = new CancelAll();
   
   private final JoystickButton buttonIntake = new JoystickButton(JOYSTICK2, INTAKEBUTTON);
   private final JoystickButton buttonPulley = new JoystickButton(JOYSTICK2, PULLEYBUTTON);
@@ -43,6 +44,11 @@ public class RobotContainer {
   private final JoystickButton preciseTurnButton1 = new JoystickButton(JOYSTICK1, PRECISETURNBUTTON1);
   private final JoystickButton preciseTurnButton2 = new JoystickButton(JOYSTICK1, PRECISETURNBUTTON2);
   private final JoystickButton preciseTurnButton3 = new JoystickButton(JOYSTICK1, PRECISETURNBUTTON3);
+  private final JoystickButton cancelAllButton11 = new JoystickButton(JOYSTICK1, CANCELALLBUTTON1);
+  private final JoystickButton cancelAllButton12 = new JoystickButton(JOYSTICK1, CANCELALLBUTTON2);
+  
+  private final JoystickButton cancelAllButton21 = new JoystickButton(JOYSTICK2, CANCELALLBUTTON1);
+  private final JoystickButton cancelAllButton22 = new JoystickButton(JOYSTICK2, CANCELALLBUTTON2);
   
   private final SendableChooser<Command> m_commandChooser = new SendableChooser<>();
   
@@ -64,6 +70,7 @@ public class RobotContainer {
     m_commandChooser.setDefaultOption("Test", AUTOCMD);
     m_commandChooser.addOption("Turn to angle Test", AUTOTURNTESTCMD);
     SmartDashboard.putData("Reset Gyro", m_resetGyroCommand);
+    SmartDashboard.putData("CANCEL ALL", m_cancelAll);
     SmartDashboard.putData("Auto Command", m_commandChooser);
     
     configureButtonBindings();
@@ -83,6 +90,8 @@ public class RobotContainer {
     backButtonTrapdoor.whenHeld(m_backTrapDoorCommand);
     preciseTurnButton1.whenHeld(m_preciseTurnCommand);
     preciseTurnButton1.and(preciseTurnButton2).and(preciseTurnButton3).whenActive(m_resetGyroCommand);
+    cancelAllButton11.or(cancelAllButton12).whenActive(m_cancelAll);
+    cancelAllButton21.or(cancelAllButton22).whenActive(m_cancelAll);
   }
 
   /**

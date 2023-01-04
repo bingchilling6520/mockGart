@@ -68,7 +68,9 @@ public final class Constants {
                                     INTAKEBUTTON = 5,             // Intake button, on the second controller
                                     PULLEYBUTTON = 6,             // Pulley button, on the second controller
                                     FRONTTRAPDOORBUTTON = 1,      // Front Trap door button, on the second controller
-                                    BACKTRAPDOORBUTTON = 2;       // Back Trap door button, on the second controller
+                                    BACKTRAPDOORBUTTON = 2,       // Back Trap door button, on the second controller
+                                    CANCELALLBUTTON1 = 9,
+                                    CANCELALLBUTTON2 = 10;
       }
       
       public final class talonID
