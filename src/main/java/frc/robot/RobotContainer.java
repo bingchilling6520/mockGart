@@ -41,6 +41,7 @@ public class RobotContainer {
   private final JoystickButton backButtonTrapdoor = new JoystickButton(JOYSTICK2, BACKTRAPDOORBUTTON);
   private final JoystickButton preciseTurnButton1 = new JoystickButton(JOYSTICK1, PRECISETURNBUTTON1);
   private final JoystickButton preciseTurnButton2 = new JoystickButton(JOYSTICK1, PRECISETURNBUTTON2);
+  private final JoystickButton preciseTurnButton3 = new JoystickButton(JOYSTICK1, PRECISETURNBUTTON3);
   
   private final SendableChooser<Command> m_commandChooser = new SendableChooser<>();
   
@@ -79,7 +80,7 @@ public class RobotContainer {
     frontButtonTrapdoor.whenHeld(m_frontTrapDoorCommand);
     backButtonTrapdoor.whenHeld(m_backTrapDoorCommand);
     preciseTurnButton1.whenHeld(m_preciseTurnCommand);
-    preciseTurnButton1.and(preciseTurnButton2).whenActive(m_resetGyroCommand);
+    preciseTurnButton1.and(preciseTurnButton2).and(preciseTurnButton3).whenActive(m_resetGyroCommand);
   }
 
   /**
