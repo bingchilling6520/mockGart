@@ -21,7 +21,7 @@ import static frc.robot.Constants.talonID.*;
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
  * globally (i.e. public static). Do not put anything functional in this class.
- *0
+ *
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
@@ -41,7 +41,7 @@ public final class Constants {
       public static final double BOOSTSPEED = 0.8,                // Driverbase boost speed
                                  NORMSPEED = 0.4,                 // Driverbase slow speed
                                  INTAKESPEED = 1,                 // Intake speed (max, 1:48 SIM motor)
-                                 PULLEYSLOWSPEED = 0.15,           // Pulley slow speed
+                                 PULLEYSLOWSPEED = 0.15,          // Pulley slow speed
                                  PULLEYFASTSPEED = 0.4,           // Pulley fast speed
                                  TRAPDOORSPEED = 0.3;             // Trap Door speed
 

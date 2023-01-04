@@ -4,10 +4,8 @@
 
 package frc.robot.commands;
 import static frc.robot.Constants.SingleInstance.*;
-import static java.lang.Exception.*;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 public class CancelAll extends CommandBase {
   /** Creates a new CancelAll. */
